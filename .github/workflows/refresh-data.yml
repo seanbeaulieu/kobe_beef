@@ -1,0 +1,36 @@
+name: Refresh restaurant data
+
+on:
+  schedule:
+    - cron: '0 3 * * 1' # Mondays 03:00 UTC (12:00 JST)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run data -- --refresh-osm
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- public/data data; then
+            echo "no data changes"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data data
+          git commit -m "data: weekly registry refresh"
+          git push

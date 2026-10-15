@@ -1,0 +1,12 @@
+{
+  "_example": {
+    "nameEn": "English name",
+    "priceTier": 3,
+    "priceLunch": 8000,
+    "priceDinner": 20000,
+    "openingHours": "Mo-Su 11:00-15:00,17:00-22:00; PH off",
+    "rating": 4.2,
+    "lat": 34.69,
+    "lng": 135.19
+  }
+}
