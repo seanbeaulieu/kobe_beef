@@ -50,13 +50,13 @@ npm run dev        # http://localhost:5173
 npm run build && npm run preview   # prod build, served with the real CSP from public/_headers
 ```
 
-Needs Node ≥ 20. Use 22 LTS; some transitive deps warn on 18.
+Needs Node ≥ 22.12 (24 LTS recommended, see `.nvmrc`).
 
 ## Deploy (Cloudflare Pages)
 
 1. Push to GitHub.
 2. Cloudflare dashboard → Workers & Pages → Create → Pages → connect the repo.
-3. Build command `npm run build`, output dir `dist`, env var `NODE_VERSION=22`.
+3. Build command `npm run build`, output dir `dist`, env var `NODE_VERSION=24`.
 
 Netlify works identically (it reads the same `_headers` file). GitHub Pages also works, but it ignores `_headers`, so you lose the CSP.
 
