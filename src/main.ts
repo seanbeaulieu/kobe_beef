@@ -135,6 +135,20 @@ function render() {
   renderList(results);
 }
 
+// Hotlinked photo; nothing at all when there is none or it fails to load.
+function photo(r: Restaurant, cls: string): HTMLImageElement | null {
+  if (!r.image || !/^https:\/\//.test(r.image)) return null;
+  const img = document.createElement('img');
+  img.src = r.image;
+  img.alt = '';
+  img.loading = 'lazy';
+  img.decoding = 'async';
+  img.referrerPolicy = 'no-referrer';
+  img.className = cls;
+  img.addEventListener('error', () => img.remove());
+  return img;
+}
+
 function renderList(results: Result[]) {
   const ol = $('#results');
   ol.replaceChildren(
@@ -153,7 +167,12 @@ function renderList(results: Result[]) {
         distanceKm != null ? `${distanceKm.toFixed(1)} km` : null,
         r.openingHours ? 'hours ✓' : null,
       ].filter(Boolean).join(' · ') || '—';
-      btn.append(name, meta);
+      const text = document.createElement('span');
+      text.className = 'text';
+      text.append(name, meta);
+      const thumb = photo(r, 'thumb');
+      if (thumb) btn.append(thumb);
+      btn.append(text);
       btn.addEventListener('click', () => {
         map.flyTo({ center: [r.lng, r.lat], zoom: Math.max(map.getZoom(), 16) });
         openPopup(r);
@@ -175,6 +194,8 @@ function openPopup(r: Restaurant) {
     el.append(n);
     return n;
   };
+  const hero = photo(r, 'hero');
+  if (hero) el.append(hero);
   add('strong', r.name);
   if (r.nameEn) add('div', r.nameEn, 'muted');
   add('div', `〒${r.postal ?? ''} ${r.address}`);
@@ -204,6 +225,16 @@ function openPopup(r: Restaurant) {
   link(`https://tabelog.com/en/rstLst/?sw=${encodeURIComponent(r.name)}`, 'Tabelog');
   if (r.osmId) link(`https://www.openstreetmap.org/${r.osmId}`, 'OSM');
   el.append(links);
+
+  if (r.image && r.imageSource && /^https?:\/\//.test(r.imageSource)) {
+    const credit = add('div', 'Photo: ', 'muted');
+    const a = document.createElement('a');
+    a.href = r.imageSource;
+    a.textContent = new URL(r.imageSource).hostname.replace(/^www\./, '');
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    credit.append(a);
+  }
 
   popup?.remove();
   popup = new Popup({ maxWidth: '320px' }).setLngLat([r.lng, r.lat]).setDOMContent(el).addTo(map);

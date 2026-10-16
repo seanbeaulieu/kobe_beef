@@ -23,12 +23,14 @@ kobe-niku.jp registry (Hyogo, restaurants) ──► filter 神戸市
    │ coords from registry map links (~40 entries)
    ├─► GSI address geocoder for the rest     (cached: data/geocode-cache.json)
    ├─► OpenStreetMap Overpass name+distance match → hours, English name (cached: data/osm-cache.json)
-   └─► data/overrides.json (hand-curated price / hours / rating / coords, keyed by "kb-<regNo>")
+   ├─► og:image from each restaurant website → photo, hotlinked (cached: data/image-cache.json)
+   └─► data/overrides.json (hand-curated price / hours / rating / coords / image, keyed by "kb-<regNo>")
 ```
 
 ```bash
 npm run data                     # rebuild using caches
 npm run data -- --refresh-osm    # re-query OSM
+npm run data -- --refresh-images # re-scrape website photos
 npm run data -- --fresh          # ignore all caches
 ```
 
@@ -40,6 +42,8 @@ The push then triggers a redeploy.
 - **Hours**: only about 6 of 204 have OSM hours. Fill `openingHours` in overrides, or add them to OSM, which helps everyone.
 - **Reviews**: no free source that allows redistribution. Google Places is paid and forbids caching; Tabelog forbids scraping.
   The `rating` field is for curated values. Popups link out to Google Maps and Tabelog.
+- **Photos**: only restaurants with a website get one automatically (~22 of 204). Fill `image` in overrides,
+  following the rules in [`data/README.md`](data/README.md).
 - Geocoded points are block-level (~50 m), not the exact door.
 
 ## Develop
@@ -64,6 +68,7 @@ Netlify works identically (it reads the same `_headers` file). GitHub Pages also
 
 - Static only: no server, auth, DB or secrets to leak.
 - Strict CSP (`public/_headers`): scripts are same-origin only, there is no inline JS, and the only external connection is the tile host.
+  `img-src` allows any https host, because restaurant photos are hotlinked from their own sites.
 - Scraped strings render only via `textContent`, never `innerHTML`. Outbound URLs are validated as http(s) at build time and again at render.
 - `npm audit` runs in CI. maplibre-gl ≤ 6.4 has a known XSS bug, hence v6.14.
 

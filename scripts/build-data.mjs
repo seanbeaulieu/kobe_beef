@@ -1,11 +1,13 @@
 // Builds public/data/restaurants.json from the official Kobe Beef Marketing &
 // Distribution Promotion Association registry (kobe-niku.jp), geocodes entries
 // without coordinates via GSI (Japan's national geocoder), optionally enriches
-// with OpenStreetMap opening_hours, then applies hand-curated data/overrides.json.
+// with OpenStreetMap opening_hours, picks a photo from each restaurant website's
+// og:image, then applies hand-curated data/overrides.json.
 //
 // Usage: npm run data            (uses caches)
-//        npm run data -- --refresh-osm   (re-query OpenStreetMap)
-//        npm run data -- --fresh         (ignore all caches)
+//        npm run data -- --refresh-osm      (re-query OpenStreetMap)
+//        npm run data -- --refresh-images   (re-scrape website photos)
+//        npm run data -- --fresh            (ignore all caches)
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -15,12 +17,14 @@ const OUT = new URL('public/data/restaurants.json', ROOT);
 const GEOCACHE = new URL('data/geocode-cache.json', ROOT);
 const OVERRIDES = new URL('data/overrides.json', ROOT);
 const OSMCACHE = new URL('data/osm-cache.json', ROOT);
+const IMAGECACHE = new URL('data/image-cache.json', ROOT);
 
 // prefecture=28 → Hyogo, tag=3 → "食事ができる Restaurant"
 const SOURCE_URL = 'https://www.kobe-niku.jp/shop/?lang=1&prefecture=28&tag=3';
 const UA = 'kobe-beef-guide-databuild (github.com/seanbeaulieu)';
 const fresh = process.argv.includes('--fresh');
 const refreshOsm = fresh || process.argv.includes('--refresh-osm');
+const refreshImages = fresh || process.argv.includes('--refresh-images');
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const readJson = async (url, fallback) =>
@@ -128,6 +132,62 @@ out center tags;`;
   }));
 }
 
+// Images are hotlinked, so they must be https (the CSP upgrades http anyway,
+// which would silently break hosts without TLS).
+const httpsUrl = (u) => {
+  const s = safeUrl(u ?? '');
+  return s?.startsWith('https://') ? s : null;
+};
+
+const attr = (tag, name) =>
+  tag.match(new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, 'i'))?.slice(1).find((v) => v != null);
+
+// Does the URL actually serve an image? Some hosts reject HEAD, so fall back to GET.
+async function isImage(url) {
+  for (const method of ['HEAD', 'GET']) {
+    try {
+      const res = await fetch(url, { method, headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(10_000) });
+      res.body?.cancel();
+      if (res.ok && /^image\//.test(res.headers.get('content-type') ?? '')) return true;
+    } catch {}
+  }
+  return false;
+}
+
+// og:image (or twitter:image) from a restaurant's homepage, verified to load over https.
+async function scrapeImage(site) {
+  const res = await fetch(site, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(15_000) });
+  if (!res.ok) throw new Error(`${res.status}`);
+  const html = await res.text();
+  const metas = new Map();
+  for (const [tag] of html.matchAll(/<meta\b[^>]*>/gi)) {
+    const key = (attr(tag, 'property') ?? attr(tag, 'name'))?.toLowerCase();
+    const content = attr(tag, 'content');
+    if (key && content && !metas.has(key)) metas.set(key, decode(content));
+  }
+  for (const key of ['og:image:secure_url', 'og:image', 'og:image:url', 'twitter:image']) {
+    const raw = metas.get(key);
+    if (!raw) continue;
+    let abs;
+    try {
+      abs = new URL(raw, res.url);
+    } catch {
+      continue;
+    }
+    abs.protocol = 'https:';
+    const url = httpsUrl(abs.href);
+    if (url && (await isImage(url))) return url;
+  }
+  return null;
+}
+
+async function pool(items, n, fn) {
+  const queue = [...items];
+  await Promise.all(Array.from({ length: n }, async () => {
+    while (queue.length) await fn(queue.shift());
+  }));
+}
+
 const haversineM = (a, b) => {
   const R = 6371e3, rad = Math.PI / 180;
   const dLat = (b.lat - a.lat) * rad, dLng = (b.lng - a.lng) * rad;
@@ -209,13 +269,41 @@ async function main() {
   }
   console.log(`OSM matched ${osmHits}/${kobe.length}`);
 
-  // --- manual overrides (price tier, hours, rating, english name…) ---
+  // --- photos: og:image from each website (cached per site, misses included) ---
+  const images = refreshImages ? {} : await readJson(IMAGECACHE, {});
+  // some registry "websites" are listings on Tabelog / Gurunavi / Google Maps etc.;
+  // those photos aren't the restaurant's to offer (and Tabelog forbids scraping)
+  const scrapable = (w) =>
+    w && !/(^|\.)(tabelog\.com|gnavi\.co\.jp|hotpepper\.jp|retty\.me|google\.[a-z.]+)$/.test(new URL(w).hostname);
+  const sites = [...new Set(kobe.map((r) => r.website).filter((w) => scrapable(w) && !(w in images)))];
+  if (sites.length) console.log(`scraping images from ${sites.length} websites…`);
+  await pool(sites, 6, async (site) => {
+    images[site] = await scrapeImage(site).catch((e) => (console.warn(`  image: ${site} ${e.message}`), null));
+  });
+  await writeFile(IMAGECACHE, JSON.stringify(images, null, 1));
+  for (const r of kobe) {
+    r.image = images[r.website] ?? null;
+    r.imageSource = r.image ? r.website : null;
+  }
+
+  // --- manual overrides (price tier, hours, rating, english name, image…) ---
   const overrides = await readJson(OVERRIDES, {});
   for (const r of kobe) {
     const { lat, lng, ...rest } = overrides[r.id] ?? {};
     Object.assign(r, rest);
     if (lat != null && lng != null) r.coords = { lat, lng, source: 'manual' };
+    // "image": null hides a bad scraped photo; a URL replaces it
+    if ('image' in rest) {
+      r.image = httpsUrl(rest.image);
+      if (rest.image && !r.image) console.warn(`  override ${r.id}: image must be an https URL`);
+      else if (r.image && !(await isImage(r.image))) {
+        console.warn(`  override ${r.id}: image didn't load as an image, dropped: ${r.image}`);
+        r.image = null;
+      }
+      r.imageSource = r.image ? safeUrl(rest.imageSource ?? '') ?? r.website : null;
+    }
   }
+  console.log(`images: ${kobe.filter((r) => r.image).length}/${kobe.length}`);
 
   const restaurants = kobe
     .filter((r) => r.coords)
@@ -237,6 +325,8 @@ async function main() {
       priceDinner: r.priceDinner ?? null,
       rating: r.rating ?? null, // 0–5, curated
       cuisine: r.cuisine ?? null,
+      image: r.image ?? null, // https, hotlinked
+      imageSource: r.imageSource ?? null, // page credited for the photo
       osmId: r.osmId ?? null,
     }))
     .sort((a, b) => a.registrationNo - b.registrationNo);

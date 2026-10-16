@@ -19,6 +19,10 @@ export interface Restaurant {
   /** 0–5 */
   rating: number | null;
   cuisine: string | null;
+  /** https photo URL, hotlinked (website og:image or curated) */
+  image: string | null;
+  /** page the photo is credited to */
+  imageSource: string | null;
   osmId: string | null;
 }
 

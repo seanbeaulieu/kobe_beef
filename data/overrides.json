@@ -7,6 +7,2112 @@
     "openingHours": "Mo-Su 11:00-15:00,17:00-22:00; PH off",
     "rating": 4.2,
     "lat": 34.69,
-    "lng": 135.19
+    "lng": 135.19,
+    "image": "https://example.com/storefront.jpg",
+    "imageSource": "https://example.com/"
+  },
+  "kb-10": {
+    "priceTier": 3,
+    "priceDinner": 25300,
+    "openingHours": "We-Su 11:00-20:00; Mo,Tu off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28000766/",
+      "https://tabelog.com/hyogo/A2801/A280102/28000766/party/"
+    ],
+    "_notes": "restaurant 大井 attached to the 大井肉店 butcher; price = 神戸牛サーロインステーキコース (lunch/dinner not distinguished, meals after 18:00 by reservation only); official site unreachable; irregular extra closures. Google Maps only lists the 大井肉店 butcher shop (We-Su 11:00-18:30), not the restaurant hours",
+    "_checked": "2026-10-15"
+  },
+  "kb-70": {
+    "nameEn": "Steak Wataru",
+    "openingHours": "Mo-Th,Sa,Su 11:00-20:00; Fr 11:30-22:00",
+    "_sources": [
+      "https://savorjapan.com/0006126960",
+      "https://hitosara.com/0006126960/",
+      "Google Maps listing"
+    ],
+    "_notes": "irregular closing days; no published Kobe beef menu prices (avg dinner ~¥20,000); official site blocks fetching. hours now from Google Maps (was Mo-Su 11:30-22:00 from tabelog/other). Google Maps shows 11:00-20:00 except Fri 11:30-22:00, whereas savorjapan/hitosara say 11:30-22:00 daily - used Google per trust order",
+    "_checked": "2026-10-15"
+  },
+  "kb-207": {
+    "nameEn": "Mouriya Honten",
+    "priceTier": 2,
+    "priceLunch": 8020,
+    "priceDinner": 6940,
+    "_sources": [
+      "https://www.mouriya.co.jp/head",
+      "https://www.mouriya.co.jp/head/menu"
+    ],
+    "_notes": "lunch = 神戸牛内もも120g lunch; dinner = 内もも120g A set. Official hours 11:00-22:00 (LO 21:00) vs existing OSM Mo-Su 11:00-21:00 (left unchanged)",
+    "_checked": "2026-10-15"
+  },
+  "kb-1981": {
+    "nameEn": "Mouriya Sannomiya",
+    "priceTier": 2,
+    "priceLunch": 8020,
+    "priceDinner": 6940,
+    "_sources": [
+      "https://www.mouriya.co.jp/sannomiya/menu",
+      "https://www.mouriya.co.jp/"
+    ],
+    "_notes": "same menu as honten; lunch = 内もも120g lunch, dinner = 内もも120g A set. Existing OSM hours probably copied from honten match",
+    "_checked": "2026-10-15"
+  },
+  "kb-1982": {
+    "nameEn": "Royal Mouriya",
+    "priceTier": 2,
+    "priceLunch": 8020,
+    "priceDinner": 6940,
+    "_sources": [
+      "https://www.mouriya.co.jp/royal/menu",
+      "https://www.mouriya.co.jp/"
+    ],
+    "_notes": "lunch = 内もも120g lunch, dinner = 内もも120g A set. Existing OSM hours probably copied from honten match",
+    "_checked": "2026-10-15"
+  },
+  "kb-1983": {
+    "_status": "closed?",
+    "_sources": [
+      "https://www.mouriya.co.jp/"
+    ],
+    "_notes": "official site lists ダイニングモーリヤ as 一時休業中 (temporarily closed); tabelog (28042557) still shows hours 11:00-15:00,17:00-22:00 - official notice preferred",
+    "_checked": "2026-10-15"
+  },
+  "kb-1984": {
+    "_status": "closed?",
+    "_sources": [
+      "https://www.mouriya.co.jp/"
+    ],
+    "_notes": "official site lists モーリヤ凜 as 一時休業中 (temporarily closed)",
+    "_checked": "2026-10-15"
+  },
+  "kb-231": {
+    "priceTier": 3,
+    "priceDinner": 18700,
+    "openingHours": "Mo-Fr 11:30-15:00,17:00-22:00; Sa 11:30-22:00; Su,PH 11:30-21:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28009868/",
+      "https://tabelog.com/hyogo/A2801/A280101/28009868/party/"
+    ],
+    "_notes": "listed as 神戸菊水 すてーき屋; dinner = 神戸牛サーロインステーキコース 110g; lunch Kobe beef price not found; kikusui-shop.com is the online shop only. steak-ya result not opened; picked butcher 神戸菊水 三宮店 (10:30-20:30)",
+    "_checked": "2026-10-15"
+  },
+  "kb-438": {
+    "priceTier": 2,
+    "priceLunch": 3500,
+    "priceDinner": 7480,
+    "openingHours": "Mo-Su 11:00-21:00",
+    "_sources": [
+      "https://steakland-kobe.jp/pages/22/",
+      "https://tabelog.com/hyogo/A2801/A280101/28000604/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 神戸牛ステーキランチ 150g (11:00-14:00), dinner = 神戸牛ステーキディナー 180g; hours from tabelog. hours now from Google Maps (was Mo-Su 11:00-21:30 from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Steakland Kobe"
+  },
+  "kb-440": {
+    "priceTier": 2,
+    "priceLunch": 3500,
+    "priceDinner": 7480,
+    "openingHours": "Mo-Su 11:00-14:00,17:00-21:00",
+    "_sources": [
+      "https://steakland-kobe.jp/pages/22/",
+      "https://tabelog.com/hyogo/A2801/A280101/28007302/",
+      "Google Maps listing"
+    ],
+    "_notes": "same menu as Steakland Kobe; lunch = 神戸牛ステーキランチ, dinner = 神戸牛ステーキディナー. hours now from Google Maps (was Mo-Su 11:00-14:00,17:00-21:30 from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Steakland Kobe-kan"
+  },
+  "kb-444": {
+    "priceTier": 3,
+    "priceDinner": 15400,
+    "openingHours": "Mo-Sa 17:00-22:00; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28003014/",
+      "https://tabelog.com/hyogo/A2801/A280101/28003014/party/",
+      "https://steakland-kobe.jp/pages/23/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner only; = A course 特選神戸牛サーロイン 150g; appears to be Steakland's 山崎店 (identical course prices); closed New Year; registry website field is a Google Maps URL, not a site",
+    "_checked": "2026-10-15",
+    "nameEn": "Steakland Yamasaki"
+  },
+  "kb-447": {
+    "nameEn": "Kobe Plaisir",
+    "priceTier": 2,
+    "priceLunch": 7370,
+    "priceDinner": 9570,
+    "openingHours": "Tu-Sa 11:30-15:00,17:00-22:00; Su 11:30-15:00,17:00-21:30; Mo off",
+    "_sources": [
+      "https://kobeplaisir-honten.jp/",
+      "https://kobeplaisir-honten.jp/archives/menu/1353",
+      "https://kobeplaisir-honten.jp/archives/menu/1354"
+    ],
+    "_notes": "lunch = 神戸ビーフもも steak plate 80g; dinner = もも steak plate 100g (+10% service charge at dinner). Dinner menu page says 17:00-22:30, top page 22:00 - used top page. Google Maps hours differ: Tu-Sa 11:30-14:00,17:00-21:00; Su 11:30-14:00,17:00-20:30; Mo off",
+    "_checked": "2026-10-15"
+  },
+  "kb-450": {
+    "priceTier": 2,
+    "priceDinner": 7700,
+    "openingHours": "Mo,We-Su 17:00-22:30; Tu off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28003841/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 炭焼肉 石田屋。本店; dinner = 特上石田屋コース (shop says it serves Kobe beef from contracted farms but course name doesn't say 神戸牛 explicitly); official site blocks fetching",
+    "_checked": "2026-10-15",
+    "nameEn": "Sumi Yakiniku ISHIDAYA Main-Shop"
+  },
+  "kb-463": {
+    "priceTier": 3,
+    "priceLunch": 3300,
+    "priceDinner": 19800,
+    "openingHours": "Tu-Su 11:30-15:30,17:00-22:00; Mo off",
+    "_sources": [
+      "https://www.bifteck.co.jp/restaurant/sannomiya-main/",
+      "https://www.bifteck.co.jp/menu/sannomiya/lunch.html",
+      "https://www.bifteck.co.jp/menu/sannomiya/",
+      "https://r.gnavi.co.jp/k504201/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 神戸ビーフハンバーグランチ (limited qty; cheapest Kobe steak lunch 18,700); dinner = 特選神戸ビーフステーキコース 100g. Official site gives LO only (14:30/21:00); closing times from gurunavi. Mondays closed, plus irregular. Google Maps hours differ: Tu-Su 11:30-14:30,17:00-22:00; Mo off",
+    "_checked": "2026-10-15",
+    "nameEn": "Bifteck Kawamura Sannomiya Flagship Restaurant"
+  },
+  "kb-464": {
+    "priceTier": 1,
+    "priceLunch": 3190,
+    "priceDinner": 3900,
+    "openingHours": "Mo-Su 11:00-15:30,17:00-21:15",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/honten/",
+      "https://tabelog.com/hyogo/A2801/A280102/28003483/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 平日限定神戸牛ランチコース (weekdays only); dinner = 神戸牛ありがとうコース (+5% service charge at dinner)",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef KISSHOKICHI Main Store"
+  },
+  "kb-472": {
+    "priceTier": 2,
+    "priceLunch": 12540,
+    "priceDinner": 13200,
+    "openingHours": "Mo,Tu,Th-Su 11:00-14:30,17:00-21:30; We off",
+    "_sources": [
+      "http://www.steak-en.com/",
+      "http://www.steak-en.com/menu.html",
+      "https://tabelog.com/hyogo/A2801/A280102/28046698/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 特選神戸牛ステーキランチコース sirloin 100g; dinner = 特選神戸牛ステーキコース S. Only last-order times published (14:30/21:30); used them as closing since no other times found",
+    "_checked": "2026-10-15",
+    "nameEn": "En Steak House"
+  },
+  "kb-1697": {
+    "nameEn": "KOBE BEEF 5STAR",
+    "priceTier": 1,
+    "priceLunch": 3900,
+    "priceDinner": 3900,
+    "openingHours": "Mo-Su 11:00-21:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/yazawa-west/"
+    ],
+    "_notes": "registry name 神戸牛八坐和 WEST; same address now operates as KOBE BEEF 5STAR (renamed?). price = 神戸牛コース 5品 (all day). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15"
+  },
+  "kb-1068": {
+    "nameEn": "KOBE BEEF RED ONE",
+    "priceTier": 1,
+    "priceLunch": 3900,
+    "priceDinner": 4100,
+    "openingHours": "Mo-Su 11:00-21:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/redone/"
+    ],
+    "_notes": "lunch = REDONE lunch course; dinner = weekday REDONE dinner course (+5% service at dinner; weekend cheapest ¥6,490). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15"
+  },
+  "kb-1094": {
+    "priceTier": 2,
+    "priceLunch": 5280,
+    "priceDinner": 5280,
+    "openingHours": "Mo-Su 11:30-22:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/tanryu-sannomiya/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 神戸牛スタンダードコース (all day); ¥1,500 service lunch has ended; +5% service at dinner. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef TANRYU Sannomiya Store"
+  },
+  "kb-1079": {
+    "priceTier": 1,
+    "priceLunch": 4290,
+    "priceDinner": 4290,
+    "openingHours": "Mo-Su 11:00-22:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/tanryu-ikuta/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 神戸牛カジュアルコース (web booking, autumn-limited); à la carte 神戸牛赤身110g ¥4,235; lunch service ended; +5% service at dinner. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef TANRYU Ikuta Shindo Store"
+  },
+  "kb-769": {
+    "priceTier": 1,
+    "priceLunch": 3900,
+    "priceDinner": 3190,
+    "openingHours": "Mo-Su 10:30-22:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/miyabi-sankita/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = weekday web-only 神戸牛ランチコース; dinner = 神戸牛ステーキ重 赤身 (+5% service at dinner). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef MIYABI Sankita Store"
+  },
+  "kb-1098": {
+    "priceTier": 2,
+    "priceLunch": 2900,
+    "priceDinner": 6820,
+    "openingHours": "Mo-Fr 11:00-16:00,17:00-21:30; Sa,Su 11:00-21:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/miyabi-kitanosaka/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = weekday 神戸牛焼きしゃぶ丼 赤身; dinner = 神戸牛やわらか赤身コース (page unclear whether 5% service is extra). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef MIYABI Kitanosaka Store"
+  },
+  "kb-556": {
+    "priceTier": 1,
+    "priceLunch": 3190,
+    "priceDinner": 4400,
+    "openingHours": "Mo-Fr 11:00-16:00,17:00-22:30; Sa,Su 11:00-22:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/yazawa-hankyusannomiya/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = weekday 神戸牛赤身100gランチセット; dinner = 祥福コース. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef YAZAWA Hankyu Kobe-Sannomiya"
+  },
+  "kb-1097": {
+    "priceTier": 1,
+    "priceLunch": 2750,
+    "priceDinner": 3500,
+    "openingHours": "Mo-Su 11:00-21:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/kisshokichi-sannomiya/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = weekday 神戸牛100%ハンバーグWセット; dinner = 神戸牛ビフカツカレーディナーセット (Kobe beef tendon, reservation required, +5% service). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef KISSHOKICHI Sannomiya Store"
+  },
+  "kb-1699": {
+    "openingHours": "Mo-Su 10:00-21:00",
+    "_status": "not-restaurant?",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/hakoiri-kobegyu/"
+    ],
+    "_notes": "official page describes it as a takeout-only shop (テイクアウト専門店); no menu prices listed. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15"
+  },
+  "kb-1702": {
+    "priceTier": 1,
+    "priceLunch": 6380,
+    "priceDinner": 968,
+    "openingHours": "Mo-Su 11:00-21:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/yakiniku-nankinmachi1/"
+    ],
+    "_notes": "lunch = 神戸牛希少部位3種食べ比べ (lunch only); dinner = 神戸牛冷麺 (cheapest Kobe beef dish, a noodle bowl - yakiniku platters cost much more). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15"
+  },
+  "kb-1696": {
+    "priceTier": 1,
+    "priceLunch": 4290,
+    "priceDinner": 4290,
+    "openingHours": "Mo-Su 10:30-23:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/kisshokichi-sankita-street/",
+      "Google Maps listing"
+    ],
+    "_notes": "= web-only 神戸牛カジュアルコース (autumn-limited), same menu all day; à la carte 赤身110g ¥4,235; +5% service from 17:00. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Teppanyaki Kishokichi Sankita Street"
+  },
+  "kb-1071": {
+    "priceTier": 1,
+    "priceLunch": 1980,
+    "priceDinner": 4290,
+    "openingHours": "Mo-Su 11:00-15:30,17:00-21:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/kiyama/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = weekday limited 神戸牛パスタランチセット; dinner = web-only casual course (+5% service). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Kiyama"
+  },
+  "kb-1072": {
+    "priceTier": 2,
+    "priceLunch": 5000,
+    "priceDinner": 9680,
+    "openingHours": "Mo-Su 10:00-21:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/daichi/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = weekday web-only monthly course (October); dinner = 神戸牛シグニチャーコース (+5% service); seasonal courses change often. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe beef Daichi"
+  },
+  "kb-2095": {
+    "priceTier": 1,
+    "priceLunch": 3900,
+    "priceDinner": 4290,
+    "openingHours": "Mo-Su 11:00-21:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/daichi-west/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = weekday 神戸牛サンキューランチコース; dinner = weekday autumn 神戸牛カジュアルコース (+5% service). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Teppanyaki DAICHI WEST"
+  },
+  "kb-1956": {
+    "priceTier": 2,
+    "priceLunch": 3850,
+    "priceDinner": 6490,
+    "openingHours": "Mo-Su 11:00-23:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/amami/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 天望コース煌 (lunch only); dinner = 天望コース匠 (+5% service). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Amami"
+  },
+  "kb-1078": {
+    "priceTier": 1,
+    "priceLunch": 4290,
+    "priceDinner": 4290,
+    "openingHours": "Mo-Su 10:00-21:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/eikichi/",
+      "Google Maps listing"
+    ],
+    "_notes": "= web-only autumn 神戸牛カジュアルコース, no lunch/dinner split (+5% service at dinner). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "KOBE BEEF EiKiChi"
+  },
+  "kb-1074": {
+    "priceTier": 1,
+    "priceLunch": 2079,
+    "priceDinner": 4290,
+    "openingHours": "Mo-Su 10:30-21:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/amona/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = weekday 神戸牛スフレオムライス ローストビーフのせ; dinner = web-only 神戸牛コース カジュアル. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Western-Style Kobe Beef Amona"
+  },
+  "kb-672": {
+    "priceTier": 2,
+    "priceLunch": 11880,
+    "priceDinner": 11880,
+    "openingHours": "Mo-Su 11:00-22:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/genkichi/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 特撰赤身 steak 110g minimum, no lunch/dinner split, +10% service charge. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef GENKICHI"
+  },
+  "kb-1080": {
+    "priceTier": 2,
+    "priceLunch": 13200,
+    "priceDinner": 13200,
+    "openingHours": "Mo-Su 11:00-22:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/koujyu/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 神戸牛と海の幸堪能コース (cheapest course, autumn/web only); à la carte 赤身110g ¥4,235. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef KOJYU"
+  },
+  "kb-2094": {
+    "priceTier": 1,
+    "priceLunch": 4290,
+    "priceDinner": 4290,
+    "openingHours": "Mo-Su 11:00-21:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/hashira/"
+    ],
+    "_notes": "= web-only autumn 神戸牛カジュアルコース, same menu all day (+5% service at dinner). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15"
+  },
+  "kb-1909": {
+    "priceTier": 2,
+    "priceLunch": 6380,
+    "priceDinner": 9680,
+    "openingHours": "Mo-Su 11:00-22:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/takakura/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = reservation-only lunch 神戸牛コース; dinner = 神戸牛シグニチャーコース (+5% service); クラシックコース ¥6,490 not labeled lunch/dinner. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef TAKAKURA"
+  },
+  "kb-1698": {
+    "priceTier": 1,
+    "priceLunch": 2200,
+    "priceDinner": 2200,
+    "openingHours": "Mo-Su 11:00-21:30",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/kurosawa/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 神戸牛牛めし, all day. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Kurosawa"
+  },
+  "kb-1099": {
+    "priceTier": 1,
+    "priceLunch": 1980,
+    "priceDinner": 1980,
+    "openingHours": "Mo-Su 11:00-15:00,16:30-24:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/yazawa-ramen/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 神戸牛ラーメン八坐和セット, all day. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe beef Ramen Yazawa"
+  },
+  "kb-1069": {
+    "priceTier": 1,
+    "priceLunch": 4290,
+    "priceDinner": 4290,
+    "openingHours": "Mo-Su 10:30-21:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/sannomiya-chuo/",
+      "Google Maps listing"
+    ],
+    "_notes": "= web-only 神戸牛カジュアルコース, no lunch/dinner split; à la carte 赤身110g ¥4,235. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Specialty Restaurant Kishō Kichi Teppanyaki Sannomiya Chuo"
+  },
+  "kb-1908": {
+    "priceTier": 2,
+    "priceLunch": 6380,
+    "openingHours": "Mo-Su 11:00-21:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/yazawa-nankinmachi/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 神戸牛希少部位3種食べ比べ (lunch only); no dinner meal price identified (cheapest non-lunch Kobe items are side dishes). Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Yakiniku Yazawa Nankinmachi Branch"
+  },
+  "kb-1070": {
+    "priceTier": 1,
+    "priceLunch": 6380,
+    "priceDinner": 4900,
+    "openingHours": "Mo-Su 11:30-15:30,17:00-22:00",
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/yazawa-honten/"
+    ],
+    "_notes": "lunch = 神戸牛希少部位3種食べ比べ (lunch only); dinner = reservation-only 八坐和カジュアルコース. Prices from official site (Kishō-Kichi group), tax incl.",
+    "_checked": "2026-10-15"
+  },
+  "kb-475": {
+    "nameEn": "WAKKOQU",
+    "priceTier": 2,
+    "priceLunch": 7950,
+    "priceDinner": 12790,
+    "openingHours": "Mo-Su 12:00-15:00,17:00-21:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28000954/",
+      "http://www.wakkoqu.com/",
+      "Google Maps listing"
+    ],
+    "_notes": "Kitanozaka honten. lunch = お昼の和黒コース; dinner = リブロース230g course (神戸肉). Closed Dec 31-Jan 1. nameEn = site name WAKKOQU (og:site_name); official site content not readable, prices/hours from tabelog. hours now from Google Maps (was Mo-Su 12:00-15:00,17:00-22:00 from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-1016": {
+    "nameEn": "WAKKOQU",
+    "priceTier": 3,
+    "priceLunch": 7950,
+    "priceDinner": 18450,
+    "openingHours": "Mo,Tu,Th-Su 11:45-15:00,17:00-21:00; We off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280103/28000955/",
+      "http://www.wakkoqu.com/"
+    ],
+    "_notes": "Shin-Kobe branch. lunch = お昼の和黒コース; dinner = 特選和黒コース (特選神戸ビーフ200g); ロースうす焼セット ¥11,450 not explicitly Kobe beef. Wednesdays closed since 2025",
+    "_checked": "2026-10-15"
+  },
+  "kb-661": {
+    "nameEn": "Misono Kobe Main Restaurant",
+    "priceTier": 3,
+    "priceLunch": 23100,
+    "priceDinner": 25300,
+    "openingHours": "Mo-Su 11:30-14:30,17:00-22:00",
+    "_sources": [
+      "https://misono.org/shop/kobe/",
+      "https://misono.org/shop/kobe/menu",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 神戸牛ランチ; dinner = A course 神戸牛ロース (+10% service after 17:00). Closed Dec 30-Jan 3. Registry address has duplicated 神戸市神戸市. Google Maps hours differ: Mo-Su 11:30-13:40,17:00-22:00",
+    "_checked": "2026-10-15"
+  },
+  "kb-540": {
+    "priceTier": 2,
+    "priceLunch": 6600,
+    "priceDinner": 14300,
+    "openingHours": "Mo-Fr 11:30-14:30,17:30-22:00; Sa,Su,PH 11:30-14:30,17:00-22:00",
+    "_sources": [
+      "https://kobe-setsugetsuka.com/",
+      "https://kobe-setsugetsuka.com/course",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = ランチセット 特選神戸ビーフもも100g; dinner = 紫陽花コース 神戸ビーフロース80g (online booking only, +10% service). Irregular closing days published monthly (e.g. several Tue/Wed in Sep, Mondays in Nov 2026); sister shop 雪月花離れ closed 2026-09-30, 炭火焼 temporarily closed. Google Maps hours differ: Mo-Fr 11:30-14:30,17:30-22:00; Sa,Su 11:30-14:30,17:00-22:00",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Steak House Teppanyaki Setsugetsuka Honten"
+  },
+  "kb-494": {
+    "priceTier": 2,
+    "priceLunch": 2720,
+    "priceDinner": 6800,
+    "openingHours": "Mo-Sa 12:00-16:30,17:00-21:00; Su 12:00-20:00",
+    "_sources": [
+      "https://www.teppanyaki-fuji.jp/",
+      "https://tabelog.com/hyogo/A2801/A280101/28006994/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 鉄板焼きやのお肉ランチ (Kobe beef hamburg/croquette/shoulder loin; tax status unclear); dinner = web-booking 神戸牛のロースステーキコース (tax incl). Official site says 12:00-21:00 continuous; irregular closing; may close early",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Fuji Kobe Beef Steak & Teppanyaki"
+  },
+  "kb-584": {
+    "priceTier": 2,
+    "priceLunch": 5830,
+    "priceDinner": 9900,
+    "openingHours": "Mo-Fr 17:00-22:00; Sa 11:30-15:00,17:00-22:00; Su off; Mo[3] off",
+    "_sources": [
+      "https://tokeiya.net/",
+      "https://tokeiya.net/menu/lunch/",
+      "https://tokeiya.net/menu/dinner/sukiyaki/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 神戸牛すきやき/しゃぶしゃぶ lunch (lunch normally Saturdays only); dinner = 神戸牛すきやき120g (service charge extra; tax status not stated). Closed Sun + 3rd Mon per a 2022 notice; a 2022 notice also gave shorter hours (lunch 11:45-14:30, dinner -21:30) - footer hours used. Google Maps hours differ: Tu-Th 17:00-21:30; Mo,Fr-Su off",
+    "_checked": "2026-10-15",
+    "nameEn": "Tokeiya"
+  },
+  "kb-549": {
+    "openingHours": "Mo-Fr 17:00-22:00; Sa 12:00-22:00; Su 12:00-21:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28004031/",
+      "Google Maps listing"
+    ],
+    "_notes": "kushikatsu restaurant; no Kobe beef menu/prices found (official site blocks fetching). Closed Dec 31-Jan 1. hours now from Google Maps (was Mo-Sa 17:00-22:00; Su,PH 12:00-21:30 from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-489": {
+    "priceTier": 2,
+    "priceDinner": 8250,
+    "openingHours": "Mo-Sa 17:00-22:00; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28002651/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = 神戸牛すき焼き / しゃぶしゃぶ course (tabelog, tax incl). Tabelog lists 7F 下山手通2-10-4 as current (moved from 中山手通1-4-11)",
+    "_checked": "2026-10-15",
+    "nameEn": "Komon"
+  },
+  "kb-527": {
+    "openingHours": "We-Su 11:30-14:00,17:30-22:00; Mo,Tu off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28001063/",
+      "Google Maps listing"
+    ],
+    "_notes": "listed courses say 特選和牛 fillet (¥4,840+), not explicitly Kobe beef, so no price recorded. Open on Monday holidays with next day off (not encoded). hours now from Google Maps (was Tu-Su 11:30-14:00,17:30-22:00; Tu[2,3] off; Mo off from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Charcoal Broiled Steak KITAYAMA"
+  },
+  "kb-546": {
+    "priceTier": 2,
+    "priceDinner": 6000,
+    "openingHours": "Mo-Th 16:00-23:30; Fr 16:00-24:00; Sa 12:00-24:00; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28005163/",
+      "https://tabelog.com/hyogo/A2801/A280101/28005163/party/",
+      "Google Maps listing"
+    ],
+    "_notes": "izakaya; dinner = 明石昼網鮮魚と神戸牛 味兵衛満喫コース incl. all-you-can-drink (tabelog; discounted from ¥6,500). Tabelog hours vary (Mon-Thu/Sun to 23:30 on course page). Irregular holidays. Own site appears to be kobe-ajihei.com. hours now from Google Maps (was Mo-Fr 16:00-24:00; Sa,Su 12:00-24:00 from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Izakaya Kobe Ajihei"
+  },
+  "kb-602": {
+    "openingHours": "Tu-Su 17:00-23:00; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28001255/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku; no Kobe beef prices published. hours now from Google Maps (was Tu-Su 17:00-24:00; Mo off from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Mirakutei"
+  },
+  "kb-746": {
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28045600/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku; tabelog gives opening times only (lunch 11:30, dinner 17:00, Mon closed, Tue lunch irregular) with no closing time, so hours not recorded; no Kobe beef prices published",
+    "_checked": "2026-10-15",
+    "nameEn": "Yakiniku Umaka",
+    "openingHours": "Tu-Fr,Su 11:30-15:00,17:00-22:00; Sa 12:00-15:00,17:00-22:00; Mo off"
+  },
+  "kb-683": {
+    "priceTier": 3,
+    "priceDinner": 26000,
+    "openingHours": "Mo-Su 11:30-15:00,17:00-21:30",
+    "_sources": [
+      "https://restaurant.ikyu.com/100090/",
+      "https://restaurant.ikyu.com/100090/plan12243824"
+    ],
+    "_notes": "hotel teppanyaki 'Oriental' (14F). dinner = ikyu-only 神戸ビーフ dinner plan (tax+service incl); no Kobe beef lunch price found. Registry address is just 波止場 (incomplete) and tel missing",
+    "_checked": "2026-10-15"
+  },
+  "kb-708": {
+    "_sources": [
+      "https://hitosara.com/RY129/hyogo/T28008/",
+      "Google Maps listing"
+    ],
+    "_notes": "hotel teppanyaki 鉄板焼 心 serves Kobe beef among Hyogo brands; no explicit Kobe beef course price or full hours found (lunch 11:30-15:30 listed). hours are for 鉄板焼 心 (Teppan-yaki Kokoro) from Google Maps",
+    "_checked": "2026-10-15",
+    "openingHours": "Mo-Su 11:30-15:00,17:30-22:30"
+  },
+  "kb-711": {
+    "openingHours": "Mo-Su 11:00-23:00",
+    "_sources": [
+      "https://r.gnavi.co.jp/6cd4kcv70000/"
+    ],
+    "_notes": "yakiniku 'WAGYUの国 神戸三宮'; Kobe beef cuts listed without prices; courses only say 厳選和牛. Open year-round, may close early",
+    "_checked": "2026-10-15"
+  },
+  "kb-773": {
+    "priceTier": 3,
+    "priceDinner": 18040,
+    "openingHours": "Mo,We-Su 11:30-15:00,17:00-22:00; Tu off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28046995/",
+      "http://steak-zen.com/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = 特選神戸牛コース 極上 (tabelog, tax incl; +10% service after 17:00 per official site). Official site gives only LO (14:00/21:00); closing times from tabelog. If Tue is a holiday, closed Wed instead. Lunch Kobe beef price not found (menu is image/PDF)",
+    "_checked": "2026-10-15",
+    "nameEn": "Steak House ZEN"
+  },
+  "kb-820": {
+    "priceTier": 2,
+    "priceDinner": 11655,
+    "openingHours": "Mo-Sa 17:00-01:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28040688/",
+      "https://tabelog.com/hyogo/A2801/A280101/28040688/party/"
+    ],
+    "_notes": "yakiniku; dinner = 神戸牛 焼肉セット (min. 2 people, per-person price unclear - may be per set); cheapest Kobe course 17,325. Irregular holidays",
+    "_checked": "2026-10-15"
+  },
+  "kb-850": {
+    "priceTier": 2,
+    "priceLunch": 2838,
+    "priceDinner": 12100,
+    "openingHours": "Mo-Fr 11:30-14:30,16:30-23:30; Sa,Su 11:30-15:00,16:30-23:30",
+    "_sources": [
+      "https://techangum-kobebeef.com/menu/",
+      "https://tabelog.com/hyogo/A2801/A280101/28004266/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku 大長今 三宮総本店. lunch = 神戸牛ランチ (上ロース/赤身ロース/上カルビ); dinner = 大長今神戸牛会席コース (cheapest Kobe beef course; à la carte Kobe cuts from ¥1,628). hours now from Google Maps (was Mo-Fr 11:30-14:30,16:30-23:30; Sa,Su,PH 11:30-15:00,16:30-23:30 from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-863": {
+    "priceTier": 2,
+    "priceDinner": 12640,
+    "openingHours": "Mo-Su 11:00-15:00,17:00-22:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28050187/"
+    ],
+    "_notes": "dinner = 仙おすすめ赤身&霜降り食べ比べコース 120g; no lunch price published; irregular holidays. Tabelog also has a separate '神戸牛 鉄板焼 仙' (28062215)",
+    "_checked": "2026-10-15"
+  },
+  "kb-986": {
+    "nameEn": "8 EIGHTH BEEF",
+    "openingHours": "Mo-Su 11:00-22:00",
+    "_sources": [
+      "https://www.db-dd.net/eighth_beef.html"
+    ],
+    "_notes": "steak/burger at umie MOSAIC; serves a 100% Kobe beef burger but no prices published; closed days follow umie MOSAIC",
+    "_checked": "2026-10-15"
+  },
+  "kb-988": {
+    "openingHours": "Mo-Fr 11:30-16:00,17:00-21:00; Sa,Su 11:00-16:00,17:00-21:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28049241/",
+      "Google Maps listing"
+    ],
+    "_notes": "all-you-can-eat / solo shabu-shabu chain; no Kobe beef menu price found",
+    "_checked": "2026-10-15",
+    "nameEn": "Shabunoya"
+  },
+  "kb-995": {
+    "priceTier": 1,
+    "priceDinner": 4378,
+    "openingHours": "Mo-Su 17:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28046640/",
+      "https://tabelog.com/hyogo/A2801/A280101/28046640/party/"
+    ],
+    "_notes": "yakiniku; dinner = 神戸牛肉ブーケ (tabelog course list). No lunch. Official site blocks fetching",
+    "_checked": "2026-10-15"
+  },
+  "kb-1053": {
+    "openingHours": "Mo-Fr 16:00-23:00; Sa,Su 14:00-23:00",
+    "_sources": [
+      "https://www.world-one-group.co.jp/shop_detail/hyogogokokuworld/",
+      "Google Maps listing"
+    ],
+    "_notes": "izakaya 'ひょうご五国ワールド神戸三宮横丁'; lists a 神戸牛ミスジステーキ but no price. Open year-round. hours now from Google Maps (was Mo-Fr 16:00-23:00; Sa,Su,PH 14:00-23:00 from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Hyogo Gokoku World"
+  },
+  "kb-1140": {
+    "priceTier": 3,
+    "priceLunch": 13800,
+    "priceDinner": 18000,
+    "openingHours": "Mo-Su 12:00-15:00,17:00-22:00",
+    "_sources": [
+      "https://hanahoubi.com/jp/shopinfo/",
+      "https://hanahoubi.com/wp/wp-content/uploads/hanahoubi-menu-251113.pdf",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = Kobe beef sirloin 70g lunch set (reservation only); dinner = sirloin 100g set (menu section not labeled dinner). Irregular holidays. Registry site kobebeef-hanahoubi.com redirects to hanahoubi.com",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Steak Hanahoubi"
+  },
+  "kb-1148": {
+    "openingHours": "Mo,Su 12:00-23:30; Tu-Sa 12:00-03:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28042335/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku; courses listed as A5黒毛和牛/和牛, none explicitly Kobe beef, so no price recorded",
+    "_checked": "2026-10-15",
+    "nameEn": "KobeYakiniku JUJU"
+  },
+  "kb-1270": {
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28049160/",
+      "Google Maps listing"
+    ],
+    "_notes": "Google Maps shows 神戸 きた松 別邸 (Kobe Kitamatsu Bekkan, yakiniku) at exactly the registry address 下山手通1-3-6 Vメルヘンビル - probably this entry; no hours or Kobe beef prices found. (Tabelog's すき焼き きた松 at 中山手通1-16-9 is a different shop.)",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Kitamatsu Bekkan"
+  },
+  "kb-1304": {
+    "priceTier": 2,
+    "priceLunch": 4500,
+    "priceDinner": 5000,
+    "openingHours": "Mo-Su 11:30-15:00,17:00-21:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28003724/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = A5神戸牛ステーキランチセット (from); dinner = A5神戸牛ステーキディナーセット (from). A phone-booking-only trial Kobe steak lunch from ¥1,500 weekdays also exists (tax status unclear). Irregular holidays",
+    "_checked": "2026-10-15",
+    "nameEn": "Kishuya"
+  },
+  "kb-1307": {
+    "priceTier": 2,
+    "priceLunch": 6600,
+    "priceDinner": 6600,
+    "openingHours": "Mo-Fr 17:00-23:00; Sa,Su 11:30-15:00,17:30-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28037181/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 神戸牛 炉窯焼きショートコース 赤身100g (available 11:30-23:00). hours now from Google Maps (was Mo-Fr 17:00-23:00; Sa,Su,PH 11:30-15:00,17:30-23:00 from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe beef steak setsugetsu Fuuka kitanozaka"
+  },
+  "kb-1407": {
+    "openingHours": "Mo-Sa 17:00-22:30; Su,PH 17:00-22:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28059028/"
+    ],
+    "_notes": "yakiniku; says it uses wagyu from all over Japan regardless of brand - no Kobe beef menu found. Irregular holidays",
+    "_checked": "2026-10-15"
+  },
+  "kb-1436": {
+    "nameEn": "KOBE Beef YAMAGEN",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28065895/",
+      "Google Maps listing"
+    ],
+    "_notes": "no hours or menu prices published (Instagram only); irregular holidays",
+    "_checked": "2026-10-15",
+    "openingHours": "Mo,Th-Su 10:00-17:00; Tu 10:00-18:00; We 11:00-17:00"
+  },
+  "kb-1439": {
+    "priceTier": 3,
+    "priceLunch": 8800,
+    "priceDinner": 19800,
+    "openingHours": "Mo,Tu,Th-Su 12:00-15:00,18:00-22:00; We off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28063300/",
+      "https://tabelog.com/hyogo/A2801/A280101/28063300/dtlmenu/lunch/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = lunch course 神戸ビーフ赤身100g; dinner = 神戸ビーフ サーロイン100g course. Official site blocks fetching; tabelog listing last edited 2022",
+    "_checked": "2026-10-15",
+    "nameEn": "Steak Iwasaki"
+  },
+  "kb-1464": {
+    "priceTier": 1,
+    "priceLunch": 3300,
+    "priceDinner": 4980,
+    "openingHours": "Mo-Su 11:00-22:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28055112/",
+      "https://tabelog.com/hyogo/A2801/A280101/28055112/party/",
+      "https://tabelog.com/hyogo/A2801/A280101/28055112/dtlmenu/lunch/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 寅松 生田ロード店. lunch = 神戸牛もも炭火ステーキセット150g (¥3,000 excl. tax, limited qty); dinner = 神戸牛・黒毛和牛 赤身食べ比べ200g course. Irregular holidays",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe beef steak TORAMATSU"
+  },
+  "kb-1547": {
+    "openingHours": "Mo-Su 11:00-15:00,17:00-22:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28067629/"
+    ],
+    "_notes": "yakiniku; courses describe 黒毛和牛 only, no explicit Kobe beef price. Own site kobebeef-washin.com",
+    "_checked": "2026-10-15"
+  },
+  "kb-1557": {
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28055161/",
+      "Google Maps listing"
+    ],
+    "_notes": "tempura, reservation-only with a single 18:00 start (no closing time published); cheapest course ¥29,800 but no course explicitly includes Kobe beef",
+    "_checked": "2026-10-15",
+    "nameEn": "Kaho",
+    "openingHours": "Mo-Su 12:00-14:00,18:00-21:30"
+  },
+  "kb-1578": {
+    "openingHours": "Mo-Su 11:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28066752/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku branded 神戸ビーフ焼肉, but listed courses (from ¥5,980 w/ drinks) don't explicitly say Kobe beef; no price recorded",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Yakiniku Okatora Sannomiya"
+  },
+  "kb-1485": {
+    "_sources": [],
+    "_notes": "no data found - registry entry is a company name (株式会社EATOPIA) with no tel; couldn't identify a restaurant at 京町71",
+    "_checked": "2026-10-15"
+  },
+  "kb-1618": {
+    "priceTier": 2,
+    "priceDinner": 8250,
+    "openingHours": "Mo,Tu,Th-Su,PH 11:00-15:00,16:30-20:00; We 11:00-15:00,16:30-19:00; We[3] off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28043118/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = 神戸ビーフステーキ ショートコース (dinner only, ¥7,500 excl. tax → ¥8,250); lunch Kobe price not published. Own site nick.co.jp",
+    "_checked": "2026-10-15",
+    "nameEn": "Nick KŌBE BEEF STEAK"
+  },
+  "kb-1676": {
+    "openingHours": "Tu-Su 17:00-24:00; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28028383/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku; no menu item explicitly Kobe beef with a price. If Monday is a holiday, closed Tuesday instead (not encoded)",
+    "_checked": "2026-10-15",
+    "nameEn": "Goemon Sannomiya"
+  },
+  "kb-1678": {
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28068723/",
+      "Google Maps listing"
+    ],
+    "_notes": "tabelog listing (コペンビル壱番館) has no hours or menu; hours and name from the Google Maps listing 'kobe beef steak kiku 神戸牛ステーキ菊'. No Kobe beef prices found",
+    "_checked": "2026-10-15",
+    "nameEn": "kobe beef steak kiku",
+    "openingHours": "Mo-Su 11:00-15:00,17:00-22:00"
+  },
+  "kb-2153": {
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28073530/",
+      "Google Maps listing"
+    ],
+    "_notes": "Google Maps lists '神戸牛鉄板焼 菊 三宮' at 北長狭通2-1-11 第2玉広ビル 8F (registry says 2-1-14; tabelog says 2-1-1); hours from Google. No prices found. Registry address has duplicated 神戸市神戸市",
+    "_checked": "2026-10-15",
+    "openingHours": "Mo-Su 11:00-14:00,15:30-22:00"
+  },
+  "kb-1685": {
+    "priceTier": 3,
+    "priceDinner": 22000,
+    "openingHours": "Mo-Su 17:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28049006/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = 神戸ビーフステーキ ショートコース (only 3 of 11 courses visible). No lunch. Irregular holidays. Own site baronkobe.com",
+    "_checked": "2026-10-15",
+    "nameEn": "baron"
+  },
+  "kb-1661": {
+    "_sources": [],
+    "_notes": "couldn't confirm a restaurant; Google Maps lists 'Kobe IJINKAN-YA' at the registry address (北野町3-4-26 アプローズ北野) - likely this entry, not verified further",
+    "_checked": "2026-10-15"
+  },
+  "kb-1711": {
+    "priceTier": 2,
+    "priceDinner": 7700,
+    "openingHours": "Mo,Tu,Th,Fr 17:00-22:30; Sa,Su 12:00-14:00,16:30-21:30; PH 16:30-22:30; We off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28028299/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 炭焼肉 石田屋。Hanare (TAKAIビル 7F). dinner = 特上石田屋コース (shop sources Kobe beef from contracted farms but course not explicitly labelled). Sister 'Hanareの上' is on 8F (Thu off). Registry address has duplicated 神戸市神戸市",
+    "_checked": "2026-10-15",
+    "nameEn": "Ishidaya Hanare"
+  },
+  "kb-1722": {
+    "openingHours": "Mo-Su 11:30-15:00,17:00-21:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28065229/"
+    ],
+    "_notes": "yakiniku; says it buys Kobe/Tajima/Miyazaki beef but no course explicitly Kobe beef (cheapest course ¥3,800 'wagyu'). Irregular holidays. Registry site kanou29.com unreadable; tabelog lists kanou29-hanare.com",
+    "_checked": "2026-10-15"
+  },
+  "kb-1738": {
+    "nameEn": "TEPPANYAKI YUKIDARUMA",
+    "priceTier": 2,
+    "priceDinner": 8180,
+    "openingHours": "Tu-Su 11:30-14:30,17:00-22:30; Mo off",
+    "_sources": [
+      "https://kobebeef-yukidaruma.com/",
+      "https://tabelog.com/hyogo/A2801/A280101/28070218/"
+    ],
+    "_notes": "dinner = live-shrimp teppanyaki course with choice of Tajima or Kobe beef steak (tabelog, tax incl); cheapest all-Kobe course ¥13,980. Lunch courses use Tajima beef, not Kobe",
+    "_checked": "2026-10-15"
+  },
+  "kb-1743": {
+    "priceTier": 2,
+    "priceDinner": 10800,
+    "openingHours": "Mo-Su 11:30-15:30,17:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28036195/",
+      "http://www.saidining.com/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = web-limited course ① (A5 Kobe lean + kuroge sirloin), +10% service. Closed Dec 31-Jan 1. Lunch Kobe price not visible. Google Maps shows 11:30-14:00,17:00-21:00, which equals tabelog's last-entry times - kept tabelog closing times",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Steak Sai-Dining"
+  },
+  "kb-1744": {
+    "priceTier": 2,
+    "priceDinner": 10500,
+    "openingHours": "Mo-Su 11:30-15:00,17:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28053604/",
+      "Google Maps listing"
+    ],
+    "_notes": "sister of 彩ダイニング (saidining.com/sakura). dinner = web-limited course ① (Kobe lean + kuroge sirloin); a 神戸牛モモ lunch exists but price not visible. Google Maps shows 11:30-14:00,17:00-21:00, which equals tabelog's last-entry times - kept tabelog closing times",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Steak Sakura"
+  },
+  "kb-1745": {
+    "priceTier": 1,
+    "priceLunch": 3810,
+    "priceDinner": 3810,
+    "openingHours": "Mo-Su 11:30-16:00,17:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28062346/",
+      "Google Maps listing"
+    ],
+    "_notes": "= quick menu 神戸牛ステーキ&ローストビーフプレート (time not restricted on page). Closed Dec 31-Jan 1. Google Maps shows 11:30-14:00,17:00-21:00, which equals tabelog's last-entry times - kept tabelog closing times",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Steak Vesta"
+  },
+  "kb-1790": {
+    "priceTier": 2,
+    "priceDinner": 14150,
+    "openingHours": "Mo-Sa 12:00-15:00,17:30-22:30; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28032883/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = ステーキハウスコース 神戸ビーフ150g. Tabelog contradicts itself on closing days (Sun + day after holidays vs irregular) - verify. Lunch price not visible",
+    "_checked": "2026-10-15",
+    "nameEn": "obiobi Steak & Wine"
+  },
+  "kb-1807": {
+    "priceTier": 2,
+    "priceDinner": 8690,
+    "openingHours": "Tu-Su,PH 11:00-15:00,17:30-21:00; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28045283/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 100g 特選神戸牛ステーキセット (time slot not stated). Tabelog also mentions 1st/3rd Tuesday closures (conflict). Own site meriken-hatoba.jp. Google Maps marks it 'Temporarily closed' (checked 2026-10-15)",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Steak Meriken Wharf Motomachi",
+    "_status": "closed?"
+  },
+  "kb-1820": {
+    "openingHours": "Mo-Su 17:00-24:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28071213/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku/shabu/sukiyaki KOBE133倶楽部 (opened 2024-10); visible courses (from ¥6,000, +5% service) don't explicitly say Kobe beef",
+    "_checked": "2026-10-15",
+    "nameEn": "KOBE BEEF Yakiniku, Shabu-Shabu, Sukiyaki KOBE 133 Club"
+  },
+  "kb-1835": {
+    "openingHours": "Mo-Sa 11:30-15:00,17:00-22:00; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28071202/",
+      "Google Maps listing"
+    ],
+    "_notes": "izakaya (三ツ星, 3boshi-kobe.com); courses name 国産黒毛和牛, Kobe beef only mentioned as an ingredient - no Kobe price",
+    "_checked": "2026-10-15",
+    "nameEn": "Mitsuboshi"
+  },
+  "kb-1848": {
+    "nameEn": "Kitano Grill & Bar",
+    "_sources": [
+      "https://www.tablecheck.com/kitano-grillbar",
+      "Google Maps listing"
+    ],
+    "_notes": "western/steak in renovated school building (Kitano NOSTA). TableCheck shows a Kobe beef hamburger lunch item at ¥550 - looks like an add-on/upcharge, not a full meal, so not recorded. Hours not found. Google Maps marks it 'Temporarily closed' (checked 2026-10-15)",
+    "_checked": "2026-10-15",
+    "_status": "closed?"
+  },
+  "kb-1864": {
+    "priceTier": 3,
+    "priceDinner": 16500,
+    "openingHours": "Mo,We-Su 12:00-15:00,18:00-23:00; Tu off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28056557/",
+      "Google Maps listing"
+    ],
+    "_notes": "= ステーキコース 黒毛和牛と神戸ビーフ (time slot not stated); no Kobe lunch price found. hours now from Google Maps (was Mo,We-Su 12:00-15:00,17:00-23:00; Tu off from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "MARCO"
+  },
+  "kb-1872": {
+    "openingHours": "Mo-Su 11:00-03:00",
+    "_status": "closed?",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28072020/",
+      "Google Maps listing"
+    ],
+    "_notes": "ramen; tabelog listing is on hold because operating status couldn't be confirmed. No Kobe beef menu price (a 神戸牛まぜそば is mentioned in reviews only). Google Maps marks it 'Permanently closed' (checked 2026-10-15)",
+    "_checked": "2026-10-15",
+    "nameEn": "Jinrui-Minamenrui Ijinkan Noodle Tei."
+  },
+  "kb-1879": {
+    "priceTier": 1,
+    "priceLunch": 3080,
+    "openingHours": "Mo-Su 11:30-15:00,17:00-21:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28071770/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = Kobe beef lunch course 'from ¥3,080' per shop PR (tax status not stated); no Kobe dinner price visible. Registry building name COAST35 vs tabelog COASTビル. hours now from Google Maps (was Mo-Su 11:30-15:00,17:00-21:00 from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Kachofugetsu Kobebeef Washoku Teppanyaki"
+  },
+  "kb-1903": {
+    "priceTier": 2,
+    "priceLunch": 11800,
+    "openingHours": "Mo-Sa 12:00-15:00,18:00-24:00; Su 12:00-15:00,18:00-22:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28059885/",
+      "Google Maps listing"
+    ],
+    "_notes": "wine bar; lunch = ランチ限定神戸牛コース (book by previous day, 2+ guests); Kobe steak also à la carte (no price). Irregular holidays; lunch by reservation only",
+    "_checked": "2026-10-15",
+    "nameEn": "CAVE SHIOJIMA"
+  },
+  "kb-1920": {
+    "priceTier": 2,
+    "priceDinner": 13800,
+    "openingHours": "Tu-Sa 11:30-14:00,17:30-23:00; Su 11:30-14:00,17:30-22:00; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28068396/",
+      "Google Maps listing"
+    ],
+    "_notes": "Italian; = 神戸牛コース (time slot not stated). If Monday is a holiday, closed following Wednesday (not encoded)",
+    "_checked": "2026-10-15",
+    "nameEn": "EL CIELO Kitanozaka"
+  },
+  "kb-1927": {
+    "openingHours": "Mo-Su 17:00-07:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28065389/"
+    ],
+    "_notes": "yakiniku/reimen, late night; no course explicitly with Kobe beef. Registry website is a g.co knowledge-graph link",
+    "_checked": "2026-10-15"
+  },
+  "kb-1929": {
+    "openingHours": "Th,Sa,Su 18:00-23:00; Fr 19:00-23:00; Mo-We off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280103/28062058/",
+      "Google Maps listing"
+    ],
+    "_notes": "sake bar, advance reservation only; no Kobe beef menu/prices published. hours now from Google Maps (was Th,Sa 18:00-23:00; Fr 19:00-23:00; Mo-We,Su off from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-1948": {
+    "priceTier": 2,
+    "priceDinner": 6980,
+    "openingHours": "Mo,We-Su 12:00-14:30,17:00-22:00; Tu off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28072385/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku; dinner = 十四屋プレミアムコース (listed among Kobe-beef courses; 2+ guests). A Kobe beef lunch exists but no price. Formerly 神戸浦島屋. hours now from Google Maps (was Mo,We-Fr,PH 12:00-14:30,17:00-22:00; Sa,Su 12:00-14:30,16:30-22:00; Tu off from tabelog/other). Google English name still shows the old name 'Urashimaya Kobe Motomachi'",
+    "_checked": "2026-10-15"
+  },
+  "kb-1953": {
+    "priceTier": 1,
+    "priceLunch": 2200,
+    "priceDinner": 4460,
+    "openingHours": "Mo-Su 11:00-15:00,17:00-22:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28069155/",
+      "Google Maps listing"
+    ],
+    "_notes": "3F shop. lunch = weekday ランチ神戸牛ステーキコース; dinner = 神戸牛鉄板焼コース (2+ guests). Own site mikinao-sannomiya.com",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Teppanyaki Restaurant Mikinao"
+  },
+  "kb-2289": {
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28069155/",
+      "Google Maps listing"
+    ],
+    "_notes": "B1F sister of 鉄板焼肉ステーキ 樹直 (kb-1953, same building); no separate listing found - possible near-duplicate. Google Maps has a separate listing for the B1F shop (kebe502.gorp.jp), so not a duplicate",
+    "_checked": "2026-10-15",
+    "openingHours": "Mo-Su 11:00-15:00,17:00-22:00"
+  },
+  "kb-1954": {
+    "priceTier": 2,
+    "priceDinner": 10000,
+    "openingHours": "Mo-Su 11:00-15:00,17:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28050026/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = 神戸MIX 神戸牛とお好きな熟成豚のしゃぶしゃぶセット; cheapest course overall is 黒毛和牛 ¥5,500. Open year-round",
+    "_checked": "2026-10-15",
+    "nameEn": "kobe shabu shabu KAIRA"
+  },
+  "kb-1955": {
+    "openingHours": "Tu-Sa 12:00-16:00,17:00-21:00; Su 12:00-15:00; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28037234/",
+      "Google Maps listing"
+    ],
+    "_notes": "burger shop; no Kobe beef item/price confirmed. hours now from Google Maps (was Tu-Sa 12:00-22:00; Su 12:00-17:00; Mo,PH off from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Wanto Burger"
+  },
+  "kb-1974": {
+    "priceTier": 2,
+    "priceDinner": 6380,
+    "openingHours": "Mo-Sa 11:30-14:00,17:00-22:00; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28002527/",
+      "Google Maps listing"
+    ],
+    "_notes": "sukiyaki わた半; dinner = すき焼きコース using '極上 三田牛・神戸ビーフ' (wording doesn't guarantee Kobe beef on every plate). Irregular extra holidays",
+    "_checked": "2026-10-15",
+    "nameEn": "Watahan"
+  },
+  "kb-1976": {
+    "_sources": [
+      "https://sandaya-honten.co.jp/category/%e5%a4%a7%e4%b8%b8%e7%a5%9e%e6%88%b8%e5%ba%97/",
+      "Google Maps listing"
+    ],
+    "_notes": "Daimaru Kobe 9F restaurant floor; official site has no shop hours or Kobe beef prices for this branch (hours likely follow Daimaru restaurant floor)",
+    "_checked": "2026-10-15",
+    "nameEn": "Sandayahonten Steak House - Daimaru Kobe",
+    "openingHours": "Mo-Su 11:00-21:00"
+  },
+  "kb-1989": {
+    "priceTier": 4,
+    "priceLunch": 45980,
+    "priceDinner": 45980,
+    "openingHours": "Mo-Sa 12:00-15:00,17:00-22:00; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28000962/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 麤皮 (Aragawa). 神戸肉・但馬肉シェフのおすすめコース (lunch and dinner versions, same price). Open Sunday when Sun-Mon is a long weekend, then closed Monday. Own site aragawa.co.jp",
+    "_checked": "2026-10-15",
+    "nameEn": "Aragawa"
+  },
+  "kb-1990": {
+    "priceTier": 3,
+    "priceDinner": 29700,
+    "openingHours": "Mo,We-Su 11:00-15:00,17:00-22:30; Tu off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28007745/"
+    ],
+    "_notes": "dinner = 神粋のコース (神戸ビーフ fillet 80g + sirloin yaki-shabu; incl. 5% service). No explicit Kobe lunch. If Tue is a holiday, open and closed next day. Google Maps hours (11:00-14:30,17:00-21:30, Tue off) equal tabelog's last orders - kept tabelog closing times",
+    "_checked": "2026-10-15"
+  },
+  "kb-1991": {
+    "priceTier": 2,
+    "priceDinner": 14300,
+    "openingHours": "Mo-Fr 18:00-24:00; Sa 12:00-14:30,18:00-24:00; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28046052/",
+      "Google Maps listing"
+    ],
+    "_notes": "French/wine bar. dinner = スタンダードコース ¥12,500 + ¥1,800 upgrade to 神戸牛のロッシーニ (+10% service at dinner). Also closed ~2 Mondays/month. hours now from Google Maps (was Mo-Fr 18:00-24:00; Sa 12:00-14:00,18:00-24:00; Su off from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "VINSEMBLE"
+  },
+  "kb-1992": {
+    "priceTier": 2,
+    "priceLunch": 5390,
+    "priceDinner": 14300,
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28002967/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 極上神戸ビーフ鉄板焼きランチ; dinner = 神戸ビーフ おまかせコース. Hours not encoded: lunch is two seatings (Mo-Fr 12:00/13:20, Sa/Su/PH 11:30/13:00) with no closing time, dinner 18:00-22:00. Irregular holidays",
+    "_checked": "2026-10-15",
+    "openingHours": "Mo,Tu,Th,Fr 12:00-14:00,18:00-22:00; Sa,Su 11:30-14:00,18:00-22:00; We off"
+  },
+  "kb-1998": {
+    "_status": "closed?",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28036185/"
+    ],
+    "_notes": "tabelog marks 神戸牛焼肉 西村家 三宮店 (中山手通1-4-25 ミユキビル2F) as closed (closing announced for 6/20, year not stated)",
+    "_checked": "2026-10-15"
+  },
+  "kb-2008": {
+    "openingHours": "Mo-Su 17:00-03:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28058102/",
+      "Google Maps listing"
+    ],
+    "_notes": "registry says お好み焼き つや at 東門ビレッジ (中山手通1-16-12); tabelog 神戸三宮 鉄板焼 つや (same tel 078-391-1557) is at 中山手通1-15-7 - possibly moved. No Kobe beef prices published; irregular holidays. Site tuya-kobebeef.com. hours now from Google Maps (was Mo-Su 17:00-03:00 from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-2013": {
+    "priceTier": 3,
+    "priceDinner": 18590,
+    "openingHours": "Mo-Su 11:30-14:30,17:30-22:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28064147/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = 神戸牛コース kei 繋 (sirloin 120g); only 3 of 25 courses visible. Closed Wednesdays when there are no reservations",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Steak Kizuna"
+  },
+  "kb-2014": {
+    "priceTier": 2,
+    "priceDinner": 12800,
+    "openingHours": "Mo-Th,Sa 17:30-25:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28067135/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = おまかせ祷り 椿コース (includes 神戸ビーフ yukhoe; steak is kuroge wagyu), 2+ guests. No lunch. hours now from Google Maps (was Mo-Sa 17:30-01:30 from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-2015": {
+    "priceTier": 1,
+    "priceLunch": 1100,
+    "openingHours": "We-Su 11:30-15:00,17:30-22:00; Mo,Tu off",
+    "_status": "closed?",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28003514/",
+      "https://tabelog.com/hyogo/A2801/A280101/28003514/dtlmenu/lunch/",
+      "Google Maps listing"
+    ],
+    "_notes": "shop notice says it closes for good on 10/25 (Sun) - presumably 2026-10-25. lunch = 神戸牛すじW玉子とじ重 (10/day); cheapest Kobe steak lunch ¥2,970. Dinner courses listed are kuroge wagyu, not Kobe",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe beef Kobe organic vegetables Shin"
+  },
+  "kb-2021": {
+    "priceTier": 2,
+    "priceDinner": 5500,
+    "openingHours": "Mo-Su 17:00-24:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28036037/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku; dinner = 神戸牛2種&村田牛焼肉コース. Closed New Year",
+    "_checked": "2026-10-15",
+    "nameEn": "BIIDORO"
+  },
+  "kb-1086": {
+    "priceTier": 2,
+    "priceDinner": 7700,
+    "openingHours": "Tu-Fr 17:00-22:30; Sa,Su,PH 11:30-14:30,17:00-21:30; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28041931/",
+      "Google Maps listing"
+    ],
+    "_notes": "dinner = 特上石田屋コース (group says it serves contracted-farm Kobe beef; course not explicitly labelled). Lunch weekends/holidays only, price not shown",
+    "_checked": "2026-10-15",
+    "nameEn": "Yakiniku Shabushabu Ishidaya Kitanozaka"
+  },
+  "kb-1393": {
+    "priceTier": 4,
+    "priceLunch": 35000,
+    "openingHours": "Mo-Fr 11:30-14:30,17:30-21:30; Sa,Su,PH 11:30-14:30,17:00-21:30",
+    "_sources": [
+      "https://restaurant.ikyu.com/100036/",
+      "https://restaurant.ikyu.com/100036/plan12804184"
+    ],
+    "_notes": "teppanyaki 但馬 (Portopia Hotel). lunch = TAJIMA plan with 神戸ビーフロース100g (tax+service incl; ¥31,500 time-sale ended 2026-10-06). Cheaper 摂津 course (¥14,000) is kuroge wagyu; Kobe roast beef add-on ¥3,600. Dinner closed if not reserved by 17:30 previous day. Registry website is the hotel's restaurant list. Google Maps hours differ: Mo-Fr 11:30-14:30,17:30-21:30; Sa,Su 11:30-14:30,17:00-21:30",
+    "_checked": "2026-10-15"
+  },
+  "kb-1988": {
+    "_sources": [
+      "https://happyell.co.jp/spot/porttower",
+      "Google Maps listing"
+    ],
+    "_notes": "PORT TERRACE restaurant/café-bar on Kobe Port Tower low floors 3-4; no hours or Kobe beef menu found",
+    "_checked": "2026-10-15",
+    "nameEn": "CAFE&BAR PORT TERRACE",
+    "openingHours": "Mo-Th,Su 11:00-21:00; Fr,Sa 11:00-22:00"
+  },
+  "kb-2009": {
+    "openingHours": "Mo-Su 11:30-14:30,17:30-21:30",
+    "_sources": [
+      "https://restaurant.ikyu.com/100041/",
+      "https://restaurant.ikyu.com/100041/plan12610068"
+    ],
+    "_notes": "registry entry is the hotel company; teppanyaki さざんか (35F) mentions 神戸ビーフ but ikyu plans only say A4/A5 黒毛和牛 (from ¥15,000 incl. tax+service) - no explicit Kobe price",
+    "_checked": "2026-10-15"
+  },
+  "kb-2037": {
+    "_sources": [],
+    "_notes": "registry entry is the hotel itself (address 北野町1丁目 incomplete); see kb-2132 神戸なだ万 for its Japanese restaurant. No hotel-wide hours recorded",
+    "_checked": "2026-10-15"
+  },
+  "kb-2047": {
+    "openingHours": "Mo-Sa 17:00-23:00; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28004267/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku 金泉苑 北野坂本店; handles Kobe beef but no priced Kobe item found. hours now from Google Maps (was Mo-Sa 17:00-23:00; Su,PH off from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-2048": {
+    "openingHours": "Mo-Su 11:00-23:00",
+    "_sources": [
+      "https://restaurant.ikyu.com/106601/"
+    ],
+    "_notes": "hot-spring facility; restaurant 水蓮 (3F). Listing doesn't mention Kobe beef; kitchen hours 11:00-23:00 (food LO 20:00) vs store info 11:00-24:00. Existing nameEn from OSM kept",
+    "_checked": "2026-10-15"
+  },
+  "kb-2049": {
+    "priceTier": 3,
+    "priceDinner": 24000,
+    "openingHours": "Mo,Tu,Th-Su 11:30-15:00,17:30-21:00; Tu[2,3] off; We off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28036765/"
+    ],
+    "_notes": "= 雅羅倶; dinner = 神戸ビーフサーロインステーキディナー (tax status not stated). Lunch Kobe price not visible. Own site steakhouse-garaku-kitano.jp",
+    "_checked": "2026-10-15"
+  },
+  "kb-2064": {
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28054500/"
+    ],
+    "_notes": "no data found - THE ORIENT (hotel/complex at 京町25); only listing found is the seasonal rooftop THE ORIENT TERRACE (Jun-Aug 2026), no Kobe beef mention",
+    "_checked": "2026-10-15"
+  },
+  "kb-2066": {
+    "priceTier": 2,
+    "priceLunch": 8940,
+    "priceDinner": 12410,
+    "openingHours": "Mo-Su 11:30-15:00,17:30-22:30",
+    "_sources": [
+      "https://grankobe.com/ja/",
+      "https://grankobe.com/ja/menu/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = A5 Kobe 厳選霜降り/赤身ステーキ 80g (lunch only); dinner = Kobe リブロースステーキ 80g. Open year-round from FY2026",
+    "_checked": "2026-10-15",
+    "nameEn": "KOBE BEEF STEAK HOUSE GRAN KOBE"
+  },
+  "kb-2072": {
+    "priceTier": 2,
+    "priceDinner": 15000,
+    "openingHours": "Mo,We,Fr 19:00-22:00; Tu,Th 18:00-22:00; Sa 17:30-19:30,20:00-22:00; Su off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28066829/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 神戸牛を使ったおまかせコース (only course). Saturday/holiday has two seatings (17:30-19:30, 20:00-22:00). hours now from Google Maps (was Mo,We,Fr 19:00-22:00; Tu,Th 18:00-22:00; Sa,PH 17:30-22:00; Su off from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-2073": {
+    "_sources": [
+      "Google Maps listing"
+    ],
+    "_notes": "found on Google Maps as 'Kujira no Andy' (kujiranoandy-kobe.com) at 北野町3-6-9; Kobe beef prices not checked",
+    "_checked": "2026-10-15",
+    "nameEn": "Kujira no Andy",
+    "openingHours": "Mo,Tu,Fr-Su 11:30-14:00,17:30-21:00; We 11:30-14:00; Th off"
+  },
+  "kb-2085": {
+    "openingHours": "Mo-Su 07:00-22:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28063100/"
+    ],
+    "_notes": "hotel Italian buffet (Daiwa Roynet 2F); breakfast 7:00-10:30, lunch 11:30-15:00 (15:30 weekends), dinner 17:00-22:30 - simplified to 07:00-22:30. No Kobe beef item found",
+    "_checked": "2026-10-15"
+  },
+  "kb-2091": {
+    "openingHours": "Mo-Su 16:45-01:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28073982/"
+    ],
+    "_notes": "yakiniku (opened 2025-09); no course explicitly Kobe beef (cheapest course ¥4,950)",
+    "_checked": "2026-10-15"
+  },
+  "kb-2098": {
+    "_sources": [],
+    "_notes": "no data found - 'Kitchencar ALL IN' looks like a food-truck business (may be not-restaurant)",
+    "_checked": "2026-10-15"
+  },
+  "kb-2127": {
+    "openingHours": "Tu-Su 18:00-22:00; Mo off",
+    "_sources": [
+      "https://restaurant.ikyu.com/123282/"
+    ],
+    "_notes": "hotel restaurant & bar on 13F of Kobe Port Tower Hotel; truffle-themed, no Kobe beef mention. If Monday is a holiday, closed Tuesday",
+    "_checked": "2026-10-15"
+  },
+  "kb-2132": {
+    "priceTier": 1,
+    "priceLunch": 4800,
+    "priceDinner": 4800,
+    "openingHours": "Mo-Su 11:30-15:00,17:00-21:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280103/28000466/"
+    ],
+    "_notes": "ANA Crowne Plaza 34F. = 神戸牛和風煮込みハンバーグ膳 (time slot not stated). Open year-round",
+    "_checked": "2026-10-15"
+  },
+  "kb-2140": {
+    "priceTier": 2,
+    "priceDinner": 6800,
+    "openingHours": "Mo-Su 11:30-22:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28051933/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku; dinner = 神戸牛階段盛りコース (2+ guests). Lunch exists but no Kobe price shown. Irregular holidays. hours now from Google Maps (was Mo-Su 11:30-22:00 from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Yakiniku WASSIA"
+  },
+  "kb-2145": {
+    "priceTier": 2,
+    "priceDinner": 8800,
+    "openingHours": "Mo,Tu,Th-Su 12:00-14:30,17:00-22:00; We off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28074686/",
+      "Google Maps listing"
+    ],
+    "_notes": "opened 2025-11. dinner = tabelog-only course with 神戸牛極上赤身 steak; 神戸牛尽くしコース ¥9,900. Irregular holidays. hours now from Google Maps (was Mo-Su 12:00-15:00,17:00-22:00 from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "Ikuta Steak House"
+  },
+  "kb-2146": {
+    "priceTier": 2,
+    "priceDinner": 8888,
+    "openingHours": "Mo-Su 17:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28071692/"
+    ],
+    "_notes": "yakiniku; = 神戸牛・和牛食べ放題コース (all-you-can-eat)",
+    "_checked": "2026-10-15"
+  },
+  "kb-2155": {
+    "priceTier": 2,
+    "priceLunch": 3000,
+    "priceDinner": 9500,
+    "openingHours": "Mo-Su 11:30-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28056755/",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = Tsubasaコース choice of A5 Kobe / kuroge / domestic fillet (price same); dinner = 神戸牛×黒毛和牛×国産牛 tasting 120g. hours now from Google Maps (was Mo-Fr 11:30-15:00,17:00-23:00; Sa,Su,PH 11:30-23:00 from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "KOBE STEAK Tsubasa"
+  },
+  "kb-2238": {
+    "priceTier": 2,
+    "priceDinner": 9000,
+    "openingHours": "Mo-Fr 17:30-23:30; Sa,Su,PH 12:00-14:30,17:30-23:30",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28075913/"
+    ],
+    "_notes": "yakiniku (opened 2026-04); dinner = 神戸牛コース (2+ guests). Irregular holidays announced on SNS",
+    "_checked": "2026-10-15"
+  },
+  "kb-2255": {
+    "priceTier": 3,
+    "priceLunch": 7700,
+    "priceDinner": 19800,
+    "openingHours": "Mo,Tu,Th-Su 11:30-15:00,17:00-22:00; We off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28076679/",
+      "Google Maps listing"
+    ],
+    "_notes": "= 神戸ビーフ 鉄板ステーキ 和み (opened 2026-06). lunch = ランチコース 神戸ビーフ赤身; dinner = 贅沢三種食べ比べ pair course. NOTE registry website points to tabelog 28003514, which is a different restaurant (志ん). Google lists its site as kobesteak-iwasaki.jp/nagomi (sister of いわさき, kb-1439)",
+    "_checked": "2026-10-15",
+    "nameEn": "KOBE BEEF TEPPAN STEAK Nagomi"
+  },
+  "kb-2297": {
+    "_sources": [
+      "https://prtimes.jp/main/html/rd/p/000000060.000147007.html"
+    ],
+    "_notes": "hotel not open yet - press release says BASE LAYER HOTEL KOBE SANNOMIYA opens 2026-11-10; no restaurant info",
+    "_checked": "2026-10-15"
+  },
+  "kb-2308": {
+    "_sources": [
+      "https://www.koubegyuu.com/ja/restaurants/",
+      "Google Maps listing"
+    ],
+    "_notes": "Kishō-Kichi group annex of 神戸牛 黒澤; not in the group's restaurant list, but a Google Maps listing exists at 元町通1-2-3 メイメイビル (site koubegyuu.com/kurosawa2) - looks open; no hours or prices found",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Over Rice Kurosawa Annex by Kishō Kichi"
+  },
+  "kb-934": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "no restaurant listing found for カクテン屋 at 栄町通3-6-7; name matches the Kakuten-ya building that houses KOBE BEEF DINING モーリヤ (kb-1983), so likely the Mouriya group's meat wholesaler/office. no data found",
+    "_checked": "2026-10-15"
+  },
+  "kb-976": {
+    "priceTier": 3,
+    "priceDinner": 23000,
+    "openingHours": "Mo-Su 11:30-15:00,17:30-21:00",
+    "_sources": [
+      "https://kochou.isago.co.jp/menu/",
+      "https://isago.co.jp/"
+    ],
+    "_notes": "ryokan; restaurant 料亭 胡蝶. dinner = 神戸牛づくし懐石 (tax+service incl). Lunch menu on a separate page, not checked. Closed days not stated",
+    "_checked": "2026-10-15"
+  },
+  "kb-1006": {
+    "_sources": [],
+    "_notes": "no data found - registry address '北野町1丁目3階' is incomplete and no tel/website; couldn't identify the business (maybe at Shin-Kobe Oriental Avenue)",
+    "_checked": "2026-10-15"
+  },
+  "kb-1291": {
+    "openingHours": "Mo-Su 11:00-22:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28062867/"
+    ],
+    "_notes": "food hall in Kobe Port Museum; plans use '兵庫県産牛', no item explicitly Kobe beef",
+    "_checked": "2026-10-15"
+  },
+  "kb-1610": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "JA Town 'あつめて、兵庫。' is JA Zen-Noh Hyogo's online shop, not a sit-down restaurant (their restaurant is 神戸プレジール, kb-447)",
+    "_checked": "2026-10-15"
+  },
+  "kb-1731": {
+    "_sources": [],
+    "_notes": "no data found - registry entry is a company (株式会社プロペラ); couldn't link it to a specific restaurant",
+    "_checked": "2026-10-15"
+  },
+  "kb-1746": {
+    "openingHours": "Mo-Fr 12:00-15:00,17:00-24:00; Sa 12:00-24:00; Su,PH 12:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280101/28005926/",
+      "Google Maps listing"
+    ],
+    "_notes": "Belgian beer bar BRUGGE; no Kobe beef item found. Closed Jan 1. Official page blocks fetching",
+    "_checked": "2026-10-15",
+    "nameEn": "BRUGGE"
+  },
+  "kb-1748": {
+    "_sources": [
+      "https://4travel.jp/dm_shisetsu/10189771/related",
+      "Google Maps listing"
+    ],
+    "_notes": "グルメビストロ 神戸ブランド亭 at umie MOSAIC 2F (kobebrand.co.jp); hours from Google Maps; no Kobe beef prices found",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Brando-tei",
+    "openingHours": "Mo-Su 11:00-21:00"
+  },
+  "kb-1771": {
+    "openingHours": "Mo,Tu,Th,Fr,Su 07:00-09:30,11:30-14:30,17:00-21:30; Sa 07:00-09:30,11:30-15:00,17:00-21:30; We off",
+    "_sources": [
+      "https://restaurant.ikyu.com/120046/plan12107602",
+      "Google Maps listing"
+    ],
+    "_notes": "hotel restaurant 神戸北野ダイニング NinNin; times are approximate (ikyu gives last orders 14:00/14:30 weekends and 20:30). Says it uses Kobe beef but no Kobe-beef plan price found. hours now from Google Maps (was Mo-Su 07:00-09:00,11:30-14:30,17:00-21:00 from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-1949": {
+    "_sources": [
+      "https://ganso-gyozaen.com/",
+      "Google Maps listing"
+    ],
+    "_notes": "gyoza restaurant; Kobe beef gyoza only listed in the online shop (no in-restaurant price). Official hours close 21:30 (dinner LO 20:30), closed Mondays - existing OSM value 'Tu-Su 11:45-15:00, 17:00-20:30' uses the LO time and has a space after the comma; left unchanged",
+    "_checked": "2026-10-15",
+    "nameEn": "Ganso-Gyozaen"
+  },
+  "kb-19": {
+    "openingHours": "Mo-Sa 09:00-19:00; Su off",
+    "_status": "not-restaurant?",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280102/28033580/"
+    ],
+    "_notes": "神戸菊水 本社店 is a butcher shop (精肉店頭販売); no eat-in found. Registry website redirects to the online shop kikusui-shop.com. Their steak restaurant is kb-231",
+    "_checked": "2026-10-15"
+  },
+  "kb-35": {
+    "openingHours": "Mo,Tu,Th-Su 11:00-15:00,17:00-21:00; We off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280111/28065171/"
+    ],
+    "_notes": "self-grill yakiniku run by 森谷商店 (opened 2022-11); Kobe beef available only by reservation the day before, no price published. Official site yakiniku-moriya.com; registry page unreachable",
+    "_checked": "2026-10-15"
+  },
+  "kb-192": {
+    "openingHours": "Tu-Su 11:30-14:30,17:00-22:00; Mo off",
+    "_sources": [
+      "http://www.nikuryori.co.jp/",
+      "https://tabelog.com/hyogo/A2801/A280110/28000079/",
+      "Google Maps listing"
+    ],
+    "_notes": "no Kobe beef prices published. Closed Mondays incl. Monday holidays except GW/Obon/New Year. Google Maps hours equal official last orders; official site gives lunch 11:30-14:30, dinner 17:00-22:00, Mon closed",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Beef Steak, Yakiniku & Sukiyaki Kayama"
+  },
+  "kb-408": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "https://www.ohtagyu-ohtaya.com/",
+      "https://tabelog.com/hyogo/A2801/A280109/28027098/"
+    ],
+    "_notes": "registry address 荒田町1-10-7 looks like 太田家's HQ/butcher (10:00-18:00, Wed off). Their nearby restaurant 蔓牛焼肉 太田家 神戸湊川店 is at 荒田町1-16-8 (Mo,Tu,Th-Su 11:00-15:00,17:00-22:00; We off) with no Kobe beef prices listed",
+    "_checked": "2026-10-15"
+  },
+  "kb-420": {
+    "openingHours": "Tu-Su 11:00-14:00,17:00-22:00; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280111/28011557/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku 焼肉弘一; no Kobe beef item/price found. hours now from Google Maps (was Tu-Fr 11:00-14:00,17:00-22:00; Sa,Su 17:00-22:00; Mo off from tabelog/other)",
+    "_checked": "2026-10-15"
+  },
+  "kb-429": {
+    "priceTier": 2,
+    "priceDinner": 7480,
+    "openingHours": "Mo,Tu,Th-Su 11:30-14:30,17:00-22:30; We off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280111/28008236/",
+      "Google Maps listing"
+    ],
+    "_notes": "創作焼肉 神戸 牛乃匠. dinner = 匠会席 (Kobe beef course, 2+ guests; time slot not stated). Kobe beef service/steak lunches exist but no official price",
+    "_checked": "2026-10-15",
+    "nameEn": "Sosaku Yakiniku Kobe Gyu-No-Takumi"
+  },
+  "kb-434": {
+    "priceTier": 2,
+    "priceLunch": 3300,
+    "priceDinner": 14960,
+    "_sources": [
+      "https://www.bifteck.co.jp/restaurant/kobe-main/",
+      "https://www.bifteck.co.jp/menu/hyogo/",
+      "https://www.bifteck.co.jp/menu/hyogo/lunch.html",
+      "Google Maps listing"
+    ],
+    "_notes": "lunch = 神戸ビーフハンバーグランチ; dinner = 特選神戸ビーフコース 80g. Official site gives only last orders (lunch 11:30-14:30 LO, dinner 17:00-21:00 LO, courses LO 20:00), Mondays closed (Tue if Mon is a holiday) - hours not recorded since closing time unknown",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe beef Bifuteki Kawamura Kobe",
+    "openingHours": "Tu-Su 11:30-15:30,17:00-21:30; Mo off"
+  },
+  "kb-2017": {
+    "_sources": [
+      "https://www.bifteck.co.jp/restaurant/kobe-main/"
+    ],
+    "_notes": "duplicate? 株式会社 かわむら has the same address as ビフテキのカワムラ 神戸本店 (kb-434, 伊川谷町有瀬1524) - likely the operating company, see kb-434",
+    "_checked": "2026-10-15"
+  },
+  "kb-99": {
+    "_status": "closed?",
+    "_sources": [
+      "https://kobe-nishimuraya.raku-uru.jp/"
+    ],
+    "_notes": "西村ミートショップ: registry website is an online shop that shows '現在、閉店中です'; looks like a butcher/online shop rather than a restaurant (could also be not-restaurant?). Registry address has duplicated 神戸市神戸市",
+    "_checked": "2026-10-15"
+  },
+  "kb-327": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "https://www.kobe-sankoshokuhin.com/"
+    ],
+    "_notes": "山晃食品: meat processor supplying hotels/restaurants plus online sales; no restaurant",
+    "_checked": "2026-10-15"
+  },
+  "kb-439": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "http://www.tajimabeef.net/",
+      "https://kobebeef-oogiya.jp/"
+    ],
+    "_notes": "扇矢精肉店 is a butcher/mail-order shop. Its yakiniku restaurant 但馬牛焼肉扇矢 is at a different address (灘区六甲町1-4-15, 18:30-20:30, Mon + 4th Thu off, reservation only)",
+    "_checked": "2026-10-15"
+  },
+  "kb-529": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "http://takiya1938.com/"
+    ],
+    "_notes": "たき屋: kuroge wagyu retailer/delivery (10:00-18:00, Wed off); weekend yakiniku bento only, no eat-in found",
+    "_checked": "2026-10-15"
+  },
+  "kb-568": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "http://koubegyu.net/"
+    ],
+    "_notes": "registry website is an A5 Kobe beef mail-order shop; no restaurant found for グローイングコンセプション",
+    "_checked": "2026-10-15"
+  },
+  "kb-460": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "http://www.arima-gyoen.co.jp/"
+    ],
+    "_notes": "有馬御苑: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-560": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "http://www.gekkoen.co.jp/"
+    ],
+    "_notes": "月光園: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-660": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "http://www.arima-gh.jp/"
+    ],
+    "_notes": "有馬グランドホテル (site blocks fetching): Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-816": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "亀の井ホテル 有馬: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-1725": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "有馬ロイヤルホテル: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2075": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280112/28028509/"
+    ],
+    "_notes": "有馬きらり (hotel; tabelog lists no menu): Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2142": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "https://www.kinzan.co.jp/"
+    ],
+    "_notes": "欽山: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2148": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "有馬瑞宝園: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2152": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "http://www.hyoe.co.jp/"
+    ],
+    "_notes": "兵衛向陽閣: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2161": {
+    "_status": "not-restaurant?",
+    "_sources": [
+      "https://www.hanamusubi.co.jp/"
+    ],
+    "_notes": "御幸荘 花結び: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2162": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "メルヴェール有馬: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2165": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "有馬山叢 御所別墅: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2169": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "元湯 龍泉閣: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2170": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "橋乃家 別館 嵐翠: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2190": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "天地の宿 奥の細道: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2191": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "四季の彩 旅篭: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-2225": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "中の坊 瑞苑: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
+    "_checked": "2026-10-15"
+  },
+  "kb-1995": {
+    "openingHours": "Mo-Su 11:30-15:00,17:30-22:00",
+    "_sources": [
+      "https://www.seishin-oh.co.jp/",
+      "https://restaurant.ikyu.com/105526/"
+    ],
+    "_notes": "hotel; hours are for teppanyaki 五條坂 (17F), which offers Kobe beef plans on ikyu but no price was readable",
+    "_checked": "2026-10-15"
+  },
+  "kb-2061": {
+    "openingHours": "Mo,Tu off; We-Su,PH 11:30-14:30,17:30-21:00",
+    "_sources": [
+      "https://restaurant.ikyu.com/105417"
+    ],
+    "_notes": "hotel; hours are for teppanyaki 潮路 (18F), which has 特選神戸牛 courses since 2026-06 but no price was readable. Closed Mon/Tue except holidays",
+    "_checked": "2026-10-15"
+  },
+  "kb-2007": {
+    "_sources": [
+      "http://rokkosansilence-resort.com/"
+    ],
+    "_notes": "resort with teppanyaki (lunch from 11:00, dinner from 16:00; closing not given) offering a 但馬牛・神戸牛 course; no prices found",
+    "_checked": "2026-10-15"
+  },
+  "kb-1715": {
+    "_sources": [
+      "http://kobesuma-seaworld.jp/"
+    ],
+    "_notes": "registry entry is the Suma Sea World hotel/aquarium operator; restaurant せとうちハーバー etc. - no Kobe beef menu or hours found",
+    "_checked": "2026-10-15"
+  },
+  "kb-2192": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "エクシブ有馬離宮: members-only resort hotel",
+    "_checked": "2026-10-15"
+  },
+  "kb-2214": {
+    "_status": "not-restaurant?",
+    "_sources": [],
+    "_notes": "エクシブ六甲 サンクチュアリ・ヴィラ: members-only resort hotel",
+    "_checked": "2026-10-15"
+  },
+  "kb-2166": {
+    "priceTier": 1,
+    "priceLunch": 2750,
+    "openingHours": "Tu-Fr 08:00-09:45,17:30-21:00; Sa,Su,PH 08:00-09:45,11:30-15:00,17:30-21:00; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280112/28020604/",
+      "https://tabelog.com/hyogo/A2801/A280112/28020604/dtlmenu/lunch/",
+      "Google Maps listing"
+    ],
+    "_notes": "restaurant of ryokan 御所坊, open to visitors. lunch = 神戸ビーフダブルオニオンカレー (tabelog menu last updated 2022-01, may be stale); lunch only Sat/Sun/holidays. Own site goshoboh.com",
+    "_checked": "2026-10-15",
+    "nameEn": "Sanboh Kan (Goshoboh)"
+  },
+  "kb-2167": {
+    "openingHours": "Mo-Su 18:00-21:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280112/28000674/"
+    ],
+    "_notes": "restaurant in Hotel 花小宿; lunch currently suspended; no Kobe beef price published; irregular holidays",
+    "_checked": "2026-10-15"
+  },
+  "kb-2168": {
+    "openingHours": "Mo-Su 11:30-17:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280112/28053158/",
+      "Google Maps listing"
+    ],
+    "_notes": "burger shop SABOR; a Kobe beef burger is mentioned only in reviews, no official price. hours now from Google Maps (was Mo-We,Fr-Su 11:00-15:00; Th off from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "SABOR"
+  },
+  "kb-1658": {
+    "openingHours": "We,Sa,Su 10:30-15:00,17:00-19:00; Th,Fr 10:30-15:00; Mo,Tu off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280112/28019521/",
+      "Google Maps listing"
+    ],
+    "_notes": "soba/café; no Kobe beef item found",
+    "_checked": "2026-10-15",
+    "nameEn": "Nakasa"
+  },
+  "kb-819": {
+    "openingHours": "We-Mo 15:00-24:00; Tu off",
+    "_sources": [
+      "http://www.koushiya.jp/sp/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku 神戸仔牛屋 東灘店; all-you-can-eat focus, no Kobe beef prices published. Irregular closures",
+    "_checked": "2026-10-15",
+    "nameEn": "Kobe Koushiya"
+  },
+  "kb-920": {
+    "openingHours": "Tu-Su 17:00-21:00; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280105/28003062/"
+    ],
+    "_notes": "yakiniku 味鉄 本山店; no course explicitly Kobe beef with a price",
+    "_checked": "2026-10-15"
+  },
+  "kb-1041": {
+    "priceTier": 2,
+    "priceDinner": 7000,
+    "openingHours": "Mo,We-Su 17:00-23:00; Tu off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280106/28055381/"
+    ],
+    "_notes": "神戸牛焼肉・しゃぶしゃぶ もと牛; dinner = 期間限定特別コース (description mentions Kobe beef; dedicated 神戸牛コース ¥9,350)",
+    "_checked": "2026-10-15"
+  },
+  "kb-1118": {
+    "openingHours": "Mo-Su 11:00-22:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280110/28038092/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku La Shomon 垂水店; only 黒毛和牛 sets listed. Tabelog hours/holidays are inconsistent. hours now from Google Maps (was Tu-Su 17:00-21:00; Mo off from tabelog/other)",
+    "_checked": "2026-10-15",
+    "nameEn": "La Shomon"
+  },
+  "kb-1462": {
+    "openingHours": "Tu-Su 11:30-14:30,17:00-22:00; Mo off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280108/28066312/"
+    ],
+    "_notes": "yakiniku にく好し; no Kobe beef menu/prices published",
+    "_checked": "2026-10-15"
+  },
+  "kb-1463": {
+    "_sources": [
+      "Google Maps listing"
+    ],
+    "_notes": "Google Maps shows '但馬牛肉まぶし・鰻 かぐら神重' (kamishige.com) at the registry address - a lunch-only Tajima beef / eel restaurant; no Kobe beef price found",
+    "_checked": "2026-10-15",
+    "openingHours": "Mo,We-Su 11:00-14:00; Tu off"
+  },
+  "kb-1723": {
+    "openingHours": "Mo-Su 12:00-15:00,17:00-23:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280109/28000900/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku 飛苑; open year-round; no Kobe beef prices published",
+    "_checked": "2026-10-15",
+    "nameEn": "Hien"
+  },
+  "kb-1806": {
+    "openingHours": "Mo-Su 11:30-14:00,17:00-22:00",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280111/28062076/"
+    ],
+    "_notes": "和牛焼肉 牛のよだれ セリオ西神南店; no Kobe beef item/price found",
+    "_checked": "2026-10-15"
+  },
+  "kb-1811": {
+    "_sources": [
+      "Google Maps listing"
+    ],
+    "_notes": "found on Google Maps at 垂水区海岸通12-2 (registry has no tel); no website or Kobe beef prices found",
+    "_checked": "2026-10-15",
+    "openingHours": "Mo-Su 10:30-21:00"
+  },
+  "kb-2102": {
+    "openingHours": "Mo,Tu,Fr-Su 11:30-14:30,17:00-21:30; We,Th off",
+    "_sources": [
+      "https://tabelog.com/hyogo/A2801/A280108/28070104/",
+      "Google Maps listing"
+    ],
+    "_notes": "yakiniku; courses use A4 黒毛和牛, no Kobe beef item. If Thu is a holiday, closed Fri instead. hours now from Google Maps (was Mo-We,Fr-Su 11:30-14:30,17:00-21:30; Th off from tabelog/other)",
+    "_checked": "2026-10-15"
   }
 }
