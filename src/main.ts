@@ -114,6 +114,20 @@ const map = new MLMap({
 map.addControl(new NavigationControl({ visualizePitch: false }), 'top-right');
 map.addControl(new ScaleControl({ unit: 'metric' }), 'bottom-left');
 
+// Loading veil: fade out once the first tiles are drawn; say so if the tile host fails first.
+const veil = $('#map-loading');
+map.once('idle', () => {
+  if (veil.classList.contains('failed')) return;
+  veil.classList.add('done');
+  veil.addEventListener('transitionend', () => veil.remove(), { once: true });
+});
+map.on('error', () => {
+  // a stray failed tile is fine; only a style that never loaded leaves the map blank
+  if (map.isStyleLoaded() || !veil.isConnected || veil.classList.contains('done')) return;
+  veil.classList.add('failed');
+  $('#map-loading-text').textContent = 'Map tiles unavailable. The list still works.';
+});
+
 const empty: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features: [] };
 const tip = new Popup({ closeButton: false, closeOnClick: false, offset: 14, className: 'tip' });
 
