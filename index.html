@@ -2,119 +2,252 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content="Map of officially registered Kobe Beef restaurants in Kobe, Japan." />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#0d0809" />
+    <meta name="color-scheme" content="dark" />
     <title>Kobe Beef Guide</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
     <div id="app">
-      <aside id="sidebar">
-        <header>
-          <h1>Kobe Beef Guide</h1>
-          <nav role="tablist">
-            <button role="tab" id="tab-filters" aria-selected="true" aria-controls="panel-filters">Find</button>
-            <button role="tab" id="tab-about" aria-selected="false" aria-controls="panel-about">About</button>
-          </nav>
+      <main id="map" aria-label="Map of Kobe Beef restaurants"></main>
+
+      <div id="pick-banner" class="pick-banner" hidden>
+        <span>Tap the map to set a point</span>
+        <button type="button" id="pick-cancel" class="btn btn-ghost btn-sm">Cancel</button>
+      </div>
+
+      <aside id="panel" class="panel" aria-label="Restaurants">
+        <div class="grab" id="grab" aria-hidden="true"><span></span></div>
+
+        <header class="panel-head">
+          <div class="brand">
+            <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="9" class="mark-bg" />
+              <path class="mark-fat" d="M6 12c4-3 7 2 11-1s6-3 9-1M6 19c3-2 6 1 9 0s5-4 11-1M9 25c3-1 5 0 8-1s4-2 7-1" />
+            </svg>
+            <div class="brand-text">
+              <h1 class="brand-name">Kobe Beef <span class="brand-tag">Guide</span></h1>
+              <p class="brand-sub" id="brand-sub">Official registry · 神戸ビーフ</p>
+            </div>
+          </div>
+          <button type="button" class="icon-btn about-toggle" id="open-about" aria-controls="about" aria-expanded="false" aria-label="About Kobe beef and this map" title="About (?)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v14a1.5 1.5 0 0 0-1.5-1.5h-5A1.5 1.5 0 0 1 4 17z" /><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v14a1.5 1.5 0 0 1 1.5-1.5h5a1.5 1.5 0 0 0 1.5-1.5z" /></svg>
+          </button>
         </header>
 
-        <section id="panel-filters" role="tabpanel" aria-labelledby="tab-filters">
-          <form id="filters" autocomplete="off">
-            <label>Search
-              <input type="search" name="query" placeholder="name or address" />
-            </label>
+        <div class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
+          <input id="q" type="search" placeholder="Search name, area or address" autocomplete="off" enterkeyhint="search" aria-label="Search restaurants" />
+          <kbd aria-hidden="true">/</kbd>
+        </div>
 
-            <fieldset>
-              <legend>Price</legend>
-              <label>Max
-                <select name="maxPriceTier">
-                  <option value="1">¥ (under ¥5,000)</option>
-                  <option value="2">¥¥ (¥5,000–15,000)</option>
-                  <option value="3">¥¥¥ (¥15,000–30,000)</option>
-                  <option value="4" selected>¥¥¥¥ (any)</option>
+        <div class="chips" role="toolbar" aria-label="Quick filters">
+          <button type="button" class="chip" id="chip-filters">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" /><circle cx="16" cy="7" r="2" /><circle cx="10" cy="17" r="2" /></svg>
+            Filters <span class="badge" id="filter-badge" hidden></span>
+          </button>
+          <button type="button" class="chip" id="chip-open" aria-pressed="false">Open now</button>
+          <button type="button" class="chip" id="chip-near" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" /><circle cx="12" cy="12" r="5" /></svg>
+            Near me
+          </button>
+          <button type="button" class="chip" id="chip-photo" aria-pressed="false">With photos</button>
+        </div>
+
+        <div class="views" id="views">
+          <section id="list-view" class="view list-view">
+            <div class="list-head">
+              <p id="count" aria-live="polite">Loading…</p>
+              <label class="sort">
+                <span>Sort</span>
+                <select id="sort">
+                  <option value="featured">Featured</option>
+                  <option value="distance" disabled>Distance</option>
+                  <option value="price">Price</option>
+                  <option value="rating">Rating</option>
+                  <option value="name">Name</option>
                 </select>
               </label>
-              <label class="check"><input type="checkbox" name="includeUnknownPrice" checked /> include unknown</label>
-            </fieldset>
+            </div>
+            <ol id="results" class="results"></ol>
+            <div id="empty" class="empty" hidden>
+              <p class="empty-title">Nothing matches</p>
+              <p>Try loosening a filter or widening the radius.</p>
+              <button type="button" class="btn btn-ghost" id="empty-reset">Reset filters</button>
+            </div>
+          </section>
 
-            <fieldset>
-              <legend>Hours <small>(Japan time)</small></legend>
-              <label class="check"><input type="radio" name="hoursMode" value="any" checked /> any time</label>
-              <label class="check"><input type="radio" name="hoursMode" value="now" /> open now</label>
-              <label class="check"><input type="radio" name="hoursMode" value="at" /> open at
-                <input type="datetime-local" name="hoursAt" />
-              </label>
-              <label class="check"><input type="checkbox" name="includeUnknownHours" checked /> include unknown</label>
-            </fieldset>
-
-            <fieldset>
-              <legend>Rating</legend>
-              <label>Min
-                <select name="minRating">
-                  <option value="0" selected>any</option>
-                  <option value="3">3+</option>
-                  <option value="3.5">3.5+</option>
-                  <option value="4">4+</option>
-                  <option value="4.5">4.5+</option>
-                </select>
-              </label>
-              <label class="check"><input type="checkbox" name="includeUnknownRating" checked /> include unrated</label>
-            </fieldset>
-
-            <fieldset>
-              <legend>Distance</legend>
-              <div class="row">
-                <button type="button" id="pick-center">Pick point on map</button>
-                <button type="button" id="locate-me">Use my location</button>
-                <button type="button" id="clear-center">Clear</button>
-              </div>
-              <label>Radius <output id="radius-out">2</output> km
-                <input type="range" name="radiusKm" min="0.25" max="15" step="0.25" value="2" />
-              </label>
-              <p id="center-status" class="muted">No point set.</p>
-            </fieldset>
-
-            <button type="reset">Reset filters</button>
-          </form>
-
-          <p id="count" aria-live="polite"></p>
-          <ol id="results"></ol>
-        </section>
-
-        <section id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
-          <h2>About</h2>
-          <p>
-            This map shows restaurants in Kobe city that appear on the official registry of
-            <strong>designated Kobe Beef stores</strong> (神戸肉流通推進協議会 指定登録店), maintained by the
-            Kobe Beef Marketing &amp; Distribution Promotion Association.
-          </p>
-          <p>
-            Registered restaurants are permitted to serve and advertise genuine Kobe Beef, and display a
-            registration certificate and a bronze bull statue in the store.
-          </p>
-          <h3>Data</h3>
-          <ul>
-            <li>Restaurant list: <a href="https://www.kobe-niku.jp/shop/?lang=1" rel="noopener noreferrer" target="_blank">kobe-niku.jp</a></li>
-            <li>Locations: the registry where provided, otherwise geocoded with the
-              <a href="https://msearch.gsi.go.jp/" rel="noopener noreferrer" target="_blank">GSI address search</a> (block-level accuracy).</li>
-            <li>Hours: <a href="https://www.openstreetmap.org/" rel="noopener noreferrer" target="_blank">OpenStreetMap</a> contributors, where available, plus manual curation.</li>
-            <li>Price &amp; rating: manually curated; many entries are still unknown.</li>
-          </ul>
-          <p id="data-meta" class="muted"></p>
-          <p class="muted">
-            Not affiliated with the Kobe Beef Association. Always confirm hours and prices with the restaurant
-            before visiting.
-          </p>
-          <h3>Map</h3>
-          <p class="muted">
-            Tiles by <a href="https://openfreemap.org" rel="noopener noreferrer" target="_blank">OpenFreeMap</a>,
-            data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer" target="_blank">OpenStreetMap</a> contributors.
-          </p>
-        </section>
+          <section id="detail-view" class="view detail-view" hidden aria-label="Restaurant details"></section>
+        </div>
       </aside>
 
-      <main id="map" aria-label="Map of Kobe Beef restaurants"></main>
+      <dialog id="filters-dialog" class="sheet" aria-labelledby="filters-title">
+        <form id="filters" autocomplete="off">
+          <header class="sheet-head">
+            <h2 id="filters-title">Filters</h2>
+            <button type="button" class="icon-btn" data-close aria-label="Close filters">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+            </button>
+          </header>
+
+          <div class="sheet-body">
+            <fieldset class="group">
+              <legend>Price <small>typical Kobe beef meal</small></legend>
+              <div class="seg seg-4">
+                <label><input type="radio" name="maxPriceTier" value="1" /><span>¥<small>&lt;5k</small></span></label>
+                <label><input type="radio" name="maxPriceTier" value="2" /><span>¥¥<small>≤15k</small></span></label>
+                <label><input type="radio" name="maxPriceTier" value="3" /><span>¥¥¥<small>≤30k</small></span></label>
+                <label><input type="radio" name="maxPriceTier" value="4" checked /><span>Any</span></label>
+              </div>
+              <label class="switch"><input type="checkbox" name="includeUnknownPrice" checked /><span>Include unknown prices</span></label>
+            </fieldset>
+
+            <fieldset class="group">
+              <legend>Hours <small>Japan time</small></legend>
+              <div class="seg seg-3">
+                <label><input type="radio" name="hoursMode" value="any" checked /><span>Any time</span></label>
+                <label><input type="radio" name="hoursMode" value="now" /><span>Open now</span></label>
+                <label><input type="radio" name="hoursMode" value="at" /><span>Open at…</span></label>
+              </div>
+              <input class="field hours-at" type="datetime-local" name="hoursAt" aria-label="Open at, Japan time" />
+              <label class="switch"><input type="checkbox" name="includeUnknownHours" checked /><span>Include unknown hours</span></label>
+            </fieldset>
+
+            <fieldset class="group">
+              <legend>Rating</legend>
+              <div class="seg seg-5">
+                <label><input type="radio" name="minRating" value="0" checked /><span>Any</span></label>
+                <label><input type="radio" name="minRating" value="3" /><span>3+</span></label>
+                <label><input type="radio" name="minRating" value="3.5" /><span>3.5+</span></label>
+                <label><input type="radio" name="minRating" value="4" /><span>4+</span></label>
+                <label><input type="radio" name="minRating" value="4.5" /><span>4.5+</span></label>
+              </div>
+              <label class="switch"><input type="checkbox" name="includeUnknownRating" checked /><span>Include unrated</span></label>
+            </fieldset>
+
+            <fieldset class="group">
+              <legend>Distance</legend>
+              <div class="row">
+                <button type="button" class="btn btn-ghost btn-sm" id="pick-center">Pick on map</button>
+                <button type="button" class="btn btn-ghost btn-sm" id="locate-me">Use my location</button>
+                <button type="button" class="btn btn-ghost btn-sm" id="clear-center">Clear</button>
+              </div>
+              <p id="center-status" class="hint">No point set. Results aren't limited by distance.</p>
+              <label class="range">
+                <span>Radius <output id="radius-out">2</output> km</span>
+                <input type="range" name="radiusKm" min="0.25" max="15" step="0.25" value="2" />
+              </label>
+            </fieldset>
+
+            <fieldset class="group">
+              <legend>Photos</legend>
+              <label class="switch"><input type="checkbox" name="withPhoto" /><span>Only restaurants with a photo</span></label>
+            </fieldset>
+          </div>
+
+          <footer class="sheet-foot">
+            <button type="reset" class="btn btn-ghost">Reset</button>
+            <button type="submit" class="btn btn-primary" id="apply-filters">Show results</button>
+          </footer>
+        </form>
+      </dialog>
+
+      <button type="button" class="about-tab" id="about-tab" aria-controls="about" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+        <span>About Kobe beef</span>
+      </button>
+
+      <aside id="about" class="drawer" aria-labelledby="about-title" inert>
+        <div class="drawer-scroll">
+          <header class="drawer-hero">
+            <svg class="marbling" viewBox="0 0 440 120" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 30c40-18 70 14 110 2s70-26 110-8 70 22 110 4 80-20 110 2" />
+              <path d="M0 62c30-10 60 12 100 4s60-22 100-10 70 18 110 6 90-16 130-2" />
+              <path d="M0 92c50-12 80 10 120 0s70-20 110-6 60 14 100 2 80-12 110 0" />
+              <path d="M30 14c20 6 30-4 50 2M260 50c16 8 30-2 46 4M150 108c20-6 34 4 52-2" />
+            </svg>
+            <button type="button" class="icon-btn drawer-close" data-close-about aria-label="Close about">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+            </button>
+            <p class="kicker">神戸ビーフ · About</p>
+            <h2 id="about-title">The real thing, mapped.</h2>
+            <p class="lede">
+              Every restaurant in Kobe on the official registry of <strong>designated Kobe Beef stores</strong>,
+              the places allowed to serve and advertise genuine Kobe beef.
+            </p>
+            <dl class="hero-stats" id="hero-stats"></dl>
+          </header>
+
+          <section class="drawer-section">
+            <h3>What makes it Kobe beef</h3>
+            <p>Plenty of menus say “Wagyu”. Only beef that clears every one of these bars may be called Kobe beef
+              (神戸牛 / 神戸ビーフ):</p>
+            <ol class="criteria">
+              <li><strong>Tajima lineage</strong><span>Purebred Tajima cattle from Hyogo seed stock, raised on farms in Hyogo Prefecture registered with the Association.</span></li>
+              <li><strong>Heifer or steer</strong><span>Bulls and breeding cows don't qualify.</span></li>
+              <li><strong>Quality score 4 or 5</strong><span>And a yield score of A or B under the Japanese grading system.</span></li>
+              <li><strong>Marbling BMS 6 or higher</strong><span>On the 12-point Beef Marbling Standard.</span></li>
+              <li><strong>Carcass under 500 kg</strong><span>270–499.9 kg for heifers, 300–499.9 kg for steers.</span></li>
+            </ol>
+            <p class="note">Certified beef carries the <em>Nojigiku</em> (wild chrysanthemum) stamp and a 10-digit ID that traces it back to the individual animal.</p>
+          </section>
+
+          <section class="drawer-section">
+            <h3>The registry</h3>
+            <p>
+              The Kobe Beef Marketing &amp; Distribution Promotion Association (神戸肉流通推進協議会) registers the
+              restaurants and shops that buy certified Kobe beef. Designated stores display a registration
+              certificate and a bronze bull statue. The number on each listing here is that registration number.
+            </p>
+            <p><a href="https://www.kobe-niku.jp/shop/?lang=1" rel="noopener noreferrer" target="_blank">Browse the official registry ↗</a></p>
+          </section>
+
+          <section class="drawer-section">
+            <h3>Reading the map</h3>
+            <ul class="legend">
+              <li><span class="lg-dot"></span>A registered restaurant. Hover for a preview, click for details.</li>
+              <li><span class="lg-cluster">12</span>Several restaurants close together. Click to zoom in.</li>
+              <li><span class="lg-dot dim"></span>Opening hours unknown (shown when filtering by hours).</li>
+              <li><span class="pill open">Open now</span><span class="pill closed">Closed now</span>Evaluated in Japan time.</li>
+            </ul>
+            <table class="tiers">
+              <caption>Price tiers, for a typical Kobe beef meal</caption>
+              <tbody>
+                <tr><th>¥</th><td>Under ¥5,000</td></tr>
+                <tr><th>¥¥</th><td>¥5,000 – 15,000</td></tr>
+                <tr><th>¥¥¥</th><td>¥15,000 – 30,000</td></tr>
+                <tr><th>¥¥¥¥</th><td>Over ¥30,000</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="drawer-section">
+            <h3>What we know so far</h3>
+            <p>Hours, prices and photos are curated by hand or taken from each restaurant's own site, so coverage is still growing.</p>
+            <div class="bars" id="coverage"></div>
+            <h4>By ward</h4>
+            <div class="bars" id="wards"></div>
+          </section>
+
+          <section class="drawer-section sources">
+            <h3>Sources</h3>
+            <ul>
+              <li>Restaurant list: <a href="https://www.kobe-niku.jp/shop/?lang=1" rel="noopener noreferrer" target="_blank">kobe-niku.jp</a></li>
+              <li>Locations: the registry where it has them, otherwise the <a href="https://msearch.gsi.go.jp/" rel="noopener noreferrer" target="_blank">GSI address search</a> (accurate to the block)</li>
+              <li>Hours: <a href="https://www.openstreetmap.org/" rel="noopener noreferrer" target="_blank">OpenStreetMap</a> contributors, plus manual curation</li>
+              <li>Map: tiles by <a href="https://openfreemap.org" rel="noopener noreferrer" target="_blank">OpenFreeMap</a>, data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer" target="_blank">OpenStreetMap</a> contributors</li>
+            </ul>
+            <p id="data-meta" class="hint"></p>
+            <p class="hint">Not affiliated with the Kobe Beef Association. Always confirm hours and prices with the restaurant before you go.</p>
+            <p class="hint">Press <kbd>?</kbd> to open or close this panel.</p>
+          </section>
+        </div>
+      </aside>
+
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

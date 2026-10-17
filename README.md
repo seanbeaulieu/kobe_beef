@@ -11,7 +11,8 @@ A fully static site with no backend, database, API keys or cookies.
 |---|---|---|
 | Build | Vite + TypeScript (no framework) | tiny surface, fast, easy to restyle later |
 | Map | MapLibre GL JS 6 | open-source WebGL map, clustering built in |
-| Tiles | [OpenFreeMap](https://openfreemap.org) | free OSM vector tiles, no key, no limits |
+| Tiles | [OpenFreeMap](https://openfreemap.org) `dark` style, tinted at runtime | free OSM vector tiles, no key, no limits |
+| Fonts | Fraunces + Instrument Sans via `@fontsource-variable` | self-hosted, so the CSP keeps `font-src 'self'` |
 | Hours | `opening_hours` (lazy-loaded) | parses OSM `opening_hours` syntax, always evaluated in JST |
 | Data | `scripts/build-data.mjs` → `public/data/restaurants.json` | built offline and committed, served as a static file |
 | Hosting | Cloudflare Pages (recommended) | free, unlimited bandwidth, supports `public/_headers` |

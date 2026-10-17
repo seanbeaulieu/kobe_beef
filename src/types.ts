@@ -52,4 +52,7 @@ export interface Filters {
   includeUnknownRating: boolean;
   center: LngLat | null;
   radiusKm: number;
+  withPhoto: boolean;
 }
+
+export type SortKey = 'featured' | 'distance' | 'price' | 'rating' | 'name';
