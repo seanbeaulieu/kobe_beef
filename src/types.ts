@@ -1,3 +1,6 @@
+import type { VenueType } from './venue';
+export type { VenueType };
+
 export interface Restaurant {
   id: string;
   registrationNo: number;
@@ -7,6 +10,7 @@ export interface Restaurant {
   postal: string | null;
   tel: string | null;
   website: string | null;
+  venueType: VenueType;
   lat: number;
   lng: number;
   coordSource: 'registry' | 'gsi' | 'manual';
@@ -42,6 +46,7 @@ export type HoursMode = 'any' | 'now' | 'at';
 
 export interface Filters {
   query: string;
+  types: VenueType[];
   maxPriceTier: 1 | 2 | 3 | 4;
   includeUnknownPrice: boolean;
   hoursMode: HoursMode;

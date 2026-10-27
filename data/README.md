@@ -23,6 +23,7 @@ Every field is optional. Whatever you set replaces the scraped value.
 | `rating` | 0–5 | curated |
 | `lat`, `lng` | number | set both, or neither |
 | `image` | https URL, or `null` | photo shown in the list and popup; `null` hides a bad scraped photo |
+| `venueType` | string | `steak` `yakiniku` `sukiyaki` `casual` `other` `hotel` `ryokan` `shop`. Overrides the name-based guess in `scripts/venue-type.mjs`. `ryokan` (stay-only meal plans) and `shop` (no dining room, or no restaurant found) are hidden by default |
 | `imageSource` | URL | page the photo is credited to (shown as "Photo: host"); defaults to `website` |
 | `_sources`, `_notes`, `_checked` | any | for humans only, ignored by the build |
 

@@ -25,7 +25,8 @@ kobe-niku.jp registry (Hyogo, restaurants) ──► filter 神戸市
    ├─► GSI address geocoder for the rest     (cached: data/geocode-cache.json)
    ├─► OpenStreetMap Overpass name+distance match → hours, English name (cached: data/osm-cache.json)
    ├─► og:image from each restaurant website → photo, hotlinked (cached: data/image-cache.json)
-   └─► data/overrides.json (hand-curated price / hours / rating / coords / image, keyed by "kb-<regNo>")
+   ├─► data/overrides.json (hand-curated price / hours / rating / coords / image / venueType, keyed by "kb-<regNo>")
+   └─► venue type guessed from the name (scripts/venue-type.mjs) unless overridden
 ```
 
 ```bash
@@ -47,6 +48,18 @@ The push then triggers a redeploy.
   following the rules in [`data/README.md`](data/README.md).
 - Geocoded points are block-level (~50 m), not the exact door.
 
+## Static pages
+
+The map is a JS app, which search engines and link previews can barely read. So the build also writes plain HTML
+pages from `restaurants.json` (`scripts/pages.mjs`, run by the `kobePages` plugin in `vite.config.ts`):
+
+- `/r/<id>/` for each restaurant: facts, JSON-LD, nearby restaurants, a link back to the map. Share links point here.
+- `/restaurants/`: every restaurant, grouped by venue type.
+- `/real-kobe-beef/`: how to tell real Kobe beef from fake (hand-written, `real-kobe-beef/index.html`).
+- `robots.txt`, plus `sitemap.xml` and canonical links when `SITE_URL` is set at build time.
+
+`r/` and `restaurants/` are generated into the project root and gitignored.
+
 ## Develop
 
 ```bash
@@ -61,7 +74,7 @@ Needs Node ≥ 22.12 (24 LTS recommended, see `.nvmrc`).
 
 1. Push to GitHub.
 2. Cloudflare dashboard → Workers & Pages → Create → Pages → connect the repo.
-3. Build command `npm run build`, output dir `dist`, env var `NODE_VERSION=24`.
+3. Build command `npm run build`, output dir `dist`, env vars `NODE_VERSION=24` and `SITE_URL=https://<your domain>`.
 
 Netlify works identically (it reads the same `_headers` file). GitHub Pages also works, but it ignores `_headers`, so you lose the CSP.
 

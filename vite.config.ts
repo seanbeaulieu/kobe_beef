@@ -1,5 +1,7 @@
 import { readFileSync } from 'node:fs';
-import { defineConfig } from 'vite';
+import { relative } from 'node:path';
+import { defineConfig, type Plugin } from 'vite';
+import { generatePages, siteUrl, sitemapPaths } from './scripts/pages.mjs';
 
 // Mirror the global block of public/_headers (Cloudflare Pages / Netlify format)
 // in `vite preview`, so CSP problems show up locally before deploy.
@@ -20,7 +22,41 @@ function globalHeaders(): Record<string, string> {
   return out;
 }
 
+// Static per-restaurant pages (see scripts/pages.mjs), built as extra Vite
+// entries, plus robots.txt and, when SITE_URL is set, sitemap.xml.
+function kobePages(): Plugin {
+  return {
+    name: 'kobe-pages',
+    config(_, { command }) {
+      const pages = generatePages();
+      if (command !== 'build') return;
+      const input: Record<string, string> = { main: 'index.html', 'real-kobe-beef': 'real-kobe-beef/index.html' };
+      for (const file of pages) input[relative(process.cwd(), file).replace(/\/index\.html$/, '')] = file;
+      return { build: { rollupOptions: { input } } };
+    },
+    generateBundle() {
+      const site = siteUrl();
+      this.emitFile({
+        type: 'asset',
+        fileName: 'robots.txt',
+        source: `User-agent: *\nAllow: /\n${site ? `\nSitemap: ${site}/sitemap.xml\n` : ''}`,
+      });
+      if (!site) {
+        this.warn('SITE_URL is not set: building without canonical links or sitemap.xml');
+        return;
+      }
+      const urls = sitemapPaths().map((p: string) => `  <url><loc>${site}${p}</loc></url>`);
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`,
+      });
+    },
+  };
+}
+
 export default defineConfig({
+  plugins: [kobePages()],
   build: {
     target: 'es2022',
     sourcemap: false,

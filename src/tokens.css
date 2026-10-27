@@ -1,0 +1,55 @@
+/* Shared by the map app (style.css) and the static pages (pages.css). */
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/instrument-sans';
+
+/* ---------- tokens ---------- */
+:root {
+  color-scheme: dark;
+
+  --bg: #0c0708;
+  --surface: #140c0e;
+  --surface-2: #1b1114;
+  --surface-3: #251619;
+  --well: #0f090a;
+  --line: rgb(255 232 232 / 0.065);
+  --line-2: rgb(255 232 232 / 0.12);
+  --line-3: rgb(255 232 232 / 0.2);
+
+  --text: #f8f0ef;
+  --text-2: #cbbcbd;
+  --text-3: #95817f;
+
+  --accent: #c8303c;
+  --accent-hi: #e5535e;
+  --accent-lo: #5c141b;
+  --accent-wash: rgb(200 48 60 / 0.14);
+  --gold: #e2b66f;
+  --ok: #7fd3a2;
+
+  --r-xl: 20px;
+  --r-lg: 16px;
+  --r: 12px;
+  --r-sm: 9px;
+  --shadow:
+    0 1px 0 rgb(255 255 255 / 0.04) inset,
+    0 0 0 1px var(--line-2),
+    0 30px 70px -20px rgb(0 0 0 / 0.75);
+  --ease: cubic-bezier(0.22, 0.9, 0.24, 1);
+
+  --font-ui: 'Instrument Sans Variable', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  --font-display: 'Fraunces Variable', Georgia, 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+
+  --panel-w: 392px;
+  --drawer-w: 440px;
+  --gap: 14px;
+
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+}
