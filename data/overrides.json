@@ -9,7 +9,8 @@
     "lat": 34.69,
     "lng": 135.19,
     "image": "https://example.com/storefront.jpg",
-    "imageSource": "https://example.com/"
+    "imageSource": "https://example.com/",
+    "venueType": "steak"
   },
   "kb-10": {
     "priceTier": 3,
@@ -20,7 +21,8 @@
       "https://tabelog.com/hyogo/A2801/A280102/28000766/party/"
     ],
     "_notes": "restaurant 大井 attached to the 大井肉店 butcher; price = 神戸牛サーロインステーキコース (lunch/dinner not distinguished, meals after 18:00 by reservation only); official site unreachable; irregular extra closures. Google Maps only lists the 大井肉店 butcher shop (We-Su 11:00-18:30), not the restaurant hours",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "steak"
   },
   "kb-70": {
     "nameEn": "Steak Wataru",
@@ -94,7 +96,8 @@
       "https://tabelog.com/hyogo/A2801/A280101/28009868/party/"
     ],
     "_notes": "listed as 神戸菊水 すてーき屋; dinner = 神戸牛サーロインステーキコース 110g; lunch Kobe beef price not found; kikusui-shop.com is the online shop only. steak-ya result not opened; picked butcher 神戸菊水 三宮店 (10:30-20:30)",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "steak"
   },
   "kb-438": {
     "priceTier": 2,
@@ -546,7 +549,8 @@
       "Google Maps listing"
     ],
     "_notes": "Kitanozaka honten. lunch = お昼の和黒コース; dinner = リブロース230g course (神戸肉). Closed Dec 31-Jan 1. nameEn = site name WAKKOQU (og:site_name); official site content not readable, prices/hours from tabelog. hours now from Google Maps (was Mo-Su 12:00-15:00,17:00-22:00 from tabelog/other)",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "steak"
   },
   "kb-1016": {
     "nameEn": "WAKKOQU",
@@ -559,7 +563,8 @@
       "http://www.wakkoqu.com/"
     ],
     "_notes": "Shin-Kobe branch. lunch = お昼の和黒コース; dinner = 特選和黒コース (特選神戸ビーフ200g); ロースうす焼セット ¥11,450 not explicitly Kobe beef. Wednesdays closed since 2025",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "steak"
   },
   "kb-661": {
     "nameEn": "Misono Kobe Main Restaurant",
@@ -625,7 +630,8 @@
       "Google Maps listing"
     ],
     "_notes": "kushikatsu restaurant; no Kobe beef menu/prices found (official site blocks fetching). Closed Dec 31-Jan 1. hours now from Google Maps (was Mo-Sa 17:00-22:00; Su,PH 12:00-21:30 from tabelog/other)",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "casual"
   },
   "kb-489": {
     "priceTier": 2,
@@ -637,7 +643,8 @@
     ],
     "_notes": "dinner = 神戸牛すき焼き / しゃぶしゃぶ course (tabelog, tax incl). Tabelog lists 7F 下山手通2-10-4 as current (moved from 中山手通1-4-11)",
     "_checked": "2026-10-15",
-    "nameEn": "Komon"
+    "nameEn": "Komon",
+    "venueType": "sukiyaki"
   },
   "kb-527": {
     "openingHours": "We-Su 11:30-14:00,17:30-22:00; Mo,Tu off",
@@ -708,7 +715,8 @@
       "https://r.gnavi.co.jp/6cd4kcv70000/"
     ],
     "_notes": "yakiniku 'WAGYUの国 神戸三宮'; Kobe beef cuts listed without prices; courses only say 厳選和牛. Open year-round, may close early",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "yakiniku"
   },
   "kb-773": {
     "priceTier": 3,
@@ -732,7 +740,8 @@
       "https://tabelog.com/hyogo/A2801/A280101/28040688/party/"
     ],
     "_notes": "yakiniku; dinner = 神戸牛 焼肉セット (min. 2 people, per-person price unclear - may be per set); cheapest Kobe course 17,325. Irregular holidays",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "yakiniku"
   },
   "kb-850": {
     "priceTier": 2,
@@ -764,7 +773,8 @@
       "https://www.db-dd.net/eighth_beef.html"
     ],
     "_notes": "steak/burger at umie MOSAIC; serves a 100% Kobe beef burger but no prices published; closed days follow umie MOSAIC",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "casual"
   },
   "kb-988": {
     "openingHours": "Mo-Fr 11:30-16:00,17:00-21:00; Sa,Su 11:00-16:00,17:00-21:00",
@@ -828,7 +838,8 @@
     ],
     "_notes": "Google Maps shows 神戸 きた松 別邸 (Kobe Kitamatsu Bekkan, yakiniku) at exactly the registry address 下山手通1-3-6 Vメルヘンビル - probably this entry; no hours or Kobe beef prices found. (Tabelog's すき焼き きた松 at 中山手通1-16-9 is a different shop.)",
     "_checked": "2026-10-15",
-    "nameEn": "Kobe Kitamatsu Bekkan"
+    "nameEn": "Kobe Kitamatsu Bekkan",
+    "venueType": "yakiniku"
   },
   "kb-1304": {
     "priceTier": 2,
@@ -841,7 +852,8 @@
     ],
     "_notes": "lunch = A5神戸牛ステーキランチセット (from); dinner = A5神戸牛ステーキディナーセット (from). A phone-booking-only trial Kobe steak lunch from ¥1,500 weekdays also exists (tax status unclear). Irregular holidays",
     "_checked": "2026-10-15",
-    "nameEn": "Kishuya"
+    "nameEn": "Kishuya",
+    "venueType": "steak"
   },
   "kb-1307": {
     "priceTier": 2,
@@ -909,7 +921,8 @@
       "https://tabelog.com/hyogo/A2801/A280101/28067629/"
     ],
     "_notes": "yakiniku; courses describe 黒毛和牛 only, no explicit Kobe beef price. Own site kobebeef-washin.com",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "yakiniku"
   },
   "kb-1557": {
     "_sources": [
@@ -934,7 +947,8 @@
   "kb-1485": {
     "_sources": [],
     "_notes": "no data found - registry entry is a company name (株式会社EATOPIA) with no tel; couldn't identify a restaurant at 京町71",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-1618": {
     "priceTier": 2,
@@ -987,12 +1001,14 @@
     ],
     "_notes": "dinner = 神戸ビーフステーキ ショートコース (only 3 of 11 courses visible). No lunch. Irregular holidays. Own site baronkobe.com",
     "_checked": "2026-10-15",
-    "nameEn": "baron"
+    "nameEn": "baron",
+    "venueType": "steak"
   },
   "kb-1661": {
     "_sources": [],
     "_notes": "couldn't confirm a restaurant; Google Maps lists 'Kobe IJINKAN-YA' at the registry address (北野町3-4-26 アプローズ北野) - likely this entry, not verified further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-1711": {
     "priceTier": 2,
@@ -1107,7 +1123,8 @@
     ],
     "_notes": "izakaya (三ツ星, 3boshi-kobe.com); courses name 国産黒毛和牛, Kobe beef only mentioned as an ingredient - no Kobe price",
     "_checked": "2026-10-15",
-    "nameEn": "Mitsuboshi"
+    "nameEn": "Mitsuboshi",
+    "venueType": "casual"
   },
   "kb-1848": {
     "nameEn": "Kitano Grill & Bar",
@@ -1129,7 +1146,8 @@
     ],
     "_notes": "= ステーキコース 黒毛和牛と神戸ビーフ (time slot not stated); no Kobe lunch price found. hours now from Google Maps (was Mo,We-Su 12:00-15:00,17:00-23:00; Tu off from tabelog/other)",
     "_checked": "2026-10-15",
-    "nameEn": "MARCO"
+    "nameEn": "MARCO",
+    "venueType": "steak"
   },
   "kb-1872": {
     "openingHours": "Mo-Su 11:00-03:00",
@@ -1217,7 +1235,8 @@
     ],
     "_notes": "3F shop. lunch = weekday ランチ神戸牛ステーキコース; dinner = 神戸牛鉄板焼コース (2+ guests). Own site mikinao-sannomiya.com",
     "_checked": "2026-10-15",
-    "nameEn": "Kobe Beef Teppanyaki Restaurant Mikinao"
+    "nameEn": "Kobe Beef Teppanyaki Restaurant Mikinao",
+    "venueType": "steak"
   },
   "kb-2289": {
     "_sources": [
@@ -1260,7 +1279,8 @@
     ],
     "_notes": "sukiyaki わた半; dinner = すき焼きコース using '極上 三田牛・神戸ビーフ' (wording doesn't guarantee Kobe beef on every plate). Irregular extra holidays",
     "_checked": "2026-10-15",
-    "nameEn": "Watahan"
+    "nameEn": "Watahan",
+    "venueType": "sukiyaki"
   },
   "kb-1976": {
     "_sources": [
@@ -1439,7 +1459,8 @@
       "Google Maps listing"
     ],
     "_notes": "yakiniku 金泉苑 北野坂本店; handles Kobe beef but no priced Kobe item found. hours now from Google Maps (was Mo-Sa 17:00-23:00; Su,PH off from tabelog/other)",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "yakiniku"
   },
   "kb-2048": {
     "openingHours": "Mo-Su 11:00-23:00",
@@ -1464,7 +1485,8 @@
       "https://tabelog.com/hyogo/A2801/A280102/28054500/"
     ],
     "_notes": "no data found - THE ORIENT (hotel/complex at 京町25); only listing found is the seasonal rooftop THE ORIENT TERRACE (Jun-Aug 2026), no Kobe beef mention",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-2066": {
     "priceTier": 2,
@@ -1519,7 +1541,8 @@
   "kb-2098": {
     "_sources": [],
     "_notes": "no data found - 'Kitchencar ALL IN' looks like a food-truck business (may be not-restaurant)",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-2127": {
     "openingHours": "Tu-Su 18:00-22:00; Mo off",
@@ -1630,7 +1653,8 @@
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "no restaurant listing found for カクテン屋 at 栄町通3-6-7; name matches the Kakuten-ya building that houses KOBE BEEF DINING モーリヤ (kb-1983), so likely the Mouriya group's meat wholesaler/office. no data found",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-976": {
     "priceTier": 3,
@@ -1646,7 +1670,8 @@
   "kb-1006": {
     "_sources": [],
     "_notes": "no data found - registry address '北野町1丁目3階' is incomplete and no tel/website; couldn't identify the business (maybe at Shin-Kobe Oriental Avenue)",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "steak"
   },
   "kb-1291": {
     "openingHours": "Mo-Su 11:00-22:00",
@@ -1660,12 +1685,14 @@
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "JA Town 'あつめて、兵庫。' is JA Zen-Noh Hyogo's online shop, not a sit-down restaurant (their restaurant is 神戸プレジール, kb-447)",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-1731": {
     "_sources": [],
     "_notes": "no data found - registry entry is a company (株式会社プロペラ); couldn't link it to a specific restaurant",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-1746": {
     "openingHours": "Mo-Fr 12:00-15:00,17:00-24:00; Sa 12:00-24:00; Su,PH 12:00-23:00",
@@ -1675,7 +1702,8 @@
     ],
     "_notes": "Belgian beer bar BRUGGE; no Kobe beef item found. Closed Jan 1. Official page blocks fetching",
     "_checked": "2026-10-15",
-    "nameEn": "BRUGGE"
+    "nameEn": "BRUGGE",
+    "venueType": "casual"
   },
   "kb-1748": {
     "_sources": [
@@ -1712,7 +1740,8 @@
       "https://tabelog.com/hyogo/A2801/A280102/28033580/"
     ],
     "_notes": "神戸菊水 本社店 is a butcher shop (精肉店頭販売); no eat-in found. Registry website redirects to the online shop kikusui-shop.com. Their steak restaurant is kb-231",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-35": {
     "openingHours": "Mo,Tu,Th-Su 11:00-15:00,17:00-21:00; We off",
@@ -1740,7 +1769,8 @@
       "https://tabelog.com/hyogo/A2801/A280109/28027098/"
     ],
     "_notes": "registry address 荒田町1-10-7 looks like 太田家's HQ/butcher (10:00-18:00, Wed off). Their nearby restaurant 蔓牛焼肉 太田家 神戸湊川店 is at 荒田町1-16-8 (Mo,Tu,Th-Su 11:00-15:00,17:00-22:00; We off) with no Kobe beef prices listed",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-420": {
     "openingHours": "Tu-Su 11:00-14:00,17:00-22:00; Mo off",
@@ -1783,7 +1813,8 @@
       "https://www.bifteck.co.jp/restaurant/kobe-main/"
     ],
     "_notes": "duplicate? 株式会社 かわむら has the same address as ビフテキのカワムラ 神戸本店 (kb-434, 伊川谷町有瀬1524) - likely the operating company, see kb-434",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-99": {
     "_status": "closed?",
@@ -1791,7 +1822,8 @@
       "https://kobe-nishimuraya.raku-uru.jp/"
     ],
     "_notes": "西村ミートショップ: registry website is an online shop that shows '現在、閉店中です'; looks like a butcher/online shop rather than a restaurant (could also be not-restaurant?). Registry address has duplicated 神戸市神戸市",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-327": {
     "_status": "not-restaurant?",
@@ -1799,7 +1831,8 @@
       "https://www.kobe-sankoshokuhin.com/"
     ],
     "_notes": "山晃食品: meat processor supplying hotels/restaurants plus online sales; no restaurant",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-439": {
     "_status": "not-restaurant?",
@@ -1808,7 +1841,8 @@
       "https://kobebeef-oogiya.jp/"
     ],
     "_notes": "扇矢精肉店 is a butcher/mail-order shop. Its yakiniku restaurant 但馬牛焼肉扇矢 is at a different address (灘区六甲町1-4-15, 18:30-20:30, Mon + 4th Thu off, reservation only)",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-529": {
     "_status": "not-restaurant?",
@@ -1816,7 +1850,8 @@
       "http://takiya1938.com/"
     ],
     "_notes": "たき屋: kuroge wagyu retailer/delivery (10:00-18:00, Wed off); weekend yakiniku bento only, no eat-in found",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-568": {
     "_status": "not-restaurant?",
@@ -1824,7 +1859,8 @@
       "http://koubegyu.net/"
     ],
     "_notes": "registry website is an A5 Kobe beef mail-order shop; no restaurant found for グローイングコンセプション",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "shop"
   },
   "kb-460": {
     "_status": "not-restaurant?",
@@ -1832,7 +1868,8 @@
       "http://www.arima-gyoen.co.jp/"
     ],
     "_notes": "有馬御苑: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-560": {
     "_status": "not-restaurant?",
@@ -1840,7 +1877,8 @@
       "http://www.gekkoen.co.jp/"
     ],
     "_notes": "月光園: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-660": {
     "_status": "not-restaurant?",
@@ -1848,19 +1886,22 @@
       "http://www.arima-gh.jp/"
     ],
     "_notes": "有馬グランドホテル (site blocks fetching): Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-816": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "亀の井ホテル 有馬: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-1725": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "有馬ロイヤルホテル: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2075": {
     "_status": "not-restaurant?",
@@ -1868,7 +1909,8 @@
       "https://tabelog.com/hyogo/A2801/A280112/28028509/"
     ],
     "_notes": "有馬きらり (hotel; tabelog lists no menu): Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2142": {
     "_status": "not-restaurant?",
@@ -1876,13 +1918,15 @@
       "https://www.kinzan.co.jp/"
     ],
     "_notes": "欽山: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2148": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "有馬瑞宝園: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2152": {
     "_status": "not-restaurant?",
@@ -1890,7 +1934,8 @@
       "http://www.hyoe.co.jp/"
     ],
     "_notes": "兵衛向陽閣: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2161": {
     "_status": "not-restaurant?",
@@ -1898,49 +1943,57 @@
       "https://www.hanamusubi.co.jp/"
     ],
     "_notes": "御幸荘 花結び: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2162": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "メルヴェール有馬: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2165": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "有馬山叢 御所別墅: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2169": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "元湯 龍泉閣: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2170": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "橋乃家 別館 嵐翠: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2190": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "天地の宿 奥の細道: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2191": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "四季の彩 旅篭: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2225": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "中の坊 瑞苑: Arima onsen ryokan/hotel - Kobe beef is served in overnight (or day-use) meal plans, not a regular restaurant; prices are per stay. Not researched further",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-1995": {
     "openingHours": "Mo-Su 11:30-15:00,17:30-22:00",
@@ -1977,13 +2030,15 @@
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "エクシブ有馬離宮: members-only resort hotel",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2214": {
     "_status": "not-restaurant?",
     "_sources": [],
     "_notes": "エクシブ六甲 サンクチュアリ・ヴィラ: members-only resort hotel",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "ryokan"
   },
   "kb-2166": {
     "priceTier": 1,
@@ -2014,7 +2069,8 @@
     ],
     "_notes": "burger shop SABOR; a Kobe beef burger is mentioned only in reviews, no official price. hours now from Google Maps (was Mo-We,Fr-Su 11:00-15:00; Th off from tabelog/other)",
     "_checked": "2026-10-15",
-    "nameEn": "SABOR"
+    "nameEn": "SABOR",
+    "venueType": "casual"
   },
   "kb-1658": {
     "openingHours": "We,Sa,Su 10:30-15:00,17:00-19:00; Th,Fr 10:30-15:00; Mo,Tu off",
@@ -2034,7 +2090,8 @@
     ],
     "_notes": "yakiniku 神戸仔牛屋 東灘店; all-you-can-eat focus, no Kobe beef prices published. Irregular closures",
     "_checked": "2026-10-15",
-    "nameEn": "Kobe Koushiya"
+    "nameEn": "Kobe Koushiya",
+    "venueType": "yakiniku"
   },
   "kb-920": {
     "openingHours": "Tu-Su 17:00-21:00; Mo off",
@@ -2042,7 +2099,8 @@
       "https://tabelog.com/hyogo/A2801/A280105/28003062/"
     ],
     "_notes": "yakiniku 味鉄 本山店; no course explicitly Kobe beef with a price",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "yakiniku"
   },
   "kb-1041": {
     "priceTier": 2,
@@ -2062,7 +2120,8 @@
     ],
     "_notes": "yakiniku La Shomon 垂水店; only 黒毛和牛 sets listed. Tabelog hours/holidays are inconsistent. hours now from Google Maps (was Tu-Su 17:00-21:00; Mo off from tabelog/other)",
     "_checked": "2026-10-15",
-    "nameEn": "La Shomon"
+    "nameEn": "La Shomon",
+    "venueType": "yakiniku"
   },
   "kb-1462": {
     "openingHours": "Tu-Su 11:30-14:30,17:00-22:00; Mo off",
@@ -2088,7 +2147,8 @@
     ],
     "_notes": "yakiniku 飛苑; open year-round; no Kobe beef prices published",
     "_checked": "2026-10-15",
-    "nameEn": "Hien"
+    "nameEn": "Hien",
+    "venueType": "yakiniku"
   },
   "kb-1806": {
     "openingHours": "Mo-Su 11:30-14:00,17:00-22:00",
@@ -2096,7 +2156,8 @@
       "https://tabelog.com/hyogo/A2801/A280111/28062076/"
     ],
     "_notes": "和牛焼肉 牛のよだれ セリオ西神南店; no Kobe beef item/price found",
-    "_checked": "2026-10-15"
+    "_checked": "2026-10-15",
+    "venueType": "yakiniku"
   },
   "kb-1811": {
     "_sources": [

@@ -4,11 +4,12 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import './style.css';
 
-import type { Dataset, Filters, HoursMode, LngLat, Restaurant, SortKey } from './types';
+import type { Dataset, Filters, HoursMode, LngLat, Restaurant, SortKey, VenueType } from './types';
 import { DEFAULT_FILTERS, applyFilters, sortResults, type Result } from './filters';
 import { circlePolygon, distanceKm } from './geo';
 import { isOpen, japanWallClock, loadHours, toJapanLocalInput } from './hours';
 import { hoursLines, priceEl, ward, yen } from './format';
+import { VENUES, VENUE_ORDER } from './venue';
 
 const STYLE_URL = 'https://tiles.openfreemap.org/styles/dark';
 const KOBE: LngLat = { lng: 135.195, lat: 34.69 };
@@ -243,6 +244,7 @@ function tipCard(r: Restaurant): HTMLElement {
   if (r.nameEn) body.append(h('span', 'tip-sub', r.name));
 
   const meta = h('span', 'card-meta');
+  meta.append(h('span', 'venue', VENUES[r.venueType].short));
   if (r.priceTier) meta.append(priceEl(r.priceTier));
   if (r.rating != null) meta.append(h('span', 'stars', `★ ${r.rating.toFixed(1)}`));
   const d = results.find((x) => x.r.id === r.id)?.distanceKm;
@@ -293,6 +295,7 @@ async function loadData() {
       `${ds.count} restaurants · data updated ${new Date(ds.generatedAt).toLocaleDateString()}`;
     $('#brand-sub').textContent = `${data.length} registered restaurants · 神戸`;
     renderAbout();
+    renderTypeOptions();
     render();
     const fromHash = byId.get(decodeURIComponent(location.hash.slice(1)));
     if (fromHash) select(fromHash);
@@ -352,13 +355,14 @@ function renderList() {
       if (sub) body.append(h('span', 'card-sub', sub));
 
       const meta = h('span', 'card-meta');
+      meta.append(h('span', 'venue', VENUES[r.venueType].short));
       if (r.priceTier) meta.append(priceEl(r.priceTier));
       if (r.rating != null) meta.append(h('span', 'stars', `★ ${r.rating.toFixed(1)}`));
       if (d != null) meta.append(h('span', undefined, d < 1 ? `${Math.round(d * 1000)} m` : `${d.toFixed(1)} km`));
       if (hoursActive) {
         meta.append(open === true ? h('span', 'pill open', 'Open') : h('span', 'pill', 'Hours unknown'));
       }
-      if (meta.childElementCount) body.append(meta);
+      body.append(meta);
       btn.append(body);
 
       btn.addEventListener('mouseenter', () => setHover(r.registrationNo));
@@ -371,9 +375,31 @@ function renderList() {
   );
 }
 
+// One checkbox per venue type, with how many registry entries have it.
+function renderTypeOptions() {
+  const counts = new Map<VenueType, number>();
+  for (const r of data) counts.set(r.venueType, (counts.get(r.venueType) ?? 0) + 1);
+  $('#type-options').replaceChildren(
+    ...VENUE_ORDER.filter((t) => counts.has(t)).map((t) => {
+      const label = h('label');
+      label.title = VENUES[t].hint;
+      const box = h('input');
+      box.type = 'checkbox';
+      box.name = 'types';
+      box.value = t;
+      box.checked = box.defaultChecked = DEFAULT_FILTERS.types.includes(t);
+      const span = h('span', undefined, VENUES[t].label);
+      span.append(h('small', undefined, String(counts.get(t))));
+      label.append(box, span);
+      return label;
+    }),
+  );
+}
+
 function activeFilterCount() {
   const f = filters;
-  return [f.maxPriceTier < 4, f.hoursMode !== 'any', f.minRating > 0, !!f.center, f.withPhoto].filter(Boolean).length;
+  const typesChanged = f.types.length !== DEFAULT_FILTERS.types.length || f.types.some((t) => !DEFAULT_FILTERS.types.includes(t));
+  return [typesChanged, f.maxPriceTier < 4, f.hoursMode !== 'any', f.minRating > 0, !!f.center, f.withPhoto].filter(Boolean).length;
 }
 
 function syncControls() {
@@ -461,11 +487,15 @@ function renderDetail(r: Restaurant) {
   body.append(head);
 
   const tags = h('div', 'detail-tags');
+  const venue = h('span', 'venue', VENUES[r.venueType].label);
+  venue.title = VENUES[r.venueType].hint;
+  tags.append(venue);
   if (r.priceTier) tags.append(priceEl(r.priceTier));
   if (r.rating != null) tags.append(h('span', 'stars', `★ ${r.rating.toFixed(1)}`));
   const area = ward(r.address);
   if (area) tags.append(h('span', 'card-sub', area));
-  if (tags.childElementCount) body.append(tags);
+  body.append(tags);
+  if (r.venueType === 'ryokan' || r.venueType === 'shop') body.append(h('p', 'hint', `${VENUES[r.venueType].hint}.`));
 
   const actions = h('div', 'actions');
   const action = (href: string, label: string, ic: keyof typeof ICONS, primary = false) => {
@@ -508,7 +538,6 @@ function renderDetail(r: Restaurant) {
       const pill = h('span', open ? 'pill open' : 'pill closed', open ? 'Open now' : 'Closed now');
       dd.prepend(pill);
       tags.append(pill.cloneNode(true));
-      if (!tags.isConnected) body.insertBefore(tags, actions);
     });
   } else {
     row('clock', 'Hours', h('span', undefined, 'Not listed. Check with the restaurant.'));
@@ -543,7 +572,8 @@ function renderDetail(r: Restaurant) {
 }
 
 async function shareLink(r: Restaurant) {
-  const url = `${location.origin}${location.pathname}#${r.id}`;
+  // the static page has a real title, description and photo for link previews
+  const url = `${location.origin}/r/${r.id}/`;
   const title = r.nameEn ?? r.name;
   try {
     if (navigator.share && mobile.matches) await navigator.share({ title, url });
@@ -690,6 +720,7 @@ async function readForm() {
   filters = {
     ...filters,
     query: q.value,
+    types: fd.getAll('types') as VenueType[],
     maxPriceTier: Number(fd.get('maxPriceTier')) as Filters['maxPriceTier'],
     includeUnknownPrice: fd.has('includeUnknownPrice'),
     hoursMode,

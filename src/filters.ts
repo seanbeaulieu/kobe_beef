@@ -1,12 +1,14 @@
 import type { Filters, Restaurant, SortKey } from './types';
 import { distanceKm } from './geo';
 import { ward } from './format';
+import { DINE_IN, VENUES } from './venue';
 import { isOpen, japanWallClock, parseJapanLocal, type loadHours } from './hours';
 
 type OHCtor = Awaited<ReturnType<typeof loadHours>>;
 
 export const DEFAULT_FILTERS: Filters = {
   query: '',
+  types: DINE_IN,
   maxPriceTier: 4,
   includeUnknownPrice: true,
   hoursMode: 'any',
@@ -34,9 +36,11 @@ export function applyFilters(all: Restaurant[], f: Filters, oh: OHCtor | null): 
   const out: Result[] = [];
   for (const r of all) {
     if (q) {
-      const hay = `${r.name} ${r.nameEn ?? ''} ${r.address} ${ward(r.address) ?? ''}`.normalize('NFKC').toLowerCase();
+      const hay = `${r.name} ${r.nameEn ?? ''} ${r.address} ${ward(r.address) ?? ''} ${VENUES[r.venueType].label}`.normalize('NFKC').toLowerCase();
       if (!hay.includes(q)) continue;
     }
+
+    if (!f.types.includes(r.venueType)) continue;
 
     if (f.withPhoto && !r.image) continue;
 

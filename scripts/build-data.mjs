@@ -11,6 +11,7 @@
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { VENUE_TYPES, guessVenueType } from './venue-type.mjs';
 
 const ROOT = new URL('../', import.meta.url);
 const OUT = new URL('public/data/restaurants.json', ROOT);
@@ -305,6 +306,14 @@ async function main() {
   }
   console.log(`images: ${kobe.filter((r) => r.image).length}/${kobe.length}`);
 
+  for (const r of kobe) {
+    if (r.venueType != null && !VENUE_TYPES.includes(r.venueType)) {
+      console.warn(`  override ${r.id}: unknown venueType "${r.venueType}", guessing instead`);
+      r.venueType = null;
+    }
+    r.venueType ??= guessVenueType(r);
+  }
+
   const restaurants = kobe
     .filter((r) => r.coords)
     .map((r) => ({
@@ -316,6 +325,7 @@ async function main() {
       postal: r.postal,
       tel: r.tel,
       website: r.website,
+      venueType: r.venueType, // see scripts/venue-type.mjs
       lat: Number(r.coords.lat.toFixed(6)),
       lng: Number(r.coords.lng.toFixed(6)),
       coordSource: r.coords.source,
