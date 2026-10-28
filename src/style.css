@@ -64,7 +64,12 @@ svg[viewBox='0 0 24 24'] {
   font-size: 0.82rem; font-weight: 500; color: var(--ink-2);
 }
 .text-btn:hover { border-color: var(--ink); color: var(--ink); }
-.about-toggle[aria-expanded='true'] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.about-toggle {
+  height: auto; padding: 4px 0; border: 0; font-size: 0.88rem; font-weight: 400;
+  text-decoration: underline; text-decoration-color: var(--rule-2); text-underline-offset: 4px;
+}
+.about-toggle:hover { text-decoration-color: var(--ink); }
+.about-toggle[aria-expanded='true'] { color: var(--ink); text-decoration-color: var(--ink); text-decoration-thickness: 2px; }
 .icon-btn {
   display: grid; place-items: center; flex: none; width: 32px; height: 32px;
   border: 1px solid transparent; border-radius: var(--r); background: transparent; color: var(--ink-2);
