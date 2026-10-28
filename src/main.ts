@@ -11,9 +11,9 @@ import { isOpen, japanWallClock, loadHours, toJapanLocalInput } from './hours';
 import { hoursLines, priceEl, tel, ward, yen } from './format';
 import { DINE_IN, VENUES, VENUE_ORDER } from './venue';
 
-const STYLE_URL = 'https://tiles.openfreemap.org/styles/positron';
+const STYLE_URL = 'https://tiles.openfreemap.org/styles/dark';
 const KOBE: LngLat = { lng: 135.195, lat: 34.69 };
-const C = { shu: '#b5321c', ink: '#1c1a17', paper: '#f4efe5', dim: '#a89f90' };
+const C = { accent: '#c42c39', accentHi: '#e0505c', dim: '#5e4148', ink: '#f7eeee', cluster: '#2a1217' };
 
 const $ = <T extends HTMLElement>(sel: string) => document.querySelector<T>(sel)!;
 const mobile = window.matchMedia('(max-width: 899px)');
@@ -142,29 +142,18 @@ map.on('error', () => {
 const empty: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features: [] };
 const tip = new Popup({ closeButton: false, closeOnClick: false, offset: 14, className: 'tip' });
 
-// Recolour the stock light basemap to the paper the panel is printed on. Matched by
-// layer id pattern so a renamed layer upstream just keeps its stock colour.
+// Warm the stock dark basemap toward the brand's oxblood.
 function tintBasemap() {
-  const paint = (id: string, prop: Parameters<MLMap['setPaintProperty']>[1], v: string) => map.setPaintProperty(id, prop, v);
+  const set = (id: string, prop: Parameters<MLMap['setPaintProperty']>[1], v: string) => map.getLayer(id) && map.setPaintProperty(id, prop, v);
+  set('background', 'background-color', '#130b0d');
+  set('landuse_residential', 'fill-color', '#170d10');
+  set('landuse_park', 'fill-color', '#1a1312');
+  set('building', 'fill-color', '#0f080a');
+  set('water', 'fill-color', '#1d1217');
+  set('waterway', 'line-color', '#1d1217');
+  // POI icons and labels compete with our markers; drop them.
   for (const l of map.getStyle().layers) {
-    const id = l.id;
-    if (/^poi/.test(id)) map.setLayoutProperty(id, 'visibility', 'none'); // they compete with our markers
-    else if (l.type === 'background') paint(id, 'background-color', '#e7e0d2');
-    else if (l.type === 'fill') {
-      if (/water/.test(id)) paint(id, 'fill-color', '#c9d1cc');
-      else if (/park|wood|grass|landcover/.test(id)) paint(id, 'fill-color', '#dcd8c4');
-      else if (/building/.test(id)) paint(id, 'fill-color', '#dcd3c2');
-      else paint(id, 'fill-color', '#e2dbcc');
-    } else if (l.type === 'line') {
-      if (/water/.test(id)) paint(id, 'line-color', '#c9d1cc');
-      else if (/rail/.test(id)) paint(id, 'line-color', '#c4b9a5');
-      else if (/casing/.test(id)) paint(id, 'line-color', '#d3c9b6');
-      else if (/highway|road|street|path|bridge|tunnel/.test(id)) paint(id, 'line-color', '#f8f5ee');
-      else if (/boundary/.test(id)) paint(id, 'line-color', '#b8ad99');
-    } else if (l.type === 'symbol' && l.layout?.['text-field']) {
-      paint(id, 'text-color', /water/.test(id) ? '#7f8d88' : '#7a7264');
-      paint(id, 'text-halo-color', '#e7e0d2');
-    }
+    if (/^poi/.test(l.id)) map.setLayoutProperty(l.id, 'visibility', 'none');
   }
 }
 
@@ -176,22 +165,22 @@ map.on('load', () => {
   tintBasemap();
 
   map.addSource('radius', { type: 'geojson', data: empty });
-  map.addLayer({ id: 'radius-fill', type: 'fill', source: 'radius', paint: { 'fill-color': C.shu, 'fill-opacity': 0.05 } });
-  map.addLayer({ id: 'radius-line', type: 'line', source: 'radius', paint: { 'line-color': C.ink, 'line-width': 1, 'line-dasharray': [3, 3], 'line-opacity': 0.6 } });
+  map.addLayer({ id: 'radius-fill', type: 'fill', source: 'radius', paint: { 'fill-color': C.accent, 'fill-opacity': 0.08 } });
+  map.addLayer({ id: 'radius-line', type: 'line', source: 'radius', paint: { 'line-color': C.accentHi, 'line-width': 1.25, 'line-dasharray': [2, 2], 'line-opacity': 0.8 } });
 
   map.addSource('restaurants', { type: 'geojson', data: empty, cluster: true, clusterRadius: 44, clusterMaxZoom: 15, promoteId: 'n' });
   map.addLayer({
     id: 'clusters', type: 'circle', source: 'restaurants', filter: ['has', 'point_count'],
     paint: {
-      'circle-color': C.ink,
-      'circle-radius': ['step', ['get', 'point_count'], 13, 10, 16, 30, 20],
-      'circle-stroke-color': C.paper, 'circle-stroke-width': 1.5,
+      'circle-color': C.cluster,
+      'circle-radius': ['step', ['get', 'point_count'], 14, 10, 18, 30, 23],
+      'circle-stroke-color': C.accent, 'circle-stroke-width': 1.5,
     },
   });
   map.addLayer({
     id: 'cluster-count', type: 'symbol', source: 'restaurants', filter: ['has', 'point_count'],
     layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 11.5, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true },
-    paint: { 'text-color': C.paper },
+    paint: { 'text-color': C.ink },
   });
   const active: ExpressionSpecification = ['any', ['boolean', ['feature-state', 'selected'], false], ['boolean', ['feature-state', 'hover'], false]];
   map.addLayer({
@@ -202,9 +191,9 @@ map.on('load', () => {
   map.addLayer({
     id: 'points', type: 'circle', source: 'restaurants', filter: ['!', ['has', 'point_count']],
     paint: {
-      'circle-color': ['case', ['==', ['get', 'dim'], 1], C.dim, C.shu],
+      'circle-color': ['case', ['==', ['get', 'dim'], 1], C.dim, C.accent],
       'circle-radius': ['case', active, 7.5, 6],
-      'circle-stroke-color': C.paper,
+      'circle-stroke-color': C.ink,
       'circle-stroke-width': 1.5,
     },
   });
@@ -212,7 +201,7 @@ map.on('load', () => {
   map.addSource('center', { type: 'geojson', data: empty });
   map.addLayer({
     id: 'center', type: 'circle', source: 'center',
-    paint: { 'circle-color': C.paper, 'circle-radius': 5, 'circle-stroke-color': C.ink, 'circle-stroke-width': 2 },
+    paint: { 'circle-color': C.ink, 'circle-radius': 6, 'circle-stroke-color': C.accent, 'circle-stroke-width': 3 },
   });
 
   map.on('click', 'clusters', async (e) => {
