@@ -1,55 +1,58 @@
 /* Shared by the map app (style.css) and the static pages (pages.css). */
-@import '@fontsource-variable/fraunces';
-@import '@fontsource-variable/instrument-sans';
+@import '@fontsource/shippori-mincho-b1/600.css';
+@import '@fontsource/shippori-mincho-b1/800.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/400-italic.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
 
-/* ---------- tokens ---------- */
+/* Paper, sumi ink and one seal red: the registry certificate, not a nightclub. */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --bg: #0c0708;
-  --surface: #140c0e;
-  --surface-2: #1b1114;
-  --surface-3: #251619;
-  --well: #0f090a;
-  --line: rgb(255 232 232 / 0.065);
-  --line-2: rgb(255 232 232 / 0.12);
-  --line-3: rgb(255 232 232 / 0.2);
+  --paper: #f4efe5;
+  --paper-2: #ebe4d6; /* hover, wells */
+  --paper-3: #e0d7c5;
+  --map: #e7e0d2; /* basemap ground, a shade under the paper */
+  --ink: #1c1a17;
+  --ink-2: #49443c;
+  --ink-3: #736b5e;
+  --rule: rgb(28 26 23 / 0.14);
+  --rule-2: rgb(28 26 23 / 0.32);
 
-  --text: #f8f0ef;
-  --text-2: #cbbcbd;
-  --text-3: #95817f;
+  --shu: #b5321c; /* vermilion seal ink: the registry stamp, selection, nothing else */
+  --shu-wash: rgb(181 50 28 / 0.09);
+  --ok: #2c6644;
 
-  --accent: #c8303c;
-  --accent-hi: #e5535e;
-  --accent-lo: #5c141b;
-  --accent-wash: rgb(200 48 60 / 0.14);
-  --gold: #e2b66f;
-  --ok: #7fd3a2;
+  --r: 2px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 
-  --r-xl: 20px;
-  --r-lg: 16px;
-  --r: 12px;
-  --r-sm: 9px;
-  --shadow:
-    0 1px 0 rgb(255 255 255 / 0.04) inset,
-    0 0 0 1px var(--line-2),
-    0 30px 70px -20px rgb(0 0 0 / 0.75);
-  --ease: cubic-bezier(0.22, 0.9, 0.24, 1);
+  --font-ui: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  --font-mincho: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  --font-ui: 'Instrument Sans Variable', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-  --font-display: 'Fraunces Variable', Georgia, 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
-
-  --panel-w: 392px;
+  --panel-w: 400px;
   --drawer-w: 440px;
-  --gap: 14px;
+  --gap: 12px;
 
   font-family: var(--font-ui);
-  font-size: 14.5px;
-  line-height: 1.45;
-  color: var(--text);
-  background: var(--bg);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-  text-rendering: optimizeLegibility;
+  font-kerning: normal;
 }
+
+/* The seal: a registered store's number, set like the stamp on its certificate. */
+.seal {
+  display: inline-grid; grid-template-columns: auto auto; align-items: center; gap: 0 7px;
+  padding: 4px 8px 4px 6px; border: 1.5px solid var(--shu); border-radius: var(--r);
+  color: var(--shu); line-height: 1; white-space: nowrap;
+}
+.seal-jp { font-family: var(--font-mincho); font-weight: 800; font-size: 0.78rem; writing-mode: vertical-rl; letter-spacing: 0.05em; }
+.seal-no { font-family: var(--font-mono); font-weight: 500; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+.seal-no::before { content: 'No.'; font-size: 0.72em; margin-right: 2px; }

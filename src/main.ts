@@ -8,12 +8,12 @@ import type { Dataset, Filters, HoursMode, LngLat, Restaurant, SortKey, VenueTyp
 import { DEFAULT_FILTERS, applyFilters, sortResults, type Result } from './filters';
 import { circlePolygon, distanceKm } from './geo';
 import { isOpen, japanWallClock, loadHours, toJapanLocalInput } from './hours';
-import { hoursLines, priceEl, ward, yen } from './format';
-import { VENUES, VENUE_ORDER } from './venue';
+import { hoursLines, priceEl, tel, ward, yen } from './format';
+import { DINE_IN, VENUES, VENUE_ORDER } from './venue';
 
-const STYLE_URL = 'https://tiles.openfreemap.org/styles/dark';
+const STYLE_URL = 'https://tiles.openfreemap.org/styles/positron';
 const KOBE: LngLat = { lng: 135.195, lat: 34.69 };
-const C = { accent: '#c42c39', accentHi: '#e0505c', accentLo: '#7a1c25', dim: '#5e4148', ink: '#f7eeee' };
+const C = { shu: '#b5321c', ink: '#1c1a17', paper: '#f4efe5', dim: '#a89f90' };
 
 const $ = <T extends HTMLElement>(sel: string) => document.querySelector<T>(sel)!;
 const mobile = window.matchMedia('(max-width: 899px)');
@@ -41,7 +41,6 @@ const ICONS = {
   pin: ['M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z', 'c12,9,2.5'],
   clock: ['c12,12,9', 'M12 7v5l3 2'],
   yen: ['M6 4l6 8 6-8', 'M12 12v8', 'M8 13h8', 'M8 17h8'],
-  award: ['c12,9,5', 'M8.5 13.5 7 21l5-3 5 3-1.5-7.5'],
 } as const;
 
 function icon(name: keyof typeof ICONS): SVGSVGElement {
@@ -68,6 +67,17 @@ function h<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: s
   const el = document.createElement(tag);
   if (cls) el.className = cls;
   if (text != null) el.textContent = text;
+  return el;
+}
+
+/** The registration number, set like the stamp on the store's certificate. */
+function seal(no: number): HTMLElement {
+  const el = h('span', 'seal');
+  el.title = `Registered Kobe Beef store No. ${no}`;
+  const jp = h('span', 'seal-jp', '登録');
+  jp.lang = 'ja';
+  jp.setAttribute('aria-hidden', 'true');
+  el.append(jp, h('span', 'seal-no', String(no)));
   return el;
 }
 
@@ -132,18 +142,29 @@ map.on('error', () => {
 const empty: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features: [] };
 const tip = new Popup({ closeButton: false, closeOnClick: false, offset: 14, className: 'tip' });
 
-// Warm the stock dark basemap toward the brand's oxblood.
+// Recolour the stock light basemap to the paper the panel is printed on. Matched by
+// layer id pattern so a renamed layer upstream just keeps its stock colour.
 function tintBasemap() {
-  const set = (id: string, prop: Parameters<MLMap['setPaintProperty']>[1], v: string) => map.getLayer(id) && map.setPaintProperty(id, prop, v);
-  set('background', 'background-color', '#130b0d');
-  set('landuse_residential', 'fill-color', '#170d10');
-  set('landuse_park', 'fill-color', '#1a1312');
-  set('building', 'fill-color', '#0f080a');
-  set('water', 'fill-color', '#1d1217');
-  set('waterway', 'line-color', '#1d1217');
-  // POI icons and labels compete with our markers; drop them.
+  const paint = (id: string, prop: Parameters<MLMap['setPaintProperty']>[1], v: string) => map.setPaintProperty(id, prop, v);
   for (const l of map.getStyle().layers) {
-    if (/^poi/.test(l.id)) map.setLayoutProperty(l.id, 'visibility', 'none');
+    const id = l.id;
+    if (/^poi/.test(id)) map.setLayoutProperty(id, 'visibility', 'none'); // they compete with our markers
+    else if (l.type === 'background') paint(id, 'background-color', '#e7e0d2');
+    else if (l.type === 'fill') {
+      if (/water/.test(id)) paint(id, 'fill-color', '#c9d1cc');
+      else if (/park|wood|grass|landcover/.test(id)) paint(id, 'fill-color', '#dcd8c4');
+      else if (/building/.test(id)) paint(id, 'fill-color', '#dcd3c2');
+      else paint(id, 'fill-color', '#e2dbcc');
+    } else if (l.type === 'line') {
+      if (/water/.test(id)) paint(id, 'line-color', '#c9d1cc');
+      else if (/rail/.test(id)) paint(id, 'line-color', '#c4b9a5');
+      else if (/casing/.test(id)) paint(id, 'line-color', '#d3c9b6');
+      else if (/highway|road|street|path|bridge|tunnel/.test(id)) paint(id, 'line-color', '#f8f5ee');
+      else if (/boundary/.test(id)) paint(id, 'line-color', '#b8ad99');
+    } else if (l.type === 'symbol' && l.layout?.['text-field']) {
+      paint(id, 'text-color', /water/.test(id) ? '#7f8d88' : '#7a7264');
+      paint(id, 'text-halo-color', '#e7e0d2');
+    }
   }
 }
 
@@ -155,43 +176,43 @@ map.on('load', () => {
   tintBasemap();
 
   map.addSource('radius', { type: 'geojson', data: empty });
-  map.addLayer({ id: 'radius-fill', type: 'fill', source: 'radius', paint: { 'fill-color': C.accent, 'fill-opacity': 0.08 } });
-  map.addLayer({ id: 'radius-line', type: 'line', source: 'radius', paint: { 'line-color': C.accentHi, 'line-width': 1.5, 'line-dasharray': [2, 2], 'line-opacity': 0.8 } });
+  map.addLayer({ id: 'radius-fill', type: 'fill', source: 'radius', paint: { 'fill-color': C.shu, 'fill-opacity': 0.05 } });
+  map.addLayer({ id: 'radius-line', type: 'line', source: 'radius', paint: { 'line-color': C.ink, 'line-width': 1, 'line-dasharray': [3, 3], 'line-opacity': 0.6 } });
 
   map.addSource('restaurants', { type: 'geojson', data: empty, cluster: true, clusterRadius: 44, clusterMaxZoom: 15, promoteId: 'n' });
   map.addLayer({
     id: 'clusters', type: 'circle', source: 'restaurants', filter: ['has', 'point_count'],
     paint: {
-      'circle-color': '#2a1217',
-      'circle-radius': ['step', ['get', 'point_count'], 14, 10, 18, 30, 23],
-      'circle-stroke-color': C.accent, 'circle-stroke-width': 2,
+      'circle-color': C.ink,
+      'circle-radius': ['step', ['get', 'point_count'], 13, 10, 16, 30, 20],
+      'circle-stroke-color': C.paper, 'circle-stroke-width': 1.5,
     },
   });
   map.addLayer({
     id: 'cluster-count', type: 'symbol', source: 'restaurants', filter: ['has', 'point_count'],
     layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 11.5, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true },
-    paint: { 'text-color': C.ink },
+    paint: { 'text-color': C.paper },
   });
   const active: ExpressionSpecification = ['any', ['boolean', ['feature-state', 'selected'], false], ['boolean', ['feature-state', 'hover'], false]];
   map.addLayer({
-    id: 'points-glow', type: 'circle', source: 'restaurants', filter: ['!', ['has', 'point_count']],
-    paint: { 'circle-color': C.accentHi, 'circle-radius': 16, 'circle-blur': 0.8, 'circle-opacity': ['case', active, 0.5, 0] },
+    // a thin ink ring around the hovered or selected store
+    id: 'points-ring', type: 'circle', source: 'restaurants', filter: ['!', ['has', 'point_count']],
+    paint: { 'circle-color': 'transparent', 'circle-radius': 13, 'circle-stroke-color': C.ink, 'circle-stroke-width': 1.25, 'circle-stroke-opacity': ['case', active, 1, 0] },
   });
   map.addLayer({
     id: 'points', type: 'circle', source: 'restaurants', filter: ['!', ['has', 'point_count']],
     paint: {
-      'circle-color': ['case', ['==', ['get', 'dim'], 1], C.dim, C.accent],
-      'circle-radius': ['case', ['boolean', ['feature-state', 'selected'], false], 9, ['boolean', ['feature-state', 'hover'], false], 8, 6],
-      'circle-stroke-color': C.ink,
-      'circle-stroke-width': ['case', ['boolean', ['feature-state', 'selected'], false], 3, 1.75],
-      'circle-stroke-opacity': 0.95,
+      'circle-color': ['case', ['==', ['get', 'dim'], 1], C.dim, C.shu],
+      'circle-radius': ['case', active, 7.5, 6],
+      'circle-stroke-color': C.paper,
+      'circle-stroke-width': 1.5,
     },
   });
 
   map.addSource('center', { type: 'geojson', data: empty });
   map.addLayer({
     id: 'center', type: 'circle', source: 'center',
-    paint: { 'circle-color': C.ink, 'circle-radius': 6, 'circle-stroke-color': C.accent, 'circle-stroke-width': 3 },
+    paint: { 'circle-color': C.paper, 'circle-radius': 5, 'circle-stroke-color': C.ink, 'circle-stroke-width': 2 },
   });
 
   map.on('click', 'clusters', async (e) => {
@@ -245,16 +266,14 @@ function tipCard(r: Restaurant): HTMLElement {
 
   const meta = h('span', 'card-meta');
   meta.append(h('span', 'venue', VENUES[r.venueType].short));
-  if (r.priceTier) meta.append(priceEl(r.priceTier));
+  const price = priceEl(r);
+  if (price) meta.append(price);
   if (r.rating != null) meta.append(h('span', 'stars', `★ ${r.rating.toFixed(1)}`));
   const d = results.find((x) => x.r.id === r.id)?.distanceKm;
   if (d != null) meta.append(h('span', undefined, d < 1 ? `${Math.round(d * 1000)} m` : `${d.toFixed(1)} km`));
   const area = ward(r.address);
   if (area) meta.append(h('span', 'tip-sub', area));
   if (meta.childElementCount) body.append(meta);
-
-  const prices = [r.priceLunch && `Lunch ${yen(r.priceLunch)}`, r.priceDinner && `Dinner ${yen(r.priceDinner)}`].filter(Boolean);
-  if (prices.length) body.append(h('span', 'tip-sub', prices.join(' · ')));
 
   if (r.openingHours) {
     const status = h('span', 'tip-hours');
@@ -263,11 +282,10 @@ function tipCard(r: Restaurant): HTMLElement {
       oh ??= ctor;
       const open = isOpen(ctor, r.openingHours, japanWallClock());
       if (open == null) return status.remove();
-      status.append(h('span', open ? 'pill open' : 'pill closed', open ? 'Open now' : 'Closed now'));
+      status.append(h('span', open ? 'status open' : 'status closed', open ? 'Open now' : 'Closed now'));
     });
   }
 
-  body.append(h('span', 'tip-hint', 'Click for details'));
   card.append(body);
   return card;
 }
@@ -293,7 +311,7 @@ async function loadData() {
     for (const r of data) byId.set(r.id, r);
     $('#data-meta').textContent =
       `${ds.count} restaurants · data updated ${new Date(ds.generatedAt).toLocaleDateString()}`;
-    $('#brand-sub').textContent = `${data.length} registered restaurants · 神戸`;
+    $('#brand-sub').textContent = `${data.length} registered restaurants, Kobe city`;
     renderAbout();
     renderTypeOptions();
     render();
@@ -356,11 +374,12 @@ function renderList() {
 
       const meta = h('span', 'card-meta');
       meta.append(h('span', 'venue', VENUES[r.venueType].short));
-      if (r.priceTier) meta.append(priceEl(r.priceTier));
+      const price = priceEl(r);
+      if (price) meta.append(price);
       if (r.rating != null) meta.append(h('span', 'stars', `★ ${r.rating.toFixed(1)}`));
       if (d != null) meta.append(h('span', undefined, d < 1 ? `${Math.round(d * 1000)} m` : `${d.toFixed(1)} km`));
       if (hoursActive) {
-        meta.append(open === true ? h('span', 'pill open', 'Open') : h('span', 'pill', 'Hours unknown'));
+        meta.append(open === true ? h('span', 'status open', 'Open') : h('span', 'status', 'Hours unknown'));
       }
       body.append(meta);
       btn.append(body);
@@ -479,18 +498,19 @@ function renderDetail(r: Restaurant) {
 
   const body = h('div', 'detail-body');
 
-  const head = h('div');
-  const eyebrow = h('p', 'eyebrow');
-  eyebrow.append(icon('award'), `Registered Kobe Beef store · No. ${r.registrationNo}`);
-  head.append(eyebrow, h('h2', 'detail-title', r.nameEn ?? r.name));
-  if (r.nameEn) head.append(h('p', 'detail-jp', r.name));
+  const head = h('div', 'detail-head');
+  head.append(h('h2', 'detail-title', r.nameEn ?? r.name), seal(r.registrationNo));
+  if (r.nameEn) {
+    const jp = h('p', 'detail-jp', r.name);
+    jp.lang = 'ja';
+    head.append(jp);
+  }
   body.append(head);
 
   const tags = h('div', 'detail-tags');
   const venue = h('span', 'venue', VENUES[r.venueType].label);
   venue.title = VENUES[r.venueType].hint;
   tags.append(venue);
-  if (r.priceTier) tags.append(priceEl(r.priceTier));
   if (r.rating != null) tags.append(h('span', 'stars', `★ ${r.rating.toFixed(1)}`));
   const area = ward(r.address);
   if (area) tags.append(h('span', 'card-sub', area));
@@ -506,13 +526,13 @@ function renderDetail(r: Restaurant) {
   };
   action(`https://www.google.com/maps/dir/?api=1&destination=${r.lat},${r.lng}`, 'Directions', 'directions', true);
   if (r.tel) {
-    const a = action(`tel:${r.tel.replace(/[^\d+]/g, '')}`, 'Call', 'phone');
+    const a = action(`tel:${r.tel.replace(/[^\d+]/g, '')}`, tel(r.tel), 'phone');
     a.removeAttribute('target');
   }
   if (isHttp(r.website)) action(r.website, 'Website', 'globe');
   const share = h('button', 'action');
   share.type = 'button';
-  share.append(icon('share'), 'Share');
+  share.append(icon('share'), 'Copy link');
   share.addEventListener('click', () => shareLink(r));
   actions.append(share);
   body.append(actions);
@@ -535,9 +555,9 @@ function renderDetail(r: Restaurant) {
       oh ??= ctor;
       const open = isOpen(ctor, r.openingHours, japanWallClock());
       if (open == null || selected?.id !== r.id) return;
-      const pill = h('span', open ? 'pill open' : 'pill closed', open ? 'Open now' : 'Closed now');
-      dd.prepend(pill);
-      tags.append(pill.cloneNode(true));
+      const status = h('span', open ? 'status open' : 'status closed', open ? 'Open now' : 'Closed now');
+      dd.prepend(status);
+      tags.append(status.cloneNode(true));
     });
   } else {
     row('clock', 'Hours', h('span', undefined, 'Not listed. Check with the restaurant.'));
@@ -547,7 +567,7 @@ function renderDetail(r: Restaurant) {
     if (r.priceLunch) parts.push('Lunch ', h('strong', undefined, yen(r.priceLunch)));
     if (r.priceLunch && r.priceDinner) parts.push('  ·  ');
     if (r.priceDinner) parts.push('Dinner ', h('strong', undefined, yen(r.priceDinner)));
-    row('yen', 'Typical Kobe beef course', ...parts);
+    row('yen', 'Kobe beef course', ...parts);
   }
   body.append(info);
 
@@ -843,13 +863,11 @@ function renderAbout() {
     wards.set(w, (wards.get(w) ?? 0) + 1);
   }
 
-  const stats = $('#hero-stats');
-  stats.replaceChildren();
-  for (const [label, value] of [['Restaurants', n], ['Wards', wards.size], ['With photos', count((r) => r.image)]] as const) {
-    const d = h('div');
-    d.append(h('dt', undefined, label), h('dd', undefined, String(value)));
-    stats.append(d);
-  }
+  const dineIn = count((r) => DINE_IN.includes(r.venueType));
+  $('#hero-stats').replaceChildren(
+    h('b', undefined, String(n)), ' registered stores in ', h('b', undefined, String(wards.size)), ' wards. ',
+    h('b', undefined, String(dineIn)), ' of them are restaurants you can walk into or book; the rest are ryokan and shops.',
+  );
 
   $('#coverage').replaceChildren(
     bar('Photos', count((r) => r.image), n),
