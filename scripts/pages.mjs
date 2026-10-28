@@ -11,6 +11,7 @@
 // canonical links, absolute og:url and a sitemap.xml.
 
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { VENUES, VENUE_ORDER, DINE_IN } from '../src/venue.ts';
 import { hoursLines, tel, ward } from '../src/format.ts';
 
@@ -227,7 +228,7 @@ const write = (rel, html) => {
   const url = new URL(rel, ROOT);
   mkdirSync(new URL('./', url), { recursive: true });
   writeFileSync(url, html.replace(/\n[ \t]*(?=\n)/g, '')); // drop lines left empty by optional parts
-  return url.pathname;
+  return fileURLToPath(url); // url.pathname is "/C:/..." on Windows
 };
 
 /** Writes every page; returns their absolute file paths (Vite build inputs). */
