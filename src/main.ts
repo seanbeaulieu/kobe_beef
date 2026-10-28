@@ -120,7 +120,6 @@ const map = new MLMap({
   style: STYLE_URL,
   center: [KOBE.lng, KOBE.lat],
   zoom: 12.3,
-  attributionControl: { compact: true },
 });
 map.addControl(new NavigationControl({ visualizePitch: false }), 'top-right');
 map.addControl(new ScaleControl({ unit: 'metric' }), 'bottom-left');

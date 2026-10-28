@@ -61,8 +61,8 @@ function shell({ path, pageTitle, description, image, jsonLd, body }) {
     <title>${esc(pageTitle)}</title>
     <meta name="description" content="${esc(description)}" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="theme-color" content="#f4efe5" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#140c0e" />
+    <meta name="color-scheme" content="dark" />
     ${abs ? `<link rel="canonical" href="${esc(abs)}" />\n    <meta property="og:url" content="${esc(abs)}" />` : ''}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Kobe Beef Guide" />
@@ -88,7 +88,8 @@ ${body}
     <footer class="foot">
       <p>Restaurant list from the official registry of designated Kobe Beef stores
         (<a href="https://www.kobe-niku.jp/shop/?lang=1" rel="noopener noreferrer">kobe-niku.jp</a>).
-        Not affiliated with the Kobe Beef Association. Confirm hours and prices with the restaurant before you go.</p>
+        An independent, unofficial guide: not affiliated with or endorsed by the Kobe Beef Marketing &amp; Distribution
+        Promotion Association. Confirm hours and prices with the restaurant before you go.</p>
     </footer>
   </body>
 </html>
