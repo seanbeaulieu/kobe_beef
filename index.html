@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content="Map of officially registered Kobe Beef restaurants in Kobe, Japan." />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="theme-color" content="#0d0809" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#f4efe5" />
+    <meta name="color-scheme" content="light" />
     <title>Kobe Beef Guide</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
@@ -27,18 +27,13 @@
 
         <header class="panel-head">
           <div class="brand">
-            <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
-              <rect width="32" height="32" rx="9" class="mark-bg" />
-              <path class="mark-fat" d="M6 12c4-3 7 2 11-1s6-3 9-1M6 19c3-2 6 1 9 0s5-4 11-1M9 25c3-1 5 0 8-1s4-2 7-1" />
-            </svg>
+            <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" class="mark-bg" /><path class="mark-fat" d="M6 12c4-3 7 2 11-1s6-3 9-1M6 19c3-2 6 1 9 0s5-4 11-1M9 25c3-1 5 0 8-1s4-2 7-1" /></svg>
             <div class="brand-text">
-              <h1 class="brand-name">Kobe Beef <span class="brand-tag">Guide</span></h1>
-              <p class="brand-sub" id="brand-sub">Official registry · 神戸ビーフ</p>
+              <h1 class="brand-name">Kobe Beef Guide</h1>
+              <p class="brand-sub" id="brand-sub">Registered restaurants, Kobe city</p>
             </div>
           </div>
-          <button type="button" class="icon-btn about-toggle" id="open-about" aria-controls="about" aria-expanded="false" aria-label="About Kobe beef and this map" title="About (?)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v14a1.5 1.5 0 0 0-1.5-1.5h-5A1.5 1.5 0 0 1 4 17z" /><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v14a1.5 1.5 0 0 1 1.5-1.5h5a1.5 1.5 0 0 0 1.5-1.5z" /></svg>
-          </button>
+          <button type="button" class="text-btn about-toggle" id="open-about" aria-controls="about" aria-expanded="false" aria-label="About Kobe beef and this map" title="About (?)">About</button>
         </header>
 
         <div class="search">
@@ -49,12 +44,10 @@
 
         <div class="chips" role="toolbar" aria-label="Quick filters">
           <button type="button" class="chip" id="chip-filters">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" /><circle cx="16" cy="7" r="2" /><circle cx="10" cy="17" r="2" /></svg>
             Filters <span class="badge" id="filter-badge" hidden></span>
           </button>
           <button type="button" class="chip" id="chip-open" aria-pressed="false">Open now</button>
           <button type="button" class="chip" id="chip-near" aria-pressed="false">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" /><circle cx="12" cy="12" r="5" /></svg>
             Near me
           </button>
           <button type="button" class="chip" id="chip-photo" aria-pressed="false">With photos</button>
@@ -106,9 +99,9 @@
             <fieldset class="group">
               <legend>Price <small>typical Kobe beef meal</small></legend>
               <div class="seg seg-4">
-                <label><input type="radio" name="maxPriceTier" value="1" /><span>¥<small>&lt;5k</small></span></label>
-                <label><input type="radio" name="maxPriceTier" value="2" /><span>¥¥<small>≤15k</small></span></label>
-                <label><input type="radio" name="maxPriceTier" value="3" /><span>¥¥¥<small>≤30k</small></span></label>
+                <label><input type="radio" name="maxPriceTier" value="1" /><span>¥5,000<small>or less</small></span></label>
+                <label><input type="radio" name="maxPriceTier" value="2" /><span>¥15,000<small>or less</small></span></label>
+                <label><input type="radio" name="maxPriceTier" value="3" /><span>¥30,000<small>or less</small></span></label>
                 <label><input type="radio" name="maxPriceTier" value="4" checked /><span>Any</span></label>
               </div>
               <label class="switch"><input type="checkbox" name="includeUnknownPrice" checked /><span>Include unknown prices</span></label>
@@ -172,22 +165,15 @@
       <aside id="about" class="drawer" aria-labelledby="about-title" inert>
         <div class="drawer-scroll">
           <header class="drawer-hero">
-            <svg class="marbling" viewBox="0 0 440 120" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0 30c40-18 70 14 110 2s70-26 110-8 70 22 110 4 80-20 110 2" />
-              <path d="M0 62c30-10 60 12 100 4s60-22 100-10 70 18 110 6 90-16 130-2" />
-              <path d="M0 92c50-12 80 10 120 0s70-20 110-6 60 14 100 2 80-12 110 0" />
-              <path d="M30 14c20 6 30-4 50 2M260 50c16 8 30-2 46 4M150 108c20-6 34 4 52-2" />
-            </svg>
-            <button type="button" class="icon-btn drawer-close" data-close-about aria-label="Close about">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
-            </button>
-            <p class="kicker">神戸ビーフ · About</p>
-            <h2 id="about-title">The real thing, mapped.</h2>
+            <button type="button" class="text-btn drawer-close" data-close-about>Close</button>
+            <p class="kicker" lang="ja">神戸肉流通推進協議会 指定登録店</p>
+            <h2 id="about-title">Where to eat Kobe beef in Kobe</h2>
             <p class="lede">
-              Every restaurant in Kobe on the official registry of <strong>designated Kobe Beef stores</strong>,
-              the places allowed to serve and advertise genuine Kobe beef.
+              This map lists every restaurant in Kobe city on the register of
+              <strong>designated Kobe Beef stores</strong>: the places that buy certified carcasses
+              and are allowed to call what they serve Kobe beef.
             </p>
-            <dl class="hero-stats" id="hero-stats"></dl>
+            <p class="hero-stats" id="hero-stats"></p>
           </header>
 
           <section class="drawer-section">
@@ -202,7 +188,7 @@
               <li><strong>Carcass under 500 kg</strong><span>270–499.9 kg for heifers, 300–499.9 kg for steers.</span></li>
             </ol>
             <p class="note">Certified beef carries the <em>Nojigiku</em> (wild chrysanthemum) stamp and a 10-digit ID that traces it back to the individual animal.</p>
-            <p><a href="/real-kobe-beef/">How to tell real Kobe beef from fake →</a></p>
+            <p><a href="/real-kobe-beef/">How to tell real Kobe beef from fake</a></p>
           </section>
 
           <section class="drawer-section">
@@ -212,7 +198,7 @@
               restaurants and shops that buy certified Kobe beef. Designated stores display a registration
               certificate and a bronze bull statue. The number on each listing here is that registration number.
             </p>
-            <p><a href="/restaurants/">All Kobe restaurants as a list →</a> · <a href="https://www.kobe-niku.jp/shop/?lang=1" rel="noopener noreferrer" target="_blank">Official registry ↗</a></p>
+            <p><a href="/restaurants/">The whole register as a list</a> · <a href="https://www.kobe-niku.jp/shop/?lang=1" rel="noopener noreferrer" target="_blank">kobe-niku.jp</a></p>
           </section>
 
           <section class="drawer-section">
@@ -221,21 +207,14 @@
               <li><span class="lg-dot"></span>A registered restaurant. Hover for a preview, click for details.</li>
               <li><span class="lg-cluster">12</span>Several restaurants close together. Click to zoom in.</li>
               <li><span class="lg-dot dim"></span>Opening hours unknown (shown when filtering by hours).</li>
-              <li><span class="pill open">Open now</span><span class="pill closed">Closed now</span>Evaluated in Japan time.</li>
+              <li><span class="status open">Open now</span><span class="status closed">Closed</span>Worked out in Japan time.</li>
             </ul>
-            <table class="tiers">
-              <caption>Price tiers, for a typical Kobe beef meal</caption>
-              <tbody>
-                <tr><th>¥</th><td>Under ¥5,000</td></tr>
-                <tr><th>¥¥</th><td>¥5,000 – 15,000</td></tr>
-                <tr><th>¥¥¥</th><td>¥15,000 – 30,000</td></tr>
-                <tr><th>¥¥¥¥</th><td>Over ¥30,000</td></tr>
-              </tbody>
-            </table>
+            <p class="hint">Prices are for a typical Kobe beef course, lunch or dinner, as the restaurant lists it. Most places have cheaper
+              and much dearer options.</p>
           </section>
 
           <section class="drawer-section">
-            <h3>What we know so far</h3>
+            <h3>How complete this is</h3>
             <p>Hours, prices and photos are curated by hand or taken from each restaurant's own site, so coverage is still growing.</p>
             <div class="bars" id="coverage"></div>
             <h4>By ward</h4>

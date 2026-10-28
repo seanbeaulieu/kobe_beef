@@ -11,8 +11,9 @@
 // canonical links, absolute og:url and a sitemap.xml.
 
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { VENUES, VENUE_ORDER, DINE_IN } from '../src/venue.ts';
-import { ward } from '../src/format.ts';
+import { hoursLines, tel, ward } from '../src/format.ts';
 
 const ROOT = new URL('../', import.meta.url);
 const DATA = new URL('public/data/restaurants.json', ROOT);
@@ -31,6 +32,14 @@ const title = (r) => r.nameEn ?? r.name;
 // the registry name, when it adds something to the English one
 const jpName = (r) => (r.nameEn && r.nameEn !== r.name ? r.name : null);
 const pagePath = (r) => `/r/${r.id}/`;
+// the figure the restaurant lists, dinner first; the tier's range otherwise
+const priceCell = (r) =>
+  r.priceDinner ? `${yen(r.priceDinner)} <small>dinner</small>`
+  : r.priceLunch ? `${yen(r.priceLunch)} <small>lunch</small>`
+  : r.priceTier ? esc(TIERS[r.priceTier]) : '';
+const seal = (no) =>
+  `<span class="seal" title="Registered Kobe Beef store No. ${no}"><span class="seal-jp" lang="ja" aria-hidden="true">登録</span><span class="seal-no">${no}</span></span>`;
+export const MARK = `<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" class="mark-bg" /><path class="mark-fat" d="M6 12c4-3 7 2 11-1s6-3 9-1M6 19c3-2 6 1 9 0s5-4 11-1M9 25c3-1 5 0 8-1s4-2 7-1" /></svg>`;
 
 const haversineKm = (a, b) => {
   const rad = Math.PI / 180;
@@ -52,8 +61,8 @@ function shell({ path, pageTitle, description, image, jsonLd, body }) {
     <title>${esc(pageTitle)}</title>
     <meta name="description" content="${esc(description)}" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="theme-color" content="#0d0809" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#f4efe5" />
+    <meta name="color-scheme" content="light" />
     ${abs ? `<link rel="canonical" href="${esc(abs)}" />\n    <meta property="og:url" content="${esc(abs)}" />` : ''}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Kobe Beef Guide" />
@@ -66,10 +75,10 @@ function shell({ path, pageTitle, description, image, jsonLd, body }) {
   </head>
   <body>
     <header class="top">
-      <a class="brand" href="/">Kobe Beef <span>Guide</span></a>
+      <a class="brand" href="/">${MARK}Kobe Beef Guide</a>
       <nav>
         <a href="/">Map</a>
-        <a href="/restaurants/">All restaurants</a>
+        <a href="/restaurants/"${path === '/restaurants/' ? ' aria-current="page"' : ''}>The register</a>
         <a href="/real-kobe-beef/">Is it real?</a>
       </nav>
     </header>
@@ -102,18 +111,20 @@ function restaurantPage(r, all, generatedAt) {
     .map((o) => ({ o, d: haversineKm(r, o) }))
     .sort((a, b) => a.d - b.d)
     .slice(0, 6);
+  // a price column that's mostly blank is noise
+  const showPrice = nearby.filter(({ o }) => priceCell(o)).length * 2 >= nearby.length;
 
   const rows = [];
   rows.push(['Address', `〒${esc(r.postal ?? '')} ${esc(r.address)}`]);
   rows.push(['Hours', r.openingHours
-    ? `<span class="lines">${r.openingHours.split(/\s*;\s*/).filter(Boolean).map((l) => `<span>${esc(l)}</span>`).join('')}</span><small>Japan time, OpenStreetMap syntax</small>`
+    ? `<span class="lines">${hoursLines(r.openingHours).map((l) => `<span>${esc(l)}</span>`).join('')}</span><small>Japan time</small>`
     : 'Not listed. Check with the restaurant.']);
   if (r.priceLunch || r.priceDinner) {
-    rows.push(['Typical Kobe beef course', [r.priceLunch && `Lunch <strong>${yen(r.priceLunch)}</strong>`, r.priceDinner && `Dinner <strong>${yen(r.priceDinner)}</strong>`].filter(Boolean).join(' · ')]);
+    rows.push(['Kobe beef course', [r.priceLunch && `Lunch <strong>${yen(r.priceLunch)}</strong>`, r.priceDinner && `Dinner <strong>${yen(r.priceDinner)}</strong>`].filter(Boolean).join(' · ')]);
   } else if (r.priceTier) {
     rows.push(['Price', esc(TIERS[r.priceTier])]);
   }
-  if (r.tel) rows.push(['Phone', `<a href="tel:${esc(r.tel.replace(/[^\d+]/g, ''))}">${esc(r.tel)}</a>`]);
+  if (r.tel) rows.push(['Phone', `<a href="tel:${esc(r.tel.replace(/[^\d+]/g, ''))}">${esc(tel(r.tel))}</a>`]);
   if (isHttp(r.website)) rows.push(['Website', `<a href="${esc(r.website)}" rel="noopener noreferrer">${esc(new URL(r.website).hostname.replace(/^www\./, ''))}</a>`]);
 
   const jsonLd = {
@@ -131,19 +142,25 @@ function restaurantPage(r, all, generatedAt) {
     ...(siteUrl() ? { url: `${siteUrl()}${pagePath(r)}` } : {}),
   };
 
-  const body = `      <nav class="crumbs"><a href="/restaurants/">All restaurants</a> › <a href="/restaurants/#${r.venueType}">${esc(v.label)}</a></nav>
+  const body = `      <nav class="crumbs"><a href="/restaurants/">The register</a> / <a href="/restaurants/#${r.venueType}">${esc(v.label)}</a></nav>
       <article class="spot">
         ${r.image ? `<figure class="hero"><img src="${esc(r.image)}" alt="Photo of ${esc(title(r))}" referrerpolicy="no-referrer" />${isHttp(r.imageSource) ? `<figcaption>Photo: <a href="${esc(r.imageSource)}" rel="noopener noreferrer">${esc(new URL(r.imageSource).hostname.replace(/^www\./, ''))}</a></figcaption>` : ''}</figure>` : ''}
-        <p class="eyebrow">Registered Kobe Beef store · No. ${r.registrationNo}</p>
-        <h1>${esc(title(r))}</h1>
-        ${jpName(r) ? `<p class="jp" lang="ja">${esc(jpName(r))}</p>` : ''}
-        <p class="tags"><span class="tag">${esc(v.label)}</span>${where ? `<span>${esc(where)}, Kobe</span>` : ''}${r.priceTier ? `<span class="price" title="${esc(TIERS[r.priceTier])}">${'¥'.repeat(r.priceTier)}</span>` : ''}</p>
+        <header class="spot-head">
+          ${seal(r.registrationNo)}
+          <div>
+            <h1>${esc(title(r))}</h1>
+            ${jpName(r) ? `<p class="jp" lang="ja">${esc(jpName(r))}</p>` : ''}
+          </div>
+        </header>
+        <p class="tags"><span class="tag">${esc(v.label)}</span>${where ? `<span>${esc(where)}, Kobe</span>` : ''}${priceCell(r) ? `<span class="price">${priceCell(r)}</span>` : ''}</p>
         ${DINE_IN_SET.has(r.venueType) ? '' : `<p class="note">${esc(v.hint)}.</p>`}
         <p class="actions">
           <a class="btn primary" href="/#${esc(r.id)}">View on map</a>
-          <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=${r.lat},${r.lng}" rel="noopener noreferrer">Directions</a>
-          <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=${esc(encodeURIComponent(`${r.name} ${r.address}`))}" rel="noopener noreferrer">Google Maps</a>
-          <a class="btn" href="https://tabelog.com/en/rstLst/?sw=${esc(encodeURIComponent(r.name))}" rel="noopener noreferrer">Tabelog</a>
+          <span class="links">
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${r.lat},${r.lng}" rel="noopener noreferrer">Directions</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=${esc(encodeURIComponent(`${r.name} ${r.address}`))}" rel="noopener noreferrer">Google Maps</a>
+          <a href="https://tabelog.com/en/rstLst/?sw=${esc(encodeURIComponent(r.name))}" rel="noopener noreferrer">Tabelog</a>
+          </span>
         </p>
         <dl class="facts">
 ${rows.map(([k, val]) => `          <div><dt>${esc(k)}</dt><dd>${val}</dd></div>`).join('\n')}
@@ -154,9 +171,12 @@ ${rows.map(([k, val]) => `          <div><dt>${esc(k)}</dt><dd>${val}</dd></div>
       </article>
       <section class="nearby">
         <h2>Nearby registered restaurants</h2>
-        <ul class="list">
-${nearby.map(({ o, d }) => `          <li>${listItem(o)}<span class="dist">${d < 0.05 ? 'same block' : d < 1 ? `${Math.round(d * 100) * 10} m` : `${d.toFixed(1)} km`}</span></li>`).join('\n')}
-        </ul>
+        <table class="ledger">
+          <thead><tr><th class="no">No.</th><th>Restaurant</th>${showPrice ? '<th class="num">Kobe beef course</th>' : ''}<th class="away">Away</th></tr></thead>
+          <tbody>
+${nearby.map(({ o, d }) => `            <tr><td class="no">${o.registrationNo}</td>${nameCell(o, [showPrice && priceCell(o)])}${showPrice ? `<td class="num price">${priceCell(o)}</td>` : ''}<td class="away">${d < 0.05 ? 'same block' : d < 1 ? `${Math.round(d * 100) * 10} m` : `${d.toFixed(1)} km`}</td></tr>`).join('\n')}
+          </tbody>
+        </table>
       </section>`;
 
   return shell({
@@ -169,27 +189,31 @@ ${nearby.map(({ o, d }) => `          <li>${listItem(o)}<span class="dist">${d <
   });
 }
 
-function listItem(r) {
-  const where = area(r);
-  return `<a href="${pagePath(r)}">${esc(title(r))}</a>${jpName(r) ? ` <span class="jp" lang="ja">${esc(jpName(r))}</span>` : ''}${where ? ` <span class="meta">${esc(where)}</span>` : ''}${r.priceTier ? ` <span class="price">${'¥'.repeat(r.priceTier)}</span>` : ''}`;
-}
+// meta: what the hidden Area / price columns said, shown under the name on phones
+const nameCell = (r, meta = []) => {
+  const m = meta.filter(Boolean).join(' · ');
+  return `<td class="name"><a href="${pagePath(r)}">${esc(title(r))}</a>${jpName(r) ? `<span class="jp" lang="ja">${esc(jpName(r))}</span>` : ''}${m ? `<span class="meta">${m}</span>` : ''}</td>`;
+};
 
 function indexPage(all) {
   const groups = VENUE_ORDER
     .map((t) => [t, all.filter((r) => r.venueType === t).sort((a, b) => title(a).localeCompare(title(b), 'en'))])
     .filter(([, rs]) => rs.length);
   const dineIn = all.filter((r) => DINE_IN_SET.has(r.venueType)).length;
-  const body = `      <h1>Every registered Kobe beef restaurant in Kobe</h1>
-      <p class="lede">All ${all.length} places in Kobe city on the official registry of designated Kobe Beef stores,
-        the ones that buy certified Kobe beef. ${dineIn} are restaurants you can book or walk into; the rest are ryokan that serve it
-        with a stay, and shops. Prefer a map? <a href="/">Open the map</a>.</p>
-      <nav class="toc">${groups.map(([t, rs]) => `<a href="#${t}">${esc(VENUES[t].label)} <small>${rs.length}</small></a>`).join('')}</nav>
+  const body = `      <h1>The Kobe beef register, Kobe city</h1>
+      <p class="lede">All ${all.length} stores in Kobe city on the register of designated Kobe Beef stores, the ones that buy
+        certified Kobe beef. ${dineIn} are restaurants you can book or walk into; the rest are ryokan that serve it with a stay,
+        and shops. The number on the left is the store's registration number. <a href="/">On a map</a>.</p>
+      <nav class="toc">${groups.map(([t, rs]) => `<a href="#${t}">${esc(VENUES[t].label)}<small>${rs.length}</small></a>`).join('')}</nav>
 ${groups.map(([t, rs]) => `      <section id="${t}">
-        <h2>${esc(VENUES[t].label)} <small>${rs.length}</small></h2>
+        <h2>${esc(VENUES[t].label)}<small>${rs.length}</small></h2>
         <p class="note">${esc(VENUES[t].hint)}.</p>
-        <ul class="list">
-${rs.map((r) => `          <li>${listItem(r)}</li>`).join('\n')}
-        </ul>
+        <table class="ledger">
+          <thead><tr><th class="no">No.</th><th>Restaurant</th><th class="area">Area</th><th class="num">Kobe beef course</th></tr></thead>
+          <tbody>
+${rs.map((r) => `            <tr><td class="no">${r.registrationNo}</td>${nameCell(r, [esc(area(r) ?? ''), priceCell(r)])}<td class="area">${esc(area(r) ?? '')}</td><td class="num price">${priceCell(r)}</td></tr>`).join('\n')}
+          </tbody>
+        </table>
       </section>`).join('\n')}`;
   return shell({
     path: '/restaurants/',
@@ -204,7 +228,7 @@ const write = (rel, html) => {
   const url = new URL(rel, ROOT);
   mkdirSync(new URL('./', url), { recursive: true });
   writeFileSync(url, html.replace(/\n[ \t]*(?=\n)/g, '')); // drop lines left empty by optional parts
-  return url.pathname;
+  return fileURLToPath(url); // url.pathname is "/C:/..." on Windows
 };
 
 /** Writes every page; returns their absolute file paths (Vite build inputs). */

@@ -2,42 +2,35 @@
 @import '@fontsource-variable/fraunces';
 @import '@fontsource-variable/instrument-sans';
 
-/* ---------- tokens ---------- */
 :root {
   color-scheme: dark;
 
-  --bg: #0c0708;
-  --surface: #140c0e;
-  --surface-2: #1b1114;
-  --surface-3: #251619;
-  --well: #0f090a;
-  --line: rgb(255 232 232 / 0.065);
-  --line-2: rgb(255 232 232 / 0.12);
-  --line-3: rgb(255 232 232 / 0.2);
+  /* names kept from the paper pass so the stylesheets read the same; values are the original wine palette */
+  --paper: #140c0e;   /* panel surface */
+  --paper-2: #1b1114; /* hover, wells */
+  --paper-3: #251619;
+  --map: #130b0d;     /* = tinted basemap background */
+  --ink: #f8f0ef;
+  --ink-2: #cbbcbd;
+  --ink-3: #95817f;
+  --rule: rgb(255 232 232 / 0.07);
+  --rule-2: rgb(255 232 232 / 0.14);
+  --rule-strong: rgb(255 232 232 / 0.22);
 
-  --text: #f8f0ef;
-  --text-2: #cbbcbd;
-  --text-3: #95817f;
-
-  --accent: #c8303c;
-  --accent-hi: #e5535e;
-  --accent-lo: #5c141b;
-  --accent-wash: rgb(200 48 60 / 0.14);
-  --gold: #e2b66f;
+  --shu: #e5535e;     /* crimson for text: registration numbers, selection, closed */
+  --solid: #c8303c;   /* crimson for fills: the one primary action, checked controls */
+  --on-solid: #fff;
+  --shu-wash: rgb(200 48 60 / 0.14);
   --ok: #7fd3a2;
 
-  --r-xl: 20px;
-  --r-lg: 16px;
-  --r: 12px;
-  --r-sm: 9px;
-  --shadow:
-    0 1px 0 rgb(255 255 255 / 0.04) inset,
-    0 0 0 1px var(--line-2),
-    0 30px 70px -20px rgb(0 0 0 / 0.75);
+  --r: 5px;
+  --r-lg: 8px;
+  --shadow: 0 0 0 1px var(--rule-2), 0 18px 40px -16px rgb(0 0 0 / 0.7);
   --ease: cubic-bezier(0.22, 0.9, 0.24, 1);
 
   --font-ui: 'Instrument Sans Variable', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-  --font-display: 'Fraunces Variable', Georgia, 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+  --font-mincho: 'Fraunces Variable', Georgia, 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+  --font-mono: var(--font-ui); /* numbers use tabular figures, not a separate face */
 
   --panel-w: 392px;
   --drawer-w: 440px;
@@ -45,11 +38,23 @@
 
   font-family: var(--font-ui);
   font-size: 14.5px;
-  line-height: 1.45;
-  color: var(--text);
-  background: var(--bg);
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-  text-rendering: optimizeLegibility;
 }
+
+/* Japanese names: serif where they are display text (titles), sans where they are small
+   supporting lines (list rows, ledger cells), so they never compete with the English name. */
+
+/* The seal: a registered store's number, set like the stamp on its certificate. */
+.seal {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  padding: 5px 9px; border: 1px solid var(--shu); border-radius: var(--r);
+  color: var(--shu); line-height: 1; white-space: nowrap;
+}
+.seal-jp { font-size: 0.75rem; font-weight: 600; }
+.seal-no { font-weight: 600; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+.seal-no::before { content: 'No.'; font-size: 0.78em; margin-right: 2px; }

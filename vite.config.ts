@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { relative } from 'node:path';
+import { relative, sep } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import { generatePages, siteUrl, sitemapPaths } from './scripts/pages.mjs';
 
@@ -31,7 +31,7 @@ function kobePages(): Plugin {
       const pages = generatePages();
       if (command !== 'build') return;
       const input: Record<string, string> = { main: 'index.html', 'real-kobe-beef': 'real-kobe-beef/index.html' };
-      for (const file of pages) input[relative(process.cwd(), file).replace(/\/index\.html$/, '')] = file;
+      for (const file of pages) input[relative(process.cwd(), file).split(sep).join('/').replace(/\/index\.html$/, '')] = file;
       return { build: { rollupOptions: { input } } };
     },
     generateBundle() {
