@@ -125,7 +125,7 @@ section[id] { scroll-margin-top: 16px; }
   font: 600 2rem/1 var(--font-mincho); color: var(--shu); font-variant-numeric: lining-nums;
 }
 .checks > li:last-child { border-bottom: 0; }
-.checks h3 { margin: 2px 0 6px; }
+.checks h2 { margin: 2px 0 6px; font-size: 1.12rem; }
 .checks p { margin: 0 0 8px; }
 .flags { padding-left: 1.2em; color: var(--ink-2); max-width: 66ch; }
 .flags li { margin: 6px 0; }
