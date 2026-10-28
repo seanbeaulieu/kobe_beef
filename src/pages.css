@@ -51,16 +51,21 @@ p.jp { margin: 0 0 14px; font-family: var(--font-mincho); font-weight: 600; font
 .hero figcaption { padding: 6px 0; font-size: 0.78rem; color: var(--ink-3); }
 .hero figcaption a { color: var(--ink-3); }
 
-/* restaurant page head: name on the left, the registry stamp on the right */
-.spot-head { display: grid; grid-template-columns: 1fr auto; gap: 0 20px; align-items: start; }
-.spot-head .seal { margin-top: 8px; padding: 6px 10px 6px 8px; }
+/* restaurant page head: the registry stamp in the margin beside the name, like a stamp on a form */
+.spot-head { display: grid; grid-template-columns: auto 1fr; gap: 0 20px; align-items: start; }
+.spot-head .seal { margin-top: 6px; padding: 6px 10px 6px 8px; }
+@media (max-width: 600px) {
+  .spot-head { grid-template-columns: 1fr; }
+  .spot-head .seal { justify-self: start; margin: 0 0 12px; }
+}
 .spot-head .seal-jp { font-size: 0.9rem; }
 .spot-head .seal-no { font-size: 1.2rem; }
 .tags { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; font-size: 0.95rem; color: var(--ink-2); margin: 0 0 16px; }
 .tag { color: var(--ink); font-weight: 500; }
 .price { font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
 
-.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin: 20px 0 26px; font-size: 0.92rem; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin: 20px 0 26px; font-size: 0.92rem; }
+.actions .links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
 .btn { color: var(--ink); }
 .btn.primary {
   display: inline-flex; align-items: center; min-height: 42px; padding: 0 20px; border-radius: var(--r);
@@ -86,7 +91,8 @@ p.jp { margin: 0 0 14px; font-family: var(--font-mincho); font-weight: 600; font
 }
 .ledger td { padding: 9px 10px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
 .ledger tr:hover td { background: var(--paper-2); }
-.ledger .no { width: 3.6rem; font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-3); text-align: right; padding-right: 16px; }
+.ledger .no { width: 3.8rem; font-family: var(--font-mono); font-weight: 500; font-size: 0.95rem; color: var(--shu); text-align: right; padding-right: 16px; }
+.ledger th.no { font-weight: 400; font-size: 0.8rem; color: var(--ink-3); }
 .ledger .name a { font-weight: 600; text-decoration: none; }
 .ledger .name a:hover { text-decoration: underline; }
 .ledger .name .jp { display: block; font-size: 0.82rem; color: var(--ink-3); }
@@ -94,9 +100,14 @@ p.jp { margin: 0 0 14px; font-family: var(--font-mincho); font-weight: 600; font
 .ledger .num { text-align: right; white-space: nowrap; padding: 9px 0 9px 14px; }
 .ledger th.num { padding: 0 0 6px 14px; }
 .ledger .num small { font-size: 0.8rem; }
+.ledger .away { text-align: right; white-space: nowrap; padding: 9px 0 9px 14px; }
+.ledger th.away { padding: 0 0 6px 14px; }
+.ledger .name .meta { display: none; }
+/* phones: area and price move under the name, so the name gets the width */
 @media (max-width: 600px) {
-  .ledger .area { display: none; }
-  .ledger .no { width: 2.8rem; padding-right: 10px; }
+  .ledger .area, .ledger .num { display: none; }
+  .ledger .name .meta { display: block; font-size: 0.84rem; color: var(--ink-2); }
+  .ledger .no { width: 3rem; padding-right: 10px; }
 }
 
 .toc { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 22px 0 6px; padding: 10px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: 0.92rem; }
@@ -111,11 +122,16 @@ section[id] { scroll-margin-top: 16px; }
   counter-increment: check; display: grid; grid-template-columns: 3rem 1fr; gap: 0 12px;
   padding: 18px 0; border-bottom: 1px solid var(--rule);
 }
-.checks > li::before { content: counter(check, cjk-decimal); grid-row: span 9; font: 800 1.9rem/1 var(--font-mincho); color: var(--shu); }
+.checks > li::before {
+  content: counter(check, cjk-decimal); grid-row: span 9;
+  display: grid; place-items: center; width: 2.6rem; height: 2.6rem;
+  border: 3px double var(--shu); border-radius: var(--r);
+  font: 800 1.35rem/1 var(--font-mincho); color: var(--shu);
+}
 .checks > li:last-child { border-bottom: 0; }
 .checks h3 { margin: 2px 0 6px; }
 .checks p { margin: 0 0 8px; }
-.flags { padding-left: 1.2em; color: var(--ink-2); }
+.flags { padding-left: 1.2em; color: var(--ink-2); max-width: 66ch; }
 .flags li { margin: 6px 0; }
 .flags strong { color: var(--ink); font-weight: 600; }
 .aside { margin: 30px 0; padding: 16px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }

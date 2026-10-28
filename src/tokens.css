@@ -47,10 +47,14 @@
   font-kerning: normal;
 }
 
-/* The seal: a registered store's number, set like the stamp on its certificate. */
+/* Japanese names: mincho where they are display text (titles), gothic where they are small
+   supporting lines (list rows, ledger cells), so they never compete with the English name. */
+
+/* The seal: a registered store's number, set like the stamp on its certificate. Its red and its
+   double rule are the system: registration numbers and the guide's numbered steps all use them. */
 .seal {
   display: inline-grid; grid-template-columns: auto auto; align-items: center; gap: 0 7px;
-  padding: 4px 8px 4px 6px; border: 1.5px solid var(--shu); border-radius: var(--r);
+  padding: 4px 8px 4px 6px; border: 3px double var(--shu); border-radius: var(--r);
   color: var(--shu); line-height: 1; white-space: nowrap;
 }
 .seal-jp { font-family: var(--font-mincho); font-weight: 800; font-size: 0.78rem; writing-mode: vertical-rl; letter-spacing: 0.05em; }

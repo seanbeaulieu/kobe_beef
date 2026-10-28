@@ -243,7 +243,10 @@ map.on('load', () => {
     map.on('mouseleave', layer, () => (map.getCanvas().style.cursor = pickingCenter ? 'crosshair' : ''));
   }
   map.on('click', (e) => {
-    if (!pickingCenter) return;
+    if (!pickingCenter) {
+      if (aboutOpen()) setAbout(false);
+      return;
+    }
     setPicking(false);
     setCenter({ lat: e.lngLat.lat, lng: e.lngLat.lng });
     toast(`Point set. Showing restaurants within ${filters.radiusKm} km.`);
@@ -499,7 +502,7 @@ function renderDetail(r: Restaurant) {
   const body = h('div', 'detail-body');
 
   const head = h('div', 'detail-head');
-  head.append(h('h2', 'detail-title', r.nameEn ?? r.name), seal(r.registrationNo));
+  head.append(seal(r.registrationNo), h('h2', 'detail-title', r.nameEn ?? r.name));
   if (r.nameEn) {
     const jp = h('p', 'detail-jp', r.name);
     jp.lang = 'ja';
@@ -830,9 +833,6 @@ function setAbout(open: boolean, { focus = true } = {}) {
   about.inert = !open;
   $('#app').classList.toggle('about-open', open);
   for (const b of aboutToggles) b.setAttribute('aria-expanded', String(open));
-  const tab = $('#about-tab');
-  tab.querySelector('span')!.textContent = open ? 'Close' : 'About Kobe beef';
-  tab.setAttribute('aria-label', open ? 'Close about' : 'About Kobe beef');
   if (open && focus) about.querySelector<HTMLElement>('.drawer-close')?.focus({ preventScroll: true });
 }
 const aboutOpen = () => about.classList.contains('open');
@@ -841,8 +841,9 @@ about.querySelector('[data-close-about]')!.addEventListener('click', () => {
   setAbout(false);
   $('#open-about').focus();
 });
-// Greet every visit with the About drawer, unless the link points at a specific restaurant.
-if (!location.hash) setAbout(true, { focus: false });
+// Greet desktop visits with the About drawer, unless the link points at a specific restaurant.
+// On a phone it would cover the whole map, so there it waits for the About button.
+if (!location.hash && !mobile.matches) setAbout(true, { focus: false });
 
 function bar(label: string, value: number, total: number) {
   const row = h('div', 'bar');

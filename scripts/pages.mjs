@@ -110,6 +110,8 @@ function restaurantPage(r, all, generatedAt) {
     .map((o) => ({ o, d: haversineKm(r, o) }))
     .sort((a, b) => a.d - b.d)
     .slice(0, 6);
+  // a price column that's mostly blank is noise
+  const showPrice = nearby.filter(({ o }) => priceCell(o)).length * 2 >= nearby.length;
 
   const rows = [];
   rows.push(['Address', `〒${esc(r.postal ?? '')} ${esc(r.address)}`]);
@@ -143,19 +145,21 @@ function restaurantPage(r, all, generatedAt) {
       <article class="spot">
         ${r.image ? `<figure class="hero"><img src="${esc(r.image)}" alt="Photo of ${esc(title(r))}" referrerpolicy="no-referrer" />${isHttp(r.imageSource) ? `<figcaption>Photo: <a href="${esc(r.imageSource)}" rel="noopener noreferrer">${esc(new URL(r.imageSource).hostname.replace(/^www\./, ''))}</a></figcaption>` : ''}</figure>` : ''}
         <header class="spot-head">
+          ${seal(r.registrationNo)}
           <div>
             <h1>${esc(title(r))}</h1>
             ${jpName(r) ? `<p class="jp" lang="ja">${esc(jpName(r))}</p>` : ''}
           </div>
-          ${seal(r.registrationNo)}
         </header>
         <p class="tags"><span class="tag">${esc(v.label)}</span>${where ? `<span>${esc(where)}, Kobe</span>` : ''}${priceCell(r) ? `<span class="price">${priceCell(r)}</span>` : ''}</p>
         ${DINE_IN_SET.has(r.venueType) ? '' : `<p class="note">${esc(v.hint)}.</p>`}
         <p class="actions">
           <a class="btn primary" href="/#${esc(r.id)}">View on map</a>
+          <span class="links">
           <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${r.lat},${r.lng}" rel="noopener noreferrer">Directions</a>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=${esc(encodeURIComponent(`${r.name} ${r.address}`))}" rel="noopener noreferrer">Google Maps</a>
           <a href="https://tabelog.com/en/rstLst/?sw=${esc(encodeURIComponent(r.name))}" rel="noopener noreferrer">Tabelog</a>
+          </span>
         </p>
         <dl class="facts">
 ${rows.map(([k, val]) => `          <div><dt>${esc(k)}</dt><dd>${val}</dd></div>`).join('\n')}
@@ -167,9 +171,9 @@ ${rows.map(([k, val]) => `          <div><dt>${esc(k)}</dt><dd>${val}</dd></div>
       <section class="nearby">
         <h2>Nearby registered restaurants</h2>
         <table class="ledger">
-          <thead><tr><th class="no">No.</th><th>Restaurant</th><th class="num">Kobe beef course</th><th class="num">Away</th></tr></thead>
+          <thead><tr><th class="no">No.</th><th>Restaurant</th>${showPrice ? '<th class="num">Kobe beef course</th>' : ''}<th class="away">Away</th></tr></thead>
           <tbody>
-${nearby.map(({ o, d }) => `            <tr><td class="no">${o.registrationNo}</td>${nameCell(o)}<td class="num price">${priceCell(o)}</td><td class="num">${d < 0.05 ? 'same block' : d < 1 ? `${Math.round(d * 100) * 10} m` : `${d.toFixed(1)} km`}</td></tr>`).join('\n')}
+${nearby.map(({ o, d }) => `            <tr><td class="no">${o.registrationNo}</td>${nameCell(o, [showPrice && priceCell(o)])}${showPrice ? `<td class="num price">${priceCell(o)}</td>` : ''}<td class="away">${d < 0.05 ? 'same block' : d < 1 ? `${Math.round(d * 100) * 10} m` : `${d.toFixed(1)} km`}</td></tr>`).join('\n')}
           </tbody>
         </table>
       </section>`;
@@ -184,8 +188,11 @@ ${nearby.map(({ o, d }) => `            <tr><td class="no">${o.registrationNo}</
   });
 }
 
-const nameCell = (r) =>
-  `<td class="name"><a href="${pagePath(r)}">${esc(title(r))}</a>${jpName(r) ? `<span class="jp" lang="ja">${esc(jpName(r))}</span>` : ''}</td>`;
+// meta: what the hidden Area / price columns said, shown under the name on phones
+const nameCell = (r, meta = []) => {
+  const m = meta.filter(Boolean).join(' · ');
+  return `<td class="name"><a href="${pagePath(r)}">${esc(title(r))}</a>${jpName(r) ? `<span class="jp" lang="ja">${esc(jpName(r))}</span>` : ''}${m ? `<span class="meta">${m}</span>` : ''}</td>`;
+};
 
 function indexPage(all) {
   const groups = VENUE_ORDER
@@ -201,9 +208,9 @@ ${groups.map(([t, rs]) => `      <section id="${t}">
         <h2>${esc(VENUES[t].label)}<small>${rs.length}</small></h2>
         <p class="note">${esc(VENUES[t].hint)}.</p>
         <table class="ledger">
-          <thead><tr><th class="no">No.</th><th>Restaurant</th><th>Area</th><th class="num">Kobe beef course</th></tr></thead>
+          <thead><tr><th class="no">No.</th><th>Restaurant</th><th class="area">Area</th><th class="num">Kobe beef course</th></tr></thead>
           <tbody>
-${rs.map((r) => `            <tr><td class="no">${r.registrationNo}</td>${nameCell(r)}<td class="area">${esc(area(r) ?? '')}</td><td class="num price">${priceCell(r)}</td></tr>`).join('\n')}
+${rs.map((r) => `            <tr><td class="no">${r.registrationNo}</td>${nameCell(r, [esc(area(r) ?? ''), priceCell(r)])}<td class="area">${esc(area(r) ?? '')}</td><td class="num price">${priceCell(r)}</td></tr>`).join('\n')}
           </tbody>
         </table>
       </section>`).join('\n')}`;
